@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), RacesAdapter.MyOnClickListener{
         recyclerView.adapter = racesAdapter
         prepareRaceData()
     }
-    //F1 Calendar Info
+    //F1 2022 Calendar Info
     private fun prepareRaceData() {
         var race = RaceF1("18-20 MAR", "Bahrain Grand Prix", "1", R.drawable.flag_bahrain,
         "15:00", "18:00", "15:00", "18:00","18:00")
