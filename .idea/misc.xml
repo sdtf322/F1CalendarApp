@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/F1Calendar_OP/app/src/main/res/layout/activity_main.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/F1Calendar_OP/app/src/main/res/layout/content_main.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/F1Calendar_OP/app/src/main/res/layout/fragment_first.xml" value="0.1921875" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/F1Calendar_OP/app/src/main/res/layout/fragment_second.xml" value="0.1921875" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopa/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3046875" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopa/app/src/main/res/layout/activity_main.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopa/app/src/main/res/layout/activity_track_detail.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopa/app/src/main/res/layout/item_row.xml" value="0.67" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopa/app/src/main/res/layout/track_desc.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopa/app/src/main/res/menu/menu_main.xml" value="0.284375" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopa/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3046875" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/drawable-anydpi/ic_backButton.xml" value="0.2125" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/layout/activity_main.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/layout/activity_race_detail.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/layout/activity_track_detail.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/layout/item_row.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/menu/app_menu.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/menu/menu_main.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/RecyclerViewDroopaHotFix2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.221875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

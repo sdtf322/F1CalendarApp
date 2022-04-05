@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">RecyclerViewDroopa</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="date">date</string>
+    <string name="flag">flag</string>
+    <string name="track">track</string>
+    <string name="this_is_sample_track">This is sample track</string>
+    <string name="test_info_for_a_track">test info for a track</string>
+    <string name="round">round</string>
+    <string name="flag_of_a_race_track">Flag of a race track</string>
+    <string name="dateoff1">25_27 JUL</string>
+    <string name="roundf1">1</string>
+    <string name="trackf1">Track name</string>
+    <string name="sprint1">THIS IS A SPRINT RACE WHOOOO</string>
+    <string name="sprint2">Sprint Date</string>
+    <string name="session1Date">22 JUL</string>
+    <string name="session_1">Practice 1</string>
+    <string name="session_1_time">14:00</string>
+    <string name="session_2">Practice 2</string>
+    <string name="session_2_time">17:00</string>
+    <string name="session_3">Practice 3</string>
+    <string name="session_4">Qualifying</string>
+    <string name="session_5">Race</string>
+    <string name="session_2_sprint">Qualifying</string>
+    <string name="session_3_sprint">Practice 2</string>
+    <string name="session_4_sprint">Sprint</string>
+    <string name="switch_to_dark_light_theme">Switch to Dark/Light theme</string>
+    <string name="about_author">About author</string>
+    <string name="back_to_calendar">Back to calendar</string>
+</resources>
