@@ -17,14 +17,12 @@ internal class RacesAdapter(
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var dateF1: TextView = view.findViewById(R.id.dateF1)
         var trackF1: TextView = view.findViewById(R.id.trackF1)
-        var roundF1: TextView = view.findViewById(R.id.roundF1)
         var flagImage: ImageView = view.findViewById(R.id.flagImage)
 
         fun initialize(race: RaceF1, action:MyOnClickListener){
             dateF1.text = race.getDateF1()
             trackF1.text = race.getTrackF1()
-            roundF1.text = race.getRoundF1()
-            flagImage.setImageResource(race.getFlagImageF1()!!)
+            flagImage.setImageResource(race.getFlagImageF1())
 
             itemView.setOnClickListener {
                 action.OnClick(race, adapterPosition)
