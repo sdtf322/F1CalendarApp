@@ -1,14 +1,7 @@
 <resources>
-    <string name="app_name">RecyclerViewDroopa</string>
+    <string name="app_name">F1 Calendar</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="date">date</string>
     <string name="flag">flag</string>
     <string name="track">track</string>
@@ -19,7 +12,6 @@
     <string name="dateoff1">25_27 JUL</string>
     <string name="roundf1">1</string>
     <string name="trackf1">Track name</string>
-    <string name="sprint1">THIS IS A SPRINT RACE WHOOOO</string>
     <string name="sprint2">Sprint Date</string>
     <string name="session1Date">22 JUL</string>
     <string name="session_1">Practice 1</string>
