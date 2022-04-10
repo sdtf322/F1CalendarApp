@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(), RacesAdapter.MyOnClickListener{
     private val raceList = ArrayList<RaceF1>()
-    private lateinit var racesAdapter: RacesAdapter
+    private val racesAdapter: RacesAdapter by lazy { RacesAdapter(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         title = "F1 Calendar"
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        racesAdapter = RacesAdapter(raceList, this)
         val layoutManager = LinearLayoutManager(applicationContext)
 
         recyclerView.layoutManager = layoutManager
@@ -94,20 +93,17 @@ class MainActivity : AppCompatActivity(), RacesAdapter.MyOnClickListener{
         race = RaceF1("18-20 NOV", "Abu Dhabi Grand Prix", R.drawable.flag_uae,
         "12:00", "15:00", "13:00", "16:00", "15:00")
         raceList.add(race)
-        racesAdapter.notifyDataSetChanged()
+        racesAdapter.updateList(raceList)
     }
     //Onn click function transferring to new activity with sent data
     override fun OnClick(race: RaceF1, position: Int) {
         val intent = Intent(this, RaceDetailActivity::class.java)
-        intent.putExtra("RACEDATE", race.getDateF1())
-        intent.putExtra("RACETRACK", race.getTrackF1())
-        intent.putExtra("RACEFLAG", race.getFlagImageF1().toString())
-        intent.putExtra("SESSION1TIME", race.getSession1Time())
-        intent.putExtra("SESSION2TIME", race.getSession2Time())
-        intent.putExtra("SESSION3TIME", race.getSession3Time())
-        intent.putExtra("SESSION4TIME", race.getSession4Time())
-        intent.putExtra("SESSION5TIME", race.getSession5Time())
+        intent.putExtra(RACE_DATE_KEY, race)
         startActivity(intent)
+    }
+
+    companion object{
+        const val RACE_DATE_KEY = "RACETRACK"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

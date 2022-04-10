@@ -7,22 +7,25 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-
 internal class RacesAdapter(
-    private var raceList: List<RaceF1>,
     val listener:MyOnClickListener
     ) :
     RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
-
-    internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private var raceList: MutableList<RaceF1> = mutableListOf()
+    fun updateList(racelist: List<RaceF1>){
+        this.raceList.clear()
+        this.raceList.addAll(racelist)
+        notifyDataSetChanged()
+    }
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var dateF1: TextView = view.findViewById(R.id.dateF1)
         var trackF1: TextView = view.findViewById(R.id.trackF1)
         var flagImage: ImageView = view.findViewById(R.id.flagImage)
 
         fun initialize(race: RaceF1, action:MyOnClickListener){
-            dateF1.text = race.getDateF1()
-            trackF1.text = race.getTrackF1()
-            flagImage.setImageResource(race.getFlagImageF1())
+            dateF1.text = race.dateF1
+            trackF1.text = race.trackF1
+            flagImage.setImageResource(race.flagImage)
 
             itemView.setOnClickListener {
                 action.OnClick(race, adapterPosition)

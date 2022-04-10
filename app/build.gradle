@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.recyclerviewdroopa"
+        applicationId "com.example.f1CalendarOP"
         minSdk 21
         targetSdk 32
         versionCode 1
