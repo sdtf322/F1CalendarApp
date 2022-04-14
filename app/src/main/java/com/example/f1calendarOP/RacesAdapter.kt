@@ -28,10 +28,9 @@ internal class RacesAdapter(
             flagImage.setImageResource(race.flagImage)
 
             itemView.setOnClickListener {
-                action.OnClick(race, adapterPosition)
+                action.onClick(race, adapterPosition)
             }
         }
-
     }
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -48,7 +47,7 @@ internal class RacesAdapter(
     }
 
     interface MyOnClickListener{
-        fun OnClick(race:RaceF1,position: Int)
+        fun onClick(race:RaceF1,position: Int)
     }
 
 }
