@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-internal class RacesAdapter(
+class RacesAdapter(
     val listener:MyOnClickListener
     ) :
     RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {

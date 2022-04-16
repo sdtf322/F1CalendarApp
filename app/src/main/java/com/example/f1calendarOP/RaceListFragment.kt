@@ -1,10 +1,8 @@
 package com.example.f1calendarOP
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,16 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyOnClickListener {
 
     private val racesAdapter: RacesAdapter by lazy { RacesAdapter(this) }
-    private val raceList = ArrayList<RaceF1>()
-    private val raceDetailFragment = RaceDetailFragment()
-    private val bundle = Bundle()
+    private var raceList = ArrayList<RaceF1>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_race_list, container, false)
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -31,10 +21,12 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = racesAdapter
 
-        prepareRaceData()
+        val raceFunctions = RaceFunctions()
+        raceFunctions.prepareRaceData(raceList, racesAdapter)
     }
 
-    //F1 2022 Calendar Info
+//    F1 2022 Calendar Info
+
     private fun prepareRaceData() {
         var race = RaceF1("18-20 MAR", "Bahrain Grand Prix", R.drawable.flag_bahrain,
             "15:00", "18:00", "15:00", "18:00","18:00")
@@ -105,10 +97,13 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
         racesAdapter.updateList(raceList)
     }
     override fun onClick(race: RaceF1, position: Int) {
+        val raceDetailFragment = RaceDetailFragment()
+        val bundle = Bundle()
+
         bundle.putSerializable(RACE_DATE_KEY, race)
         raceDetailFragment.arguments = bundle
         val fragmentTransaction = parentFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.flFragment, raceDetailFragment)
+        fragmentTransaction.add(R.id.flFragment, raceDetailFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
