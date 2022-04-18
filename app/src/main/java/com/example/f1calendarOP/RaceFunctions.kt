@@ -109,12 +109,9 @@ class RaceFunctions() {
         val singleDigit = 1
         val monthText = 3
         val dateDifference = 1
-        var session1DateString : String
-        var session3DateString : String
-        var session5DateString : String
-
         //Session Dates
         // Extract first date and name of month from string
+        var session1DateString : String
         session1DateString = sourceString.take(dateDigit) + " " + sourceString.takeLast(monthText)
 
         if(sourceString.length >= fullDate){   // if weekend happens in 2 different months(ex.SEP-OCT) 30-02 SEP-OCT
@@ -123,10 +120,12 @@ class RaceFunctions() {
         var session2DateString : String = session1DateString
 
         //Setting Session 5
+        var session5DateString : String
         session5DateString = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
 
         //Setting Session 3,4 date
         //If one date or another starts with 0
+        var session3DateString : String
         session3DateString = session5DateString
         val secondDate : Char = session3DateString[startOfSecondDate]
         if(session3DateString.take(singleDigit) == "0" || secondDate.toString() == "0"){ // 30-02
@@ -146,7 +145,7 @@ class RaceFunctions() {
         return sessionArray
 
     }
-    fun syncTime(sessionTimeString : Array<String>, sessionTimeTv : Array<Int>, view:View){
+    fun syncTime(sessionTimeString : ArrayList<String>, sessionTimeTv : ArrayList<Int>, view:View){
         val timeDigit = 2
         val myTimeZone = TimeZone.getTimeZone("Europe/Riga") // add tim ezone
         val currentTime = Calendar.getInstance() // add calendar library
@@ -159,5 +158,4 @@ class RaceFunctions() {
             view.findViewById<TextView>(sessionTimeTv[i]).setText(dateTime)
         }
     }
-
 }
