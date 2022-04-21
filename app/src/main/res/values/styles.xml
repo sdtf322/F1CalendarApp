@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Widget.Theme.RecyclerViewDroopa.ButtonBar.Fullscreen" parent="">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>

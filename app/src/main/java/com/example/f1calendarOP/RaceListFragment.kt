@@ -25,6 +25,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
         raceFunctions.prepareRaceData(raceList, racesAdapter)
     }
     override fun onClick(race: RaceF1, position: Int) {
+
         val raceDetailFragment = RaceDetailFragment()
         val bundle = Bundle()
 
