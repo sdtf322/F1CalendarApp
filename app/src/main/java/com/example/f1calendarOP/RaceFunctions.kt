@@ -158,4 +158,6 @@ internal class RaceFunctions() {
             view.findViewById<TextView>(sessionTimeTv[i]).setText(dateTime)
         }
     }
+
+
 }
