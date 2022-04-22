@@ -3,7 +3,7 @@ This Formula 1 calendar is a simple app which provides information about Formula
 
 ## Features
 -Ordered list of Formula 1 races with date, country and track information.  
--Clicking on any specific Grand Prix gives more specific information about each session and timing  
+-Clicking on any specific Grand Prix gives more information about each session and timing  
 -More features will be implemented later 
 
 ### Main Screen  
