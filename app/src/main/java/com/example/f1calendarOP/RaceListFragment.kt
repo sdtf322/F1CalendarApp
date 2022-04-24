@@ -15,7 +15,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView) // recyclerview init
         recyclerView.apply{
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()

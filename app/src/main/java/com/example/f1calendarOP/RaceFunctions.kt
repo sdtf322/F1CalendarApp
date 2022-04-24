@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-internal class RaceFunctions() {
+internal class RaceFunctions {
 
         fun prepareRaceData(raceList : ArrayList<RaceF1>, racesAdapter: RacesAdapter) : ArrayList<RaceF1> {
             var race = RaceF1("18-20 MAR", "Bahrain Grand Prix", R.drawable.flag_bahrain,
@@ -120,8 +120,7 @@ internal class RaceFunctions() {
         var session2DateString : String = session1DateString
 
         //Setting Session 5
-        var session5DateString : String
-        session5DateString = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
+        var session5DateString : String = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
 
         //Setting Session 3,4 date
         //If one date or another starts with 0
