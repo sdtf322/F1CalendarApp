@@ -21,7 +21,11 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapt
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RaceDetailAdapterViewHolder {
         val layout = when(viewType){
             TYPE_HEADER -> R.layout.item_detail_header
-            TYPE_SESSION -> R.layout.item_detail_session
+            TYPE_SESSION1 -> R.layout.item_detail_session1
+            TYPE_SESSION2 -> R.layout.item_detail_session2
+            TYPE_SESSION3 -> R.layout.item_detail_session3
+            TYPE_SESSION4 -> R.layout.item_detail_session4
+            TYPE_SESSION5 -> R.layout.item_detail_session5
             else -> throw IllegalArgumentException("Invalid view type")
         }
 
@@ -36,7 +40,11 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapt
     override fun getItemViewType(position: Int): Int {
         return when(raceDetail[position]) {
             is RaceDetailModel.Header -> TYPE_HEADER
-            is RaceDetailModel.Session -> TYPE_SESSION
+            is RaceDetailModel.Session1 -> TYPE_SESSION1
+            is RaceDetailModel.Session2 -> TYPE_SESSION2
+            is RaceDetailModel.Session3 -> TYPE_SESSION3
+            is RaceDetailModel.Session4 -> TYPE_SESSION4
+            is RaceDetailModel.Session5 -> TYPE_SESSION5
         }
     }
 
@@ -44,7 +52,11 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapt
 
     companion object {
         private const val TYPE_HEADER = 0
-        private const val TYPE_SESSION = 1
+        private const val TYPE_SESSION1 = 1
+        private const val TYPE_SESSION2 = 2
+        private const val TYPE_SESSION3 = 3
+        private const val TYPE_SESSION4 = 4
+        private const val TYPE_SESSION5 = 5
     }
 
     class RaceDetailAdapterViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -53,16 +65,40 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapt
             itemView.findViewById<TextView>(R.id.tvDateF1_2).text = item.date
             itemView.findViewById<ImageView>(R.id.flagDetailF1)?.setImageResource(item.flag)
         }
-        private fun bindSession(item: RaceDetailModel.Session){
-            itemView.findViewById<TextView>(R.id.tvSessionDate).text = item.sessionDate
-            itemView.findViewById<TextView>(R.id.tvSessionName).text = item.sessionName
-            itemView.findViewById<TextView>(R.id.tvSessionTime).text = item.sessionTime
+        private fun bindSession1(item: RaceDetailModel.Session1){
+            itemView.findViewById<TextView>(R.id.tvSessionDate1).text = item.sessionDate
+            itemView.findViewById<TextView>(R.id.tvSessionName1).text = item.sessionName
+            itemView.findViewById<TextView>(R.id.tvSessionTime1).text = item.sessionTime
+        }
+        private fun bindSession2(item: RaceDetailModel.Session2){
+            itemView.findViewById<TextView>(R.id.tvSessionDate2).text = item.sessionDate
+            itemView.findViewById<TextView>(R.id.tvSessionName2).text = item.sessionName
+            itemView.findViewById<TextView>(R.id.tvSessionTime2).text = item.sessionTime
+        }
+        private fun bindSession3(item: RaceDetailModel.Session3){
+            itemView.findViewById<TextView>(R.id.tvSessionDate3).text = item.sessionDate
+            itemView.findViewById<TextView>(R.id.tvSessionName3).text = item.sessionName
+            itemView.findViewById<TextView>(R.id.tvSessionTime3).text = item.sessionTime
+        }
+        private fun bindSession4(item: RaceDetailModel.Session4){
+            itemView.findViewById<TextView>(R.id.tvSessionDate4).text = item.sessionDate
+            itemView.findViewById<TextView>(R.id.tvSessionName4).text = item.sessionName
+            itemView.findViewById<TextView>(R.id.tvSessionTime4).text = item.sessionTime
+        }
+        private fun bindSession5(item: RaceDetailModel.Session5){
+            itemView.findViewById<TextView>(R.id.tvSessionDate5).text = item.sessionDate
+            itemView.findViewById<TextView>(R.id.tvSessionName5).text = item.sessionName
+            itemView.findViewById<TextView>(R.id.tvSessionTime5).text = item.sessionTime
         }
 
         fun bind(raceDetailModel: RaceDetailModel){
             when(raceDetailModel){
                 is RaceDetailModel.Header -> bindHeader(raceDetailModel)
-                is RaceDetailModel.Session -> bindSession(raceDetailModel)
+                is RaceDetailModel.Session1 -> bindSession1(raceDetailModel)
+                is RaceDetailModel.Session2 -> bindSession2(raceDetailModel)
+                is RaceDetailModel.Session3 -> bindSession3(raceDetailModel)
+                is RaceDetailModel.Session4 -> bindSession4(raceDetailModel)
+                is RaceDetailModel.Session5 -> bindSession5(raceDetailModel)
             }
         }
     }

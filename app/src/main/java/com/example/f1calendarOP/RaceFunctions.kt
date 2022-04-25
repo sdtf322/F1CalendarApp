@@ -147,27 +147,27 @@ internal class RaceFunctions {
                     date = race.dateF1,
                     flag = race.flagImage
                 ),
-                RaceDetailModel.Session(
+                RaceDetailModel.Session1(
                     sessionDate = session1Date,
                     sessionName = session1Name,
                     sessionTime = race.session1Time
                 ),
-                RaceDetailModel.Session(
+                RaceDetailModel.Session2(
                     sessionDate = session2Date,
                     sessionName = session2Name,
                     sessionTime = race.session2Time
                 ),
-                RaceDetailModel.Session(
+                RaceDetailModel.Session3(
                     sessionDate = session3Date,
                     sessionName = session3Name,
                     sessionTime = race.session3Time
                 ),
-                RaceDetailModel.Session(
+                RaceDetailModel.Session4(
                     sessionDate = session4Date,
                     sessionName = session4Name,
                     sessionTime = race.session4Time
                 ),
-                RaceDetailModel.Session(
+                RaceDetailModel.Session5(
                     sessionDate = session5Date,
                     sessionName = session5Name,
                     sessionTime = race.session5Time

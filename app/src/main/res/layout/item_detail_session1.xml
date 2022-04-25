@@ -8,7 +8,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvSessionName"
+        android:id="@+id/tvSessionName1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/session_1"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvSessionTime"
+        android:id="@+id/tvSessionTime1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/session_1_time"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvSessionDate"
+        android:id="@+id/tvSessionDate1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
