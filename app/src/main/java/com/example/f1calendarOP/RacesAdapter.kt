@@ -12,7 +12,9 @@ class RacesAdapter(
     val listener:MyOnClickListener
     ) :
     RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
+
     private var raceList: MutableList<RaceF1> = mutableListOf()
+
     fun updateList(racelist: List<RaceF1>){
         this.raceList.clear()
         this.raceList.addAll(racelist)

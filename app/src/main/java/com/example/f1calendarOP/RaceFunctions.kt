@@ -1,14 +1,12 @@
 package com.example.f1calendarOP
 
-import android.view.View
-import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 internal class RaceFunctions {
 
-        fun prepareRaceData(raceList : ArrayList<RaceF1>, racesAdapter: RacesAdapter) : ArrayList<RaceF1> {
+        fun prepareRaceData(raceList : ArrayList<RaceF1>) : ArrayList<RaceF1> {
             var race = RaceF1("18-20 MAR", "Bahrain Grand Prix", R.drawable.flag_bahrain,
                 "15:00", "18:00", "15:00",
                 "18:00","18:00", false)
@@ -97,8 +95,85 @@ internal class RaceFunctions {
                 "12:00", "15:00", "13:00",
                 "16:00", "15:00", false)
             raceList.add(race)
+            return raceList
+        }
+        fun prepareRaceData2(racesAdapter: RacesAdapter) : ArrayList<RaceF1> {
+            var raceList = ArrayList<RaceF1>()
+            raceList = prepareRaceData(raceList)
             racesAdapter.updateList(raceList)
             return raceList
+        }
+        fun getRaceDetailData(race: RaceF1): List<RaceDetailModel>{
+
+            val sessionDateString = getSessionDates(race.dateF1)
+            val session1Date : String = sessionDateString[0]
+            val session2Date : String = sessionDateString[1]
+            val session3Date : String = sessionDateString[2]
+            val session4Date : String = sessionDateString[3]
+            val session5Date : String = sessionDateString[4]
+
+            val session1Name = "Practice 1"
+            var session2Name = "Practice 2"
+            var session3Name = "Practice 3"
+            var session4Name = "Qualification"
+            if(race.sprintRace){
+                session2Name = "Qualification"
+                session3Name = "Practice 2"
+                session4Name = "Sprint Race"
+            }
+            val session5Name = "Race"
+            val sessionNameString = arrayListOf<String>()
+            with(sessionNameString){
+                add(session1Name)
+                add(session2Name)
+                add(session3Name)
+                add(session4Name)
+                add(session5Name)
+            }
+
+            var sessionTimeString = arrayListOf<String>()
+            with(sessionTimeString){
+                add(race.session1Time)
+                add(race.session2Time)
+                add(race.session3Time)
+                add(race.session4Time)
+                add(race.session5Time)
+            }
+            sessionTimeString = syncTime(sessionTimeString)
+
+            val raceDetailList = listOf(
+                RaceDetailModel.Header(
+                    track = race.trackF1,
+                    date = race.dateF1,
+                    flag = race.flagImage
+                ),
+                RaceDetailModel.Session(
+                    sessionDate = session1Date,
+                    sessionName = session1Name,
+                    sessionTime = race.session1Time
+                ),
+                RaceDetailModel.Session(
+                    sessionDate = session2Date,
+                    sessionName = session2Name,
+                    sessionTime = race.session2Time
+                ),
+                RaceDetailModel.Session(
+                    sessionDate = session3Date,
+                    sessionName = session3Name,
+                    sessionTime = race.session3Time
+                ),
+                RaceDetailModel.Session(
+                    sessionDate = session4Date,
+                    sessionName = session4Name,
+                    sessionTime = race.session4Time
+                ),
+                RaceDetailModel.Session(
+                    sessionDate = session5Date,
+                    sessionName = session5Name,
+                    sessionTime = race.session5Time
+                ),
+            )
+            return raceDetailList
         }
 
     fun getSessionDates(sourceString: String) : Array<String>{
@@ -117,10 +192,10 @@ internal class RaceFunctions {
         if(sourceString.length >= fullDate){   // if weekend happens in 2 different months(ex.SEP-OCT) 30-02 SEP-OCT
             session1DateString = sourceString.take(dateDigit) + " " + sourceString.substring(fullDate-monthText,fullDate)
         }
-        var session2DateString : String = session1DateString
+        val session2DateString : String = session1DateString
 
         //Setting Session 5
-        var session5DateString : String = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
+        val session5DateString : String = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
 
         //Setting Session 3,4 date
         //If one date or another starts with 0
@@ -138,15 +213,16 @@ internal class RaceFunctions {
                 session3DateString = "0" + session3DateString
             }
         }
-        var session4DateString : String = session3DateString
+        val session4DateString : String = session3DateString
         val sessionArray = arrayOf(session1DateString, session2DateString,
         session3DateString,session4DateString, session5DateString)
         return sessionArray
 
     }
-    fun syncTime(sessionTimeString : ArrayList<String>, sessionTimeTv : ArrayList<Int>, view:View){
+
+    fun syncTime(sessionTimeString : ArrayList<String>) : ArrayList<String>{
         val timeDigit = 2
-        val myTimeZone = TimeZone.getTimeZone("Europe/Riga") // add tim ezone
+        val myTimeZone = TimeZone.getTimeZone("Europe/Riga") // add time zone
         val currentTime = Calendar.getInstance() // add calendar library
         val simpleDateFormat = SimpleDateFormat("HH:mm") // add date format
         currentTime.timeZone = myTimeZone
@@ -154,9 +230,11 @@ internal class RaceFunctions {
             currentTime.set(Calendar.HOUR_OF_DAY, sessionTimeString[i].take(timeDigit).toInt()) // HOUR AND MINUTES ARE INT VAR
             currentTime.set(Calendar.MINUTE,(sessionTimeString[i].takeLast(timeDigit)).toInt())
             val dateTime = simpleDateFormat.format(currentTime.time).toString() //date is displayed with selected date format and time zone
-            view.findViewById<TextView>(sessionTimeTv[i]).setText(dateTime)
+            sessionTimeString[i] = dateTime
         }
+        return sessionTimeString
     }
+
 
 
 }
