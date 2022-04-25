@@ -103,16 +103,37 @@ internal class RaceFunctions {
             racesAdapter.updateList(raceList)
             return raceList
         }
-        fun getRaceDetailData(race: RaceF1): List<RaceDetailModel>{
+        fun getRaceDetailData(race: RaceF1): ArrayList<RaceDetailModel>{
+
+            var sessionTimeString = arrayListOf<String>()
+            with(sessionTimeString){
+                with(race){
+                    add(session1Time)
+                    add(session2Time)
+                    add(session3Time)
+                    add(session4Time)
+                    add(session5Time)
+                }
+            }
+            val sessionTimeStringSynced = syncTime(sessionTimeString)
+
 
             val sessionDateString = getSessionDates(race.dateF1)
-            val session1Date : String = sessionDateString[0]
-            val session2Date : String = sessionDateString[1]
-            val session3Date : String = sessionDateString[2]
-            val session4Date : String = sessionDateString[3]
-            val session5Date : String = sessionDateString[4]
+            val raceDetailList = ArrayList<RaceDetailModel>()
+
+
+            var header = RaceDetailModel.Header(
+                track = race.trackF1, date = race.dateF1, flag = race.flagImage)
+            raceDetailList.add(header)
 
             val session1Name = "Practice 1"
+            val session1Date : String = sessionDateString[0]
+            val session1Time : String = sessionTimeStringSynced[0]
+            var session1 = RaceDetailModel.Session1(
+                sessionDate = session1Date, sessionName = session1Name, sessionTime = session1Time)
+            raceDetailList.add(session1)
+
+
             var session2Name = "Practice 2"
             var session3Name = "Practice 3"
             var session4Name = "Qualification"
@@ -121,60 +142,33 @@ internal class RaceFunctions {
                 session3Name = "Practice 2"
                 session4Name = "Sprint Race"
             }
+            val session2Time : String = sessionTimeStringSynced[1]
+            val session2Date : String = sessionDateString[1]
+            var session2 = RaceDetailModel.Session2(
+                sessionDate = session2Date, sessionName = session2Name, sessionTime = session2Time)
+            raceDetailList.add(session2)
+
+            val session3Date : String = sessionDateString[2]
+            val session3Time : String = sessionTimeStringSynced[2]
+            var session3 = RaceDetailModel.Session3(
+                sessionDate = session3Date, sessionName = session3Name, sessionTime = session3Time)
+            raceDetailList.add(session3)
+
+            val session4Date : String = sessionDateString[3]
+            val session4Time : String = sessionTimeStringSynced[3]
+            var session4 = RaceDetailModel.Session4(
+                sessionDate = session4Date, sessionName = session4Name, sessionTime = session4Time)
+            raceDetailList.add(session4)
+
             val session5Name = "Race"
-            val sessionNameString = arrayListOf<String>()
-            with(sessionNameString){
-                add(session1Name)
-                add(session2Name)
-                add(session3Name)
-                add(session4Name)
-                add(session5Name)
-            }
-
-            var sessionTimeString = arrayListOf<String>()
-            with(sessionTimeString){
-                add(race.session1Time)
-                add(race.session2Time)
-                add(race.session3Time)
-                add(race.session4Time)
-                add(race.session5Time)
-            }
-            sessionTimeString = syncTime(sessionTimeString)
-
-            val raceDetailList = listOf(
-                RaceDetailModel.Header(
-                    track = race.trackF1,
-                    date = race.dateF1,
-                    flag = race.flagImage
-                ),
-                RaceDetailModel.Session1(
-                    sessionDate = session1Date,
-                    sessionName = session1Name,
-                    sessionTime = race.session1Time
-                ),
-                RaceDetailModel.Session2(
-                    sessionDate = session2Date,
-                    sessionName = session2Name,
-                    sessionTime = race.session2Time
-                ),
-                RaceDetailModel.Session3(
-                    sessionDate = session3Date,
-                    sessionName = session3Name,
-                    sessionTime = race.session3Time
-                ),
-                RaceDetailModel.Session4(
-                    sessionDate = session4Date,
-                    sessionName = session4Name,
-                    sessionTime = race.session4Time
-                ),
-                RaceDetailModel.Session5(
-                    sessionDate = session5Date,
-                    sessionName = session5Name,
-                    sessionTime = race.session5Time
-                ),
-            )
+            val session5Date : String = sessionDateString[4]
+            val session5Time : String = sessionTimeStringSynced[4]
+            var session5 = RaceDetailModel.Session5(
+                sessionDate = session5Date, sessionName = session5Name, sessionTime = session5Time)
+            raceDetailList.add(session5)
             return raceDetailList
         }
+
 
     fun getSessionDates(sourceString: String) : Array<String>{
         val fullDate = 9
