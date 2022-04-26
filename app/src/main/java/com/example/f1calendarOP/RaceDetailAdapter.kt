@@ -51,12 +51,12 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapt
     override fun getItemCount(): Int = raceDetail.size
 
     companion object {
-        private const val TYPE_HEADER = 0
-        private const val TYPE_SESSION1 = 1
-        private const val TYPE_SESSION2 = 2
-        private const val TYPE_SESSION3 = 3
-        private const val TYPE_SESSION4 = 4
-        private const val TYPE_SESSION5 = 5
+        const val TYPE_SESSION1 = 0
+        const val TYPE_SESSION2 = 1
+        const val TYPE_SESSION3 = 2
+        const val TYPE_SESSION4 = 3
+        const val TYPE_SESSION5 = 4
+        const val TYPE_HEADER = 5
     }
 
     class RaceDetailAdapterViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {

@@ -1,5 +1,10 @@
 package com.example.f1calendarOP
 
+import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION1
+import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION2
+import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION3
+import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION4
+import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION5
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -105,7 +110,14 @@ internal class RaceFunctions {
         }
         fun getRaceDetailData(race: RaceF1): ArrayList<RaceDetailModel>{
 
-            var sessionTimeString = arrayListOf<String>()
+            val raceDetailList = ArrayList<RaceDetailModel>()
+
+            val header = RaceDetailModel.Header(
+                track = race.trackF1, date = race.dateF1, flag = race.flagImage)
+            raceDetailList.add(header)
+
+
+            val sessionTimeString = arrayListOf<String>()
             with(sessionTimeString){
                 with(race){
                     add(session1Time)
@@ -117,19 +129,12 @@ internal class RaceFunctions {
             }
             val sessionTimeStringSynced = syncTime(sessionTimeString)
 
-
             val sessionDateString = getSessionDates(race.dateF1)
-            val raceDetailList = ArrayList<RaceDetailModel>()
-
-
-            var header = RaceDetailModel.Header(
-                track = race.trackF1, date = race.dateF1, flag = race.flagImage)
-            raceDetailList.add(header)
 
             val session1Name = "Practice 1"
-            val session1Date : String = sessionDateString[0]
-            val session1Time : String = sessionTimeStringSynced[0]
-            var session1 = RaceDetailModel.Session1(
+            val session1Date : String = sessionDateString[TYPE_SESSION1]
+            val session1Time : String = sessionTimeStringSynced[TYPE_SESSION1]
+            val session1 = RaceDetailModel.Session1(
                 sessionDate = session1Date, sessionName = session1Name, sessionTime = session1Time)
             raceDetailList.add(session1)
 
@@ -142,28 +147,28 @@ internal class RaceFunctions {
                 session3Name = "Practice 2"
                 session4Name = "Sprint Race"
             }
-            val session2Time : String = sessionTimeStringSynced[1]
-            val session2Date : String = sessionDateString[1]
-            var session2 = RaceDetailModel.Session2(
+            val session2Time : String = sessionTimeStringSynced[TYPE_SESSION2]
+            val session2Date : String = sessionDateString[TYPE_SESSION2]
+            val session2 = RaceDetailModel.Session2(
                 sessionDate = session2Date, sessionName = session2Name, sessionTime = session2Time)
             raceDetailList.add(session2)
 
-            val session3Date : String = sessionDateString[2]
-            val session3Time : String = sessionTimeStringSynced[2]
-            var session3 = RaceDetailModel.Session3(
+            val session3Date : String = sessionDateString[TYPE_SESSION3]
+            val session3Time : String = sessionTimeStringSynced[TYPE_SESSION3]
+            val session3 = RaceDetailModel.Session3(
                 sessionDate = session3Date, sessionName = session3Name, sessionTime = session3Time)
             raceDetailList.add(session3)
 
-            val session4Date : String = sessionDateString[3]
-            val session4Time : String = sessionTimeStringSynced[3]
-            var session4 = RaceDetailModel.Session4(
+            val session4Date : String = sessionDateString[TYPE_SESSION4]
+            val session4Time : String = sessionTimeStringSynced[TYPE_SESSION4]
+            val session4 = RaceDetailModel.Session4(
                 sessionDate = session4Date, sessionName = session4Name, sessionTime = session4Time)
             raceDetailList.add(session4)
 
             val session5Name = "Race"
-            val session5Date : String = sessionDateString[4]
-            val session5Time : String = sessionTimeStringSynced[4]
-            var session5 = RaceDetailModel.Session5(
+            val session5Date : String = sessionDateString[TYPE_SESSION5]
+            val session5Time : String = sessionTimeStringSynced[TYPE_SESSION5]
+            val session5 = RaceDetailModel.Session5(
                 sessionDate = session5Date, sessionName = session5Name, sessionTime = session5Time)
             raceDetailList.add(session5)
             return raceDetailList
