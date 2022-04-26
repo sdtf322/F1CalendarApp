@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyOnClickListener {
 
     private val racesAdapter: RacesAdapter by lazy {RacesAdapter(this) }
+    private val raceList = ArrayList<RaceF1>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,7 +22,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
             adapter = racesAdapter
         }
         val raceFunctions = RaceFunctions()
-        raceFunctions.prepareRaceData2(racesAdapter)
+        raceFunctions.prepareRaceData(raceList, racesAdapter)
     }
     override fun onClick(race: RaceF1, position: Int) {
 

@@ -11,7 +11,7 @@ import kotlin.collections.ArrayList
 
 internal class RaceFunctions {
 
-        fun prepareRaceData(raceList : ArrayList<RaceF1>) : ArrayList<RaceF1> {
+        fun prepareRaceData(raceList : ArrayList<RaceF1>, racesAdapter: RacesAdapter) : ArrayList<RaceF1> {
             var race = RaceF1("18-20 MAR", "Bahrain Grand Prix", R.drawable.flag_bahrain,
                 "15:00", "18:00", "15:00",
                 "18:00","18:00", false)
@@ -100,14 +100,10 @@ internal class RaceFunctions {
                 "12:00", "15:00", "13:00",
                 "16:00", "15:00", false)
             raceList.add(race)
-            return raceList
-        }
-        fun prepareRaceData2(racesAdapter: RacesAdapter) : ArrayList<RaceF1> {
-            var raceList = ArrayList<RaceF1>()
-            raceList = prepareRaceData(raceList)
             racesAdapter.updateList(raceList)
             return raceList
         }
+
         fun getRaceDetailData(race: RaceF1): ArrayList<RaceDetailModel>{
 
             val raceDetailList = ArrayList<RaceDetailModel>()
@@ -233,7 +229,5 @@ internal class RaceFunctions {
         }
         return sessionTimeString
     }
-
-
 
 }
