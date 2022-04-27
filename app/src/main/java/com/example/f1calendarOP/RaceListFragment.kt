@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyOnClickListener {
 
-    private val racesAdapter: RacesAdapter by lazy {RacesAdapter(this) }
+    private val racesAdapter: RacesAdapter by lazy { RacesAdapter(this) }
     private val raceList = ArrayList<RaceF1>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView) // recyclerview init
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.apply{
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()
@@ -26,8 +26,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
     }
     override fun onClick(race: RaceF1, position: Int) {
 
-//        val raceDetailFragment = RaceDetailFragment()
-        val raceDetailFragment = RaceDetailFragmentNEW()
+        val raceDetailFragment = RaceDetailFragment()
         val bundle = Bundle()
 
         bundle.putSerializable(RACE_DATE_KEY, race)

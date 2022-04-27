@@ -1,10 +1,5 @@
 package com.example.f1calendarOP
 
-import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION1
-import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION2
-import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION3
-import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION4
-import com.example.f1calendarOP.RaceDetailAdapter.Companion.TYPE_SESSION5
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -128,9 +123,9 @@ internal class RaceFunctions {
             val sessionDateString = getSessionDates(race.dateF1)
 
             val session1Name = "Practice 1"
-            val session1Date : String = sessionDateString[TYPE_SESSION1]
-            val session1Time : String = sessionTimeStringSynced[TYPE_SESSION1]
-            val session1 = RaceDetailModel.Session1(
+            val session1Date : String = sessionDateString[SESSION1_INDEX]
+            val session1Time : String = sessionTimeStringSynced[SESSION1_INDEX]
+            val session1 = RaceDetailModel.Session(
                 sessionDate = session1Date, sessionName = session1Name, sessionTime = session1Time)
             raceDetailList.add(session1)
 
@@ -143,32 +138,40 @@ internal class RaceFunctions {
                 session3Name = "Practice 2"
                 session4Name = "Sprint Race"
             }
-            val session2Time : String = sessionTimeStringSynced[TYPE_SESSION2]
-            val session2Date : String = sessionDateString[TYPE_SESSION2]
-            val session2 = RaceDetailModel.Session2(
+            val session2Time : String = sessionTimeStringSynced[SESSION2_INDEX]
+            val session2Date : String = sessionDateString[SESSION2_INDEX]
+            val session2 = RaceDetailModel.Session(
                 sessionDate = session2Date, sessionName = session2Name, sessionTime = session2Time)
             raceDetailList.add(session2)
 
-            val session3Date : String = sessionDateString[TYPE_SESSION3]
-            val session3Time : String = sessionTimeStringSynced[TYPE_SESSION3]
-            val session3 = RaceDetailModel.Session3(
+            val session3Date : String = sessionDateString[SESSION3_INDEX]
+            val session3Time : String = sessionTimeStringSynced[SESSION3_INDEX]
+            val session3 = RaceDetailModel.Session(
                 sessionDate = session3Date, sessionName = session3Name, sessionTime = session3Time)
             raceDetailList.add(session3)
 
-            val session4Date : String = sessionDateString[TYPE_SESSION4]
-            val session4Time : String = sessionTimeStringSynced[TYPE_SESSION4]
-            val session4 = RaceDetailModel.Session4(
+            val session4Date : String = sessionDateString[SESSION4_INDEX]
+            val session4Time : String = sessionTimeStringSynced[SESSION4_INDEX]
+            val session4 = RaceDetailModel.Session(
                 sessionDate = session4Date, sessionName = session4Name, sessionTime = session4Time)
             raceDetailList.add(session4)
 
             val session5Name = "Race"
-            val session5Date : String = sessionDateString[TYPE_SESSION5]
-            val session5Time : String = sessionTimeStringSynced[TYPE_SESSION5]
-            val session5 = RaceDetailModel.Session5(
+            val session5Date : String = sessionDateString[SESSION5_INDEX]
+            val session5Time : String = sessionTimeStringSynced[SESSION5_INDEX]
+            val session5 = RaceDetailModel.Session(
                 sessionDate = session5Date, sessionName = session5Name, sessionTime = session5Time)
             raceDetailList.add(session5)
             return raceDetailList
         }
+
+    companion object {
+        val SESSION1_INDEX = 0
+        val SESSION2_INDEX = 1
+        val SESSION3_INDEX = 2
+        val SESSION4_INDEX = 3
+        val SESSION5_INDEX = 4
+    }
 
 
     fun getSessionDates(sourceString: String) : Array<String>{
