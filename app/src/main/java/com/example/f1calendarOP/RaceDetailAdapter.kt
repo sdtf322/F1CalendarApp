@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import java.lang.IllegalArgumentException
 
 // TODO:
-// -move detail viewholder to a new class
 // -add views in detail fragment
 
 class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapterViewHolder>() {
