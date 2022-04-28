@@ -12,7 +12,7 @@ import java.lang.IllegalArgumentException
 // -move detail viewholder to a new class
 // -add views in detail fragment
 
-class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapterViewHolder>() {
+class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapterViewHolder>() {
 
     private val raceDetail = ArrayList<RaceDetailModel>()
 
@@ -23,8 +23,6 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapt
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RaceDetailAdapterViewHolder {
-        //view types can be HEADER OR SESSION
-        //
         val layout = when (viewType) {
             TYPE_SESSION -> R.layout.item_detail_session
             TYPE_HEADER -> R.layout.item_detail_header
@@ -54,22 +52,4 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapt
 
     override fun getItemCount(): Int = raceDetail.size
 
-    class RaceDetailAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private fun bindHeader(item: RaceDetailModel.Header) {
-            itemView.findViewById<TextView>(R.id.tvTrackDetailF1).text = item.track
-            itemView.findViewById<TextView>(R.id.tvDateF1_2).text = item.date
-            itemView.findViewById<ImageView>(R.id.flagDetailF1)?.setImageResource(item.flag)
-        }
-        private fun bindSession(item: RaceDetailModel.Session) {
-            itemView.findViewById<TextView>(R.id.tvSessionDate).text = item.sessionDate
-            itemView.findViewById<TextView>(R.id.tvSessionName).text = item.sessionName
-            itemView.findViewById<TextView>(R.id.tvSessionTime).text = item.sessionTime
-        }
-            fun bind(raceDetailModel: RaceDetailModel) {
-                when (raceDetailModel) {
-                    is RaceDetailModel.Header -> bindHeader(raceDetailModel)
-                    is RaceDetailModel.Session -> bindSession(raceDetailModel)
-                }
-            }
-        }
     }
