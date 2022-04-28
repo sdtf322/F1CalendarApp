@@ -6,7 +6,8 @@ import kotlin.collections.ArrayList
 
 internal class RaceFunctions {
 
-        fun prepareRaceData(raceList : ArrayList<RaceF1>, racesAdapter: RacesAdapter) : ArrayList<RaceF1> {
+        fun prepareRaceData(racesAdapter: RacesAdapter) {
+            val raceList = ArrayList<RaceF1>()
             var race = RaceF1("18-20 MAR", "Bahrain Grand Prix", R.drawable.flag_bahrain,
                 "15:00", "18:00", "15:00",
                 "18:00","18:00", false)
@@ -96,13 +97,12 @@ internal class RaceFunctions {
                 "16:00", "15:00", false)
             raceList.add(race)
             racesAdapter.updateList(raceList)
-            return raceList
         }
 
-        fun getRaceDetailData(race: RaceF1): ArrayList<RaceDetailModel>{
+        fun getRaceDetailData(race: RaceF1): List<RaceDetailModel>{
 
             val raceDetailList = ArrayList<RaceDetailModel>()
-
+//            val raceDetailList : List<RaceDetailModel> = emptyList()
             val header = RaceDetailModel.Header(
                 track = race.trackF1, date = race.dateF1, flag = race.flagImage)
             raceDetailList.add(header)

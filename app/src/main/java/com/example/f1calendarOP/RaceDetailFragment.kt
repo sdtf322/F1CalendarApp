@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RaceDetailFragment : Fragment(R.layout.fragment_race_detail2) {
 
-    private val raceDetailAdapter : RaceDetailAdapter by lazy {RaceDetailAdapter()}
+    private val raceDetailAdapter : RaceDetailAdapter by lazy { RaceDetailAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

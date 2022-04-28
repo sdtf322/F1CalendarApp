@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import java.lang.IllegalArgumentException
 
 // TODO:
-// -Lists and ArrayLists
-// -move viewholder to a new class
+// -move detail viewholder to a new class
+// -add views in detail fragment
 
 class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapter.RaceDetailAdapterViewHolder>() {
 
-    private val raceDetail = mutableListOf<RaceDetailModel>()
+    private val raceDetail = ArrayList<RaceDetailModel>()
 
     fun updateList(raceDetail: List<RaceDetailModel>) {
         this.raceDetail.clear()
