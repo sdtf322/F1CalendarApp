@@ -11,4 +11,12 @@ sealed class RaceDetailModel {
         val sessionName : String,
         val sessionTime : String
     ) : RaceDetailModel()
+    data class Circuit(
+        val circuitImage: Int,
+        val circuitFirstYear: String,
+        val lapsNumber: Int,
+        val circuitLength: String,
+        val totalRaceDistance: String,
+        val circuitLapRecord : String,
+    ) : RaceDetailModel()
 }

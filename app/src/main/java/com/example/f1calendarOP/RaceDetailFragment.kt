@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class RaceDetailFragment : Fragment(R.layout.fragment_race_detail2) {
+class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
     private val raceDetailAdapter : RaceDetailAdapter by lazy { RaceDetailAdapter() }
 

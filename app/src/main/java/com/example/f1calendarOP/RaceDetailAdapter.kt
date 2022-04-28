@@ -25,6 +25,7 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapterViewHolder>() {
         val layout = when (viewType) {
             TYPE_SESSION -> R.layout.item_detail_session
             TYPE_HEADER -> R.layout.item_detail_header
+            TYPE_CIRCUIT -> R.layout.item_detail_circuit
 
             else -> throw IllegalArgumentException("Invalid view type")
         }
@@ -41,12 +42,14 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapterViewHolder>() {
         return when (raceDetail[position]) {
             is RaceDetailModel.Session -> TYPE_SESSION
             is RaceDetailModel.Header -> TYPE_HEADER
+            is RaceDetailModel.Circuit -> TYPE_CIRCUIT
         }
     }
 
     companion object {
         val TYPE_SESSION = R.layout.item_detail_session
         val TYPE_HEADER = R.layout.item_detail_header
+        val TYPE_CIRCUIT = R.layout.item_detail_circuit
     }
 
     override fun getItemCount(): Int = raceDetail.size
