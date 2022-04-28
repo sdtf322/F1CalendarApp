@@ -18,5 +18,6 @@ sealed class RaceDetailModel {
         val circuitLength: String,
         val totalRaceDistance: String,
         val circuitLapRecord : String,
+        val circuitLapRecordOwner: String
     ) : RaceDetailModel()
 }
