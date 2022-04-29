@@ -20,7 +20,7 @@
         android:id="@+id/tvFirstGPHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="First Grand Prix"
         android:textColor="@color/white"
@@ -81,10 +81,11 @@
         android:layout_height="wrap_content"
         android:text="72"
         android:textColor="@color/white"
+        android:layout_marginTop="8dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/tvCircuitLapsHint" />
+        app:layout_constraintStart_toStartOf="@+id/tvCircuitLapsHint"
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitLapsHint" />
 
     <TextView
         android:id="@+id/tvCircuitLength"
@@ -92,32 +93,34 @@
         android:layout_height="wrap_content"
         android:text="6.148 KM"
         android:textColor="@color/white"
+        android:layout_marginTop="8dp"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/tvCircuitLengthHint" />
+        app:layout_constraintStart_toStartOf="@+id/tvCircuitLengthHint"
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitLengthHint" />
 
     <TextView
         android:id="@+id/tvCircuitDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="302.098 KM"
+        android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="@+id/tvCircuitDistanceHint" />
+        app:layout_constraintEnd_toEndOf="@+id/tvCircuitDistanceHint"
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitDistanceHint" />
 
     <TextView
         android:id="@+id/tvCircuitLapRecordHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="LAP RECORD"
         android:textColor="@color/white"
+        android:layout_marginTop="48dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tvCircuitLaps"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitLaps" />
 
     <TextView
         android:id="@+id/tvCircuitLapRecordHolder"
@@ -127,6 +130,7 @@
         android:text="Lewis Hamilton"
         android:textColor="@color/white"
         android:textSize="24sp"
+        android:paddingBottom="32dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tvCircuitLapRecordHint"
         app:layout_constraintTop_toBottomOf="@+id/tvCircuitLapRecordHint" />
@@ -135,13 +139,13 @@
         android:id="@+id/tvCircuitLapRecordT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:text="Time"
         android:textColor="@color/white"
+        android:layout_marginTop="48dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitDistance" />
 
     <TextView
         android:id="@+id/tvCircuitLapRecord"
@@ -150,17 +154,11 @@
         android:layout_marginTop="8dp"
         android:text="1:22.888"
         android:textColor="@color/white"
+        android:paddingBottom="32dp"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tvCircuitLapRecordT"
         app:layout_constraintTop_toBottomOf="@+id/tvCircuitLapRecordT" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="491dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
