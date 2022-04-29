@@ -4,4 +4,6 @@ import java.io.Serializable
 
 data class RaceF1(val dateF1: String, val trackF1: String, val flagImage: Int, val session1Time: String,
 val session2Time: String, val session3Time: String, val session4Time: String, val session5Time: String,
-val sprintRace : Boolean) : Serializable
+val sprintRace : Boolean, val circuitImage: Int, val circuitFirstYear : Int, val circuitLaps: Int,
+val circuitLength: Double, val circuitLapRecord : String,
+val circuitLapRecordOwner : String) : Serializable
