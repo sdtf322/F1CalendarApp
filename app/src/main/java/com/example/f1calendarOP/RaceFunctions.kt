@@ -3,16 +3,9 @@ package com.example.f1calendarOP
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 internal class RaceFunctions {
-
-//    val circuitImage: Int,
-//    val firstYear: String,
-//    val laps: String,
-//    val circuitLength: String,
-//    val raceDistance: String,
-//    val lapRecord : String,
-//    val lapRecordOwner: String
 
         fun prepareRaceData(racesAdapter: RacesAdapter) {
             val raceList = ArrayList<RaceF1>()
@@ -102,7 +95,7 @@ internal class RaceFunctions {
             raceList.add(race)
             race = RaceF1("02-04 SEP", "Zandvoort Grand Prix", R.drawable.flag_netherlands,
                 "15:00", "18:00", "14:00",
-                "17:00", "16:00", false, R.drawable.flag_netherlands,
+                "17:00", "16:00", false, R.drawable.circuit_zandvoort,
                 1952, 72, 4.259, "1:11.097",
                 "Lewis Hamilton (2021)")
             raceList.add(race)
@@ -154,7 +147,6 @@ internal class RaceFunctions {
         fun getRaceDetailData(race: RaceF1): List<RaceDetailModel>{
 
             val raceDetailList = ArrayList<RaceDetailModel>()
-//            val raceDetailList : List<RaceDetailModel> = emptyList()
             val header = RaceDetailModel.Header(
                 track = race.trackF1, date = race.dateF1, flag = race.flagImage)
             raceDetailList.add(header)
@@ -215,7 +207,9 @@ internal class RaceFunctions {
                 sessionDate = session5Date, sessionName = session5Name, sessionTime = session5Time)
             raceDetailList.add(session5)
 
-            val totalDistance : Double = race.circuitLaps * race.circuitLength
+//            val totalDistance : Double = race.circuitLaps * race.circuitLength
+            val totalDistance : Double = ((race.circuitLaps * race.circuitLength) * 1000).roundToInt().toDouble()/1000
+
             val circuitLayout = RaceDetailModel.Circuit(
                 circuitImage = race.circuitImage, firstYear = race.circuitFirstYear,
                 laps = race.circuitLaps, circuitLength = race.circuitLength.toString(),
