@@ -17,9 +17,10 @@ class RaceDetailAdapter : RecyclerView.Adapter<RaceDetailAdapterViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RaceDetailAdapterViewHolder {
-        val layout = when (viewType) {
-            TYPE_SESSION -> R.layout.item_detail_session
-            TYPE_HEADER -> R.layout.item_detail_header
+
+        val layout = when (viewType){
+            R.layout.item_detail_session -> R.layout.item_detail_session
+            R.layout.item_detail_header -> R.layout.item_detail_header
 
             else -> throw IllegalArgumentException("Invalid view type")
         }
