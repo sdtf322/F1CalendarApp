@@ -207,7 +207,6 @@ internal class RaceFunctions {
                 sessionDate = session5Date, sessionName = session5Name, sessionTime = session5Time)
             raceDetailList.add(session5)
 
-//            val totalDistance : Double = race.circuitLaps * race.circuitLength
             val totalDistance : Double = ((race.circuitLaps * race.circuitLength) * 1000).roundToInt().toDouble()/1000
 
             val circuitLayout = RaceDetailModel.Circuit(
