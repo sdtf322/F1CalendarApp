@@ -22,7 +22,7 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
         }
 
         val raceFunctions = RaceFunctions()
-        val race = arguments?.getSerializable(RaceListFragment.RACE_DATE_KEY) as RaceF1
-        raceDetailAdapter.updateList(raceFunctions.getRaceDetailData(race))
+//        val race = arguments?.getSerializable(RaceListFragment.RACE_DATE_KEY) as RaceF1
+//        raceDetailAdapter.updateList(raceFunctions.getRaceDetailData(race))
     }
 }

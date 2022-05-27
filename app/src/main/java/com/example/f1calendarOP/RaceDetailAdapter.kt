@@ -31,7 +31,7 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
-
+    
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is RaceDetailViewHolder.HeaderViewHolder -> holder.bind(raceDetail[position] as RaceDetailModel.Header)

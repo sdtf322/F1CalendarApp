@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.f1calendarOP.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(){
@@ -17,10 +18,11 @@ class MainActivity : AppCompatActivity(){
         val raceListFragment = RaceListFragment()
         setCurrentFragment(raceListFragment)
 
+
+
         val standingsFragment = StandingsFragment()
         val driversFragment = DriversFragment()
         val constructorsFragment = ConstructorsFragment()
-
         findViewById<BottomNavigationView>(R.id.bottomNavigationView)
             .setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -32,7 +34,6 @@ class MainActivity : AppCompatActivity(){
             true
         }
     }
-
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flFragment, fragment)
