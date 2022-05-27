@@ -1,9 +1,49 @@
 package com.example.f1calendarOP
 
-import java.io.Serializable
+data class RaceF1Model(
+//    val Circuit: Circuit,
+//    val FirstPractice: FirstPractice,
+//    val Qualifying: Qualifying,
+//    val SecondPractice: SecondPractice,
+//    val ThirdPractice: ThirdPractice,
+    val date: String,
+    val raceName: String,
+    val round: String,
+//    val season: String,
+//    val time: String,
+//    val url: String
+)
 
-data class RaceF1(val dateF1: String, val trackF1: String, val flagImage: Int, val session1Time: String,
-val session2Time: String, val session3Time: String, val session4Time: String, val session5Time: String,
-val sprintRace : Boolean, val circuitImage: Int, val circuitFirstYear : Int, val circuitLaps: Int,
-val circuitLength: Double, val circuitLapRecord : String,
-val circuitLapRecordOwner : String) : Serializable
+data class Circuit(
+    val Location: Location,
+    val circuitId: String,
+    val circuitName: String,
+    val url: String
+)
+
+data class FirstPractice(
+    val date: String,
+    val time: String
+)
+
+data class Qualifying(
+    val date: String,
+    val time: String
+)
+
+data class SecondPractice(
+    val date: String,
+    val time: String
+)
+
+data class ThirdPractice(
+    val date: String,
+    val time: String
+)
+
+data class Location(
+    val country: String,
+    val lat: String,
+    val locality: String,
+    val long: String
+)

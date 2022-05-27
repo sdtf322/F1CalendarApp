@@ -1,56 +1,64 @@
 package com.example.f1calendarOP
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
 class RacesAdapter(
-    val listener:MyOnClickListener
     ) :
     RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
 
-    private var raceList: MutableList<RaceF1> = mutableListOf()
+    inner class MyViewHolder(val binding: ItemRaceListBinding) : RecyclerView.ViewHolder(binding.root)
 
-    fun updateList(racelist: List<RaceF1>){
+    private val diffCallback = object : DiffUtil.ItemCallback<RaceF1Model>(){
+        override fun areItemsTheSame(oldItem: RaceF1Model, newItem: RaceF1Model): Boolean {
+            return oldItem.round == newItem.round
+        }
+
+        override fun areContentsTheSame(oldItem: RaceF1Model, newItem: RaceF1Model): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val differ = AsyncListDiffer(this, diffCallback)
+
+//    private var raceList: MutableList<RaceF1> = mutableListOf()
+    var raceList : MutableList<RaceF1Model>
+        get() = differ.currentList
+        set(value) {differ.submitList(value)}
+
+    fun updateList(racelist: List<RaceF1Model>){
         this.raceList.clear()
         this.raceList.addAll(racelist)
         notifyDataSetChanged()
     }
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var dateF1: TextView = view.findViewById(R.id.dateF1)
-        var trackF1: TextView = view.findViewById(R.id.trackF1)
-        var flagImage: ImageView = view.findViewById(R.id.flagImage)
 
-        fun initialize(race: RaceF1, action:MyOnClickListener){
-            dateF1.text = race.dateF1
-            trackF1.text = race.trackF1
-            flagImage.setImageResource(race.flagImage)
-
-            itemView.setOnClickListener {
-                action.onClick(race, adapterPosition)
-            }
-        }
-    }
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_race_list, parent, false)
-        return MyViewHolder(itemView)
+        return MyViewHolder(ItemRaceListBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.binding.apply{
+            val race = raceList[position]
+            trackF1.text = race.raceName
+            dateF1.text = race.date
+            flagImage.setImageResource(R.drawable.flag_austria)
+        }
 
-        holder.initialize(raceList.get(position), listener)
     }
     override fun getItemCount(): Int {
         return raceList.size
     }
 
-    interface MyOnClickListener{
-        fun onClick(race:RaceF1,position: Int)
-    }
-
+//    interface MyOnClickListener{
+//        fun onClick(race:RaceF1,position: Int)
+//    }
 }
