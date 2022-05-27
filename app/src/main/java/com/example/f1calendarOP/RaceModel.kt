@@ -1,17 +1,21 @@
 package com.example.f1calendarOP
 
+data class RaceResponse(
+    val raceF1Model : RaceF1Model
+)
+
 data class RaceF1Model(
-//    val Circuit: Circuit,
-//    val FirstPractice: FirstPractice,
-//    val Qualifying: Qualifying,
-//    val SecondPractice: SecondPractice,
-//    val ThirdPractice: ThirdPractice,
+    val Circuit: Circuit,
+    val FirstPractice: FirstPractice,
+    val Qualifying: Qualifying,
+    val SecondPractice: SecondPractice,
+    val ThirdPractice: ThirdPractice,
     val date: String,
     val raceName: String,
     val round: String,
-//    val season: String,
-//    val time: String,
-//    val url: String
+    val season: String,
+    val time: String,
+    val url: String
 )
 
 data class Circuit(

@@ -143,12 +143,12 @@ internal class RaceFunctions {
 //            raceList.add(race)
 //            racesAdapter.updateList(raceList)
 //        }
-        fun recyclerTest() : MutableList<RaceF1Model>{
-            val raceList = mutableListOf<RaceF1Model>()
-            val race = RaceF1Model("data", "gonka", "2")
-            raceList.add(race)
-            return raceList
-        }
+//        fun recyclerTest() : MutableList<RaceF1Model>{
+//            val raceList = mutableListOf<RaceF1Model>()
+//            val race = RaceF1Model("data", "gonka", "2")
+//            raceList.add(race)
+//            return raceList
+//        }
 //        fun getRaceDetailData(race: RaceF1): List<RaceDetailModel>{
 //
 //            val raceDetailList = ArrayList<RaceDetailModel>()

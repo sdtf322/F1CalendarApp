@@ -47,10 +47,10 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             val response = try {
                 RetrofitInstance.api.getRaceInfo()
             } catch (e: IOException){
-                Log.e(TAG, "IOException, Please check your internet connection")
+                Log.e(TAG, e.message.toString())
                 return@launchWhenCreated
             } catch(e: HttpException){
-                Log.e(TAG, "HttpException, unexpected response")
+                Log.e(TAG, e.message.toString())
                 return@launchWhenCreated
             }
             if(response.isSuccessful && response.body() != null){
