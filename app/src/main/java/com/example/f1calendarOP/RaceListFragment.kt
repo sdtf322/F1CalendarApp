@@ -12,16 +12,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.databinding.ActivityMainBinding
+import kotlinx.coroutines.NonDisposableHandle.parent
 import retrofit2.HttpException
 import java.io.IOException
 
 const val TAG = "RaceListFragment"
 
-class RaceListFragment : Fragment(R.layout.fragment_race_list) {
+class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyOnClickListener {
 
-//    private lateinit var binding: ActivityMainBinding
-
-    private val racesAdapter: RacesAdapter by lazy { RacesAdapter() }
+    private val racesAdapter: RacesAdapter by lazy { RacesAdapter(this) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,20 +53,19 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             }
             if(response.isSuccessful && response.body() != null){
 
-                val mrData : MRData = response.body()!!
-                Toast.makeText(context, mrData.toString(), Toast.LENGTH_SHORT).show()
-                val responseRaceTable : RaceTable = mrData.RaceTable
-                val responseRaceList : List<Race> = mrData.RaceTable.Races
+                val raceResponse : RaceResponse = response.body()!!
+                val responseRaceList : List<Race> = raceResponse.MRData.RaceTable.Races
                 racesAdapter.raceList = responseRaceList
             } else{
                 Log.e(TAG, "Response not successful")
             }
         }
     }
-//    override fun onClick(race: RaceF1, position: Int) {
+    override fun onClick(race: Race, position: Int) {
 //        val raceDetailFragment = RaceDetailFragment()
 //        val bundle = Bundle()
-//
+        Toast.makeText(context,"aboba", Toast.LENGTH_SHORT).show()
+
 //        bundle.putSerializable(RACE_DATE_KEY, race)
 //        raceDetailFragment.arguments = bundle
 //        val fragmentTransaction = parentFragmentManager.beginTransaction()
@@ -76,7 +74,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 //            addToBackStack(null)
 //            commit()
 //        }
-//    }
+    }
     companion object{
         const val RACE_DATE_KEY = "RACETRACK"
     }

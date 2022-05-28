@@ -10,11 +10,11 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val raceDetail = ArrayList<RaceDetailModel>()
 
-    fun updateList(raceDetail: List<RaceDetailModel>) {
-        this.raceDetail.clear()
-        this.raceDetail.addAll(raceDetail)
-        notifyDataSetChanged()
-    }
+//    fun updateList(raceDetail: List<RaceDetailModel>) {
+//        this.raceDetail.clear()
+//        this.raceDetail.addAll(raceDetail)
+//        notifyDataSetChanged()
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         return when(viewType){
