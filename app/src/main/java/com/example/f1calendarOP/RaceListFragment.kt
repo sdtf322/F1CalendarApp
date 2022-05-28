@@ -28,7 +28,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        var listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
+        val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -42,8 +42,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val raceFunctions = RaceFunctions()
-//        racesAdapter.raceList = raceFunctions.recyclerTest()
         lifecycleScope.launchWhenCreated {
             val response = try {
                 RetrofitInstance.api.getRaceInfo()
@@ -55,10 +53,12 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                 return@launchWhenCreated
             }
             if(response.isSuccessful && response.body() != null){
-                val strJson : String = response.body()!!
-                Toast.makeText(context,strJson,Toast.LENGTH_LONG).show()
-//                val mrData : MRData = response.body()!!
-//                racesAdapter.raceList = mrData.RaceTable.Races
+
+                val mrData : MRData = response.body()!!
+                Toast.makeText(context, mrData.toString(), Toast.LENGTH_SHORT).show()
+                val responseRaceTable : RaceTable = mrData.RaceTable
+                val responseRaceList : List<Race> = mrData.RaceTable.Races
+                racesAdapter.raceList = responseRaceList
             } else{
                 Log.e(TAG, "Response not successful")
             }

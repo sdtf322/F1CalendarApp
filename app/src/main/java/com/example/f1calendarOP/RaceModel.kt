@@ -1,8 +1,8 @@
 package com.example.f1calendarOP
 
-data class RaceResponse(
-    val MRData: MRData
-)
+//data class RaceResponse(
+//    val MRData: MRData
+//)
 
 data class MRData(
     val RaceTable: RaceTable,
