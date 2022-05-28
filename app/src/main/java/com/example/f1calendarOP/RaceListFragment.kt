@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,7 +55,10 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                 return@launchWhenCreated
             }
             if(response.isSuccessful && response.body() != null){
-                racesAdapter.raceList = response.body()!!
+                val strJson : String = response.body()!!
+                Toast.makeText(context,strJson,Toast.LENGTH_LONG).show()
+//                val mrData : MRData = response.body()!!
+//                racesAdapter.raceList = mrData.RaceTable.Races
             } else{
                 Log.e(TAG, "Response not successful")
             }

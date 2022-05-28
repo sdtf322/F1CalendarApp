@@ -14,12 +14,12 @@ class RacesAdapter(
 
     inner class MyViewHolder(val binding: ItemRaceListBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object : DiffUtil.ItemCallback<RaceF1Model>(){
-        override fun areItemsTheSame(oldItem: RaceF1Model, newItem: RaceF1Model): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<Race>(){
+        override fun areItemsTheSame(oldItem: Race, newItem: Race): Boolean {
             return oldItem.round == newItem.round
         }
 
-        override fun areContentsTheSame(oldItem: RaceF1Model, newItem: RaceF1Model): Boolean {
+        override fun areContentsTheSame(oldItem: Race, newItem: Race): Boolean {
             return oldItem == newItem
         }
     }
@@ -27,15 +27,15 @@ class RacesAdapter(
     private val differ = AsyncListDiffer(this, diffCallback)
 
 //    private var raceList: MutableList<RaceF1> = mutableListOf()
-    var raceList : MutableList<RaceF1Model>
+    var raceList : List<Race>
         get() = differ.currentList
         set(value) {differ.submitList(value)}
 
-    fun updateList(racelist: List<RaceF1Model>){
-        this.raceList.clear()
-        this.raceList.addAll(racelist)
-        notifyDataSetChanged()
-    }
+//    fun updateList(racelist: List<Race>){
+//        this.raceList.clear()
+//        this.raceList.addAll(racelist)
+//        notifyDataSetChanged()
+//    }
 
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
