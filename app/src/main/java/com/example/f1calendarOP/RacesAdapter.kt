@@ -46,7 +46,6 @@ class RacesAdapter(val onClickListener: OnClickListener) :
             trackF1.text = race.raceName
             dateF1.text = race.date
             flagImage.setImageResource(R.drawable.flag_austria)
-
         }
 
     }
@@ -57,8 +56,4 @@ class RacesAdapter(val onClickListener: OnClickListener) :
     class OnClickListener(val clickListener: (race: Race) -> Unit) {
         fun onClick(race: Race) = clickListener(race)
     }
-
-//    interface MyOnClickListener{
-//        fun onClick(race:Race,position: Int)
-//    }
 }

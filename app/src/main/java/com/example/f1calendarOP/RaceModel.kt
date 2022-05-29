@@ -26,7 +26,7 @@ data class Race(
     val Qualifying: Qualifying,
     val SecondPractice: SecondPractice,
     val ThirdPractice: ThirdPractice,
-    val sprint: Sprint,
+    val Sprint: Sprint,
     val date: String,
     val raceName: String,
     val round: String,

@@ -20,9 +20,8 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
             itemAnimator = DefaultItemAnimator()
             adapter = raceDetailAdapter
         }
-
+        val race = arguments?.getSerializable(RaceListFragment.RACE_DATE_KEY) as Race
         val raceFunctions = RaceFunctions()
-//        val race = arguments?.getSerializable(RaceListFragment.RACE_DATE_KEY) as RaceF1
-//        raceDetailAdapter.updateList(raceFunctions.getRaceDetailData(race))
+        raceDetailAdapter.updateList(raceFunctions.getDetailApiData(race))
     }
 }

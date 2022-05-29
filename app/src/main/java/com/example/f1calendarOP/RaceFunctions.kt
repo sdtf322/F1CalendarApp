@@ -3,7 +3,6 @@ package com.example.f1calendarOP
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.roundToInt
 
 internal class RaceFunctions {
 
@@ -149,7 +148,7 @@ internal class RaceFunctions {
 //            raceList.add(race)
 //            return raceList
 //        }
-//        fun getRaceDetailData(race: RaceF1): List<RaceDetailModel>{
+//        fun getRaceDetailData(race: Race): List<RaceDetailModel>{
 //
 //            val raceDetailList = ArrayList<RaceDetailModel>()
 //            val header = RaceDetailModel.Header(
@@ -224,12 +223,73 @@ internal class RaceFunctions {
 //            return raceDetailList
 //        }
 
+    fun getDetailApiData(race: Race) : List<RaceDetailModel>{
+        val raceDetailList = ArrayList<RaceDetailModel>()
+        val header = RaceDetailModel.Header(
+                track = race.raceName, date = race.date, flag = R.drawable.flag_monaco)
+            raceDetailList.add(header)
+
+        val secondPractice = RaceDetailModel.Session(
+            sessionDate = race.SecondPractice.date, sessionName = PRACTICE2,
+            sessionTime = race.SecondPractice.time
+        )
+        val qualification = RaceDetailModel.Session(
+            sessionDate = race.Qualifying.date, sessionName = QUALI,
+            sessionTime = race.Qualifying.time
+        )
+
+        val session2 : RaceDetailModel.Session
+        val session3 : RaceDetailModel.Session
+        val session4 : RaceDetailModel.Session
+        if(race.Sprint != null){ // If Race weekend is with Sprint Race
+            session2 = qualification
+            session3 = secondPractice
+            session4 = RaceDetailModel.Session( // Sprint
+                sessionDate = race.Sprint.date, sessionName = SPRINT,
+                sessionTime = race.Sprint.time
+            )
+        }
+        else{
+            session2 = secondPractice
+            session3 = RaceDetailModel.Session( // Third Practice
+                sessionDate = race.ThirdPractice.date, sessionName = PRACTICE3,
+                sessionTime = race.ThirdPractice.time
+            )
+            session4 = qualification
+        }
+
+        val session1 = RaceDetailModel.Session(
+            sessionDate = race.FirstPractice.date, sessionName = PRACTICE1,
+            sessionTime = race.FirstPractice.time
+        )
+
+        val session5 = RaceDetailModel.Session(
+            sessionDate = race.date, sessionName = RACE,
+            sessionTime = race.time
+        )
+        raceDetailList.apply{
+            add(session1)
+            add(session2)
+            add(session3)
+            add(session4)
+            add(session5)
+        }
+        return raceDetailList
+    }
+
     companion object {
         val SESSION1_INDEX = 0
         val SESSION2_INDEX = 1
         val SESSION3_INDEX = 2
         val SESSION4_INDEX = 3
         val SESSION5_INDEX = 4
+
+        val PRACTICE1 = "Practice 1"
+        val PRACTICE2 = "Practice 2"
+        val PRACTICE3 = "Practice 3"
+        val QUALI = "Qualifying"
+        val SPRINT = "Sprint"
+        val RACE = "Race"
     }
 
 
