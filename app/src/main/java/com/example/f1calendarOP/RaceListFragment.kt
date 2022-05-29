@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.f1calendarOP.databinding.ActivityMainBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
 import retrofit2.HttpException
 import java.io.IOException
@@ -28,7 +27,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         savedInstanceState: Bundle?
     ): View {
         racesAdapter = RacesAdapter(RacesAdapter.OnClickListener { race ->
-            Toast.makeText(context, "${race.raceName}", Toast.LENGTH_SHORT).show() })
+           onClickHelper(race)})
         val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
@@ -36,8 +35,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             itemAnimator = DefaultItemAnimator()
             adapter = racesAdapter
         }
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        return binding.root
         return listItems
     }
 
@@ -63,20 +60,20 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             }
         }
     }
-//    override fun onClick(race: Race, position: Int) {
-//        val raceDetailFragment = RaceDetailFragment()
-//        val bundle = Bundle()
-//        Toast.makeText(context,"aboba", Toast.LENGTH_SHORT).show()
-//
-//        bundle.putSerializable(RACE_DATE_KEY, race)
-//        raceDetailFragment.arguments = bundle
-//        val fragmentTransaction = parentFragmentManager.beginTransaction()
-//        fragmentTransaction.apply {
-//            add(R.id.flFragment, raceDetailFragment)
-//            addToBackStack(null)
-//            commit()
-//        }
-//    }
+    fun onClickHelper(race: Race){
+        val raceDetailFragment = RaceDetailFragment()
+        val bundle = Bundle()
+        Toast.makeText(context,"aboba", Toast.LENGTH_SHORT).show()
+
+        bundle.putSerializable(RACE_DATE_KEY, race)
+        raceDetailFragment.arguments = bundle
+        val fragmentTransaction = parentFragmentManager.beginTransaction()
+        fragmentTransaction.apply {
+            add(R.id.flFragment, raceDetailFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
     companion object{
         const val RACE_DATE_KEY = "RACETRACK"
     }
