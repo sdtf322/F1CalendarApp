@@ -8,6 +8,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitInstance {
 
+    private const val BASE_URL = "http://ergast.com"
+
     val gson : Gson = GsonBuilder()
         .setLenient()
         .create()
@@ -15,7 +17,7 @@ object RetrofitInstance {
     val api : RaceApi by lazy{
 
         Retrofit.Builder()
-            .baseUrl("http://ergast.com")
+            .baseUrl(BASE_URL)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
