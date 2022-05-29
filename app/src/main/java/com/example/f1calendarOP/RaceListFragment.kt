@@ -51,7 +51,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                 return@launchWhenCreated
             }
             if(response.isSuccessful && response.body() != null){
-
                 val raceResponse : RaceResponse = response.body()!!
                 val responseRaceList : List<Race> = raceResponse.MRData.RaceTable.Races
                 racesAdapter.raceList = responseRaceList
@@ -63,12 +62,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     fun onClickHelper(race: Race){
         val raceDetailFragment = RaceDetailFragment()
         val bundle = Bundle()
-        if(race.Sprint != null){
-             Toast.makeText(context, "${race.Sprint}", Toast.LENGTH_SHORT).show()
-        }
-        else{
-             Toast.makeText(context, "Sprint is null ((", Toast.LENGTH_SHORT).show()
-        }
         bundle.putSerializable(RACE_DATE_KEY, race)
         raceDetailFragment.arguments = bundle
         val fragmentTransaction = parentFragmentManager.beginTransaction()
