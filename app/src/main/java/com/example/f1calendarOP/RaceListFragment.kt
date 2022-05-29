@@ -18,15 +18,17 @@ import java.io.IOException
 
 const val TAG = "RaceListFragment"
 
-class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyOnClickListener {
+class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 
-    private val racesAdapter: RacesAdapter by lazy { RacesAdapter(this) }
+    private lateinit var racesAdapter: RacesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        racesAdapter = RacesAdapter(RacesAdapter.OnClickListener { race ->
+            Toast.makeText(context, "${race.raceName}", Toast.LENGTH_SHORT).show() })
         val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
@@ -61,11 +63,11 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
             }
         }
     }
-    override fun onClick(race: Race, position: Int) {
+//    override fun onClick(race: Race, position: Int) {
 //        val raceDetailFragment = RaceDetailFragment()
 //        val bundle = Bundle()
-        Toast.makeText(context,"aboba", Toast.LENGTH_SHORT).show()
-
+//        Toast.makeText(context,"aboba", Toast.LENGTH_SHORT).show()
+//
 //        bundle.putSerializable(RACE_DATE_KEY, race)
 //        raceDetailFragment.arguments = bundle
 //        val fragmentTransaction = parentFragmentManager.beginTransaction()
@@ -74,7 +76,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list), RacesAdapter.MyO
 //            addToBackStack(null)
 //            commit()
 //        }
-    }
+//    }
     companion object{
         const val RACE_DATE_KEY = "RACETRACK"
     }

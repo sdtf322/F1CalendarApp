@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
-class RacesAdapter(
-    val listener : MyOnClickListener) :
+class RacesAdapter(val onClickListener: OnClickListener) :
     RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val binding: ItemRaceListBinding) : RecyclerView.ViewHolder(binding.root)
@@ -18,7 +17,6 @@ class RacesAdapter(
         override fun areItemsTheSame(oldItem: Race, newItem: Race): Boolean {
             return oldItem.round == newItem.round
         }
-
         override fun areContentsTheSame(oldItem: Race, newItem: Race): Boolean {
             return oldItem == newItem
         }
@@ -30,16 +28,8 @@ class RacesAdapter(
         get() = differ.currentList
         set(value) {differ.submitList(value)}
 
-//    fun updateList(racelist: List<Race>){
-//        this.raceList.clear()
-//        this.raceList.addAll(racelist)
-//        notifyDataSetChanged()
-//    }
-
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_race_list, parent, false)
         return MyViewHolder(ItemRaceListBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -47,11 +37,16 @@ class RacesAdapter(
         ))
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        val race = raceList[position]
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(race)
+        }
         holder.binding.apply{
-            val race = raceList[position]
             trackF1.text = race.raceName
             dateF1.text = race.date
             flagImage.setImageResource(R.drawable.flag_austria)
+
         }
 
     }
@@ -59,7 +54,11 @@ class RacesAdapter(
         return raceList.size
     }
 
-    interface MyOnClickListener{
-        fun onClick(race:Race,position: Int)
+    class OnClickListener(val clickListener: (race: Race) -> Unit) {
+        fun onClick(race: Race) = clickListener(race)
     }
+
+//    interface MyOnClickListener{
+//        fun onClick(race:Race,position: Int)
+//    }
 }
