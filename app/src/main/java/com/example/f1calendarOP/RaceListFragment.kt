@@ -63,7 +63,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     fun onClickHelper(race: Race){
         val raceDetailFragment = RaceDetailFragment()
         val bundle = Bundle()
-        Toast.makeText(context,"aboba", Toast.LENGTH_SHORT).show()
 
         bundle.putSerializable(RACE_DATE_KEY, race)
         raceDetailFragment.arguments = bundle
