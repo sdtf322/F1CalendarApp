@@ -1,5 +1,6 @@
 package com.example.f1calendarOP
 
+import android.widget.ImageView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -262,7 +263,6 @@ internal class RaceFunctions {
             sessionDate = race.FirstPractice.date, sessionName = PRACTICE1,
             sessionTime = race.FirstPractice.time
         )
-
         val session5 = RaceDetailModel.Session(
             sessionDate = race.date, sessionName = RACE,
             sessionTime = race.time
@@ -278,11 +278,6 @@ internal class RaceFunctions {
     }
 
     companion object {
-        val SESSION1_INDEX = 0
-        val SESSION2_INDEX = 1
-        val SESSION3_INDEX = 2
-        val SESSION4_INDEX = 3
-        val SESSION5_INDEX = 4
 
         val PRACTICE1 = "Practice 1"
         val PRACTICE2 = "Practice 2"
@@ -293,63 +288,63 @@ internal class RaceFunctions {
     }
 
 
-    fun getSessionDates(sourceString: String) : Array<String>{
-        val fullDate = 9
-        val dateString = 5
-        val dateDigit = 2
-        val startOfSecondDate = 3
-        val singleDigit = 1
-        val monthText = 3
-        val dateDifference = 1
-        //Session Dates
-        // Extract first date and name of month from string
-        var session1DateString : String
-        session1DateString = sourceString.take(dateDigit) + " " + sourceString.takeLast(monthText)
+//    fun getSessionDates(sourceString: String) : Array<String>{
+//        val fullDate = 9
+//        val dateString = 5
+//        val dateDigit = 2
+//        val startOfSecondDate = 3
+//        val singleDigit = 1
+//        val monthText = 3
+//        val dateDifference = 1
+//        //Session Dates
+//        // Extract first date and name of month from string
+//        var session1DateString : String
+//        session1DateString = sourceString.take(dateDigit) + " " + sourceString.takeLast(monthText)
+//
+//        if(sourceString.length >= fullDate){   // if weekend happens in 2 different months(ex.SEP-OCT) 30-02 SEP-OCT
+//            session1DateString = sourceString.take(dateDigit) + " " + sourceString.substring(fullDate-monthText,fullDate)
+//        }
+//        val session2DateString : String = session1DateString
+//
+//        //Setting Session 5
+//        val session5DateString : String = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
+//
+//        //Setting Session 3,4 date
+//        //If one date or another starts with 0
+//        var session3DateString : String
+//        session3DateString = session5DateString
+//        val secondDate : Char = session3DateString[startOfSecondDate]
+//        if(session3DateString.take(singleDigit) == "0" || secondDate.toString() == "0"){ // 30-02
+//            val testInt = session3DateString.substring(dateDigit-singleDigit,dateDigit).toInt() - dateDifference
+//            session3DateString = session3DateString.take(singleDigit) + testInt.toString() + " " + sourceString.takeLast(monthText)
+//        }
+//        else{
+//            session3DateString = (session3DateString.take(dateDigit).toInt() - dateDifference).toString() + " " + sourceString.takeLast(monthText)
+//            //if result number in date is single digit
+//            if(session3DateString.length == dateString){
+//                session3DateString = "0" + session3DateString
+//            }
+//        }
+//        val session4DateString : String = session3DateString
+//        val sessionArray = arrayOf(session1DateString, session2DateString,
+//        session3DateString,session4DateString, session5DateString)
+//        return sessionArray
+//
+//    }
 
-        if(sourceString.length >= fullDate){   // if weekend happens in 2 different months(ex.SEP-OCT) 30-02 SEP-OCT
-            session1DateString = sourceString.take(dateDigit) + " " + sourceString.substring(fullDate-monthText,fullDate)
-        }
-        val session2DateString : String = session1DateString
-
-        //Setting Session 5
-        val session5DateString : String = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
-
-        //Setting Session 3,4 date
-        //If one date or another starts with 0
-        var session3DateString : String
-        session3DateString = session5DateString
-        val secondDate : Char = session3DateString[startOfSecondDate]
-        if(session3DateString.take(singleDigit) == "0" || secondDate.toString() == "0"){ // 30-02
-            val testInt = session3DateString.substring(dateDigit-singleDigit,dateDigit).toInt() - dateDifference
-            session3DateString = session3DateString.take(singleDigit) + testInt.toString() + " " + sourceString.takeLast(monthText)
-        }
-        else{
-            session3DateString = (session3DateString.take(dateDigit).toInt() - dateDifference).toString() + " " + sourceString.takeLast(monthText)
-            //if result number in date is single digit
-            if(session3DateString.length == dateString){
-                session3DateString = "0" + session3DateString
-            }
-        }
-        val session4DateString : String = session3DateString
-        val sessionArray = arrayOf(session1DateString, session2DateString,
-        session3DateString,session4DateString, session5DateString)
-        return sessionArray
-
-    }
-
-    fun syncTime(sessionTimeString : ArrayList<String>) : ArrayList<String>{
-        val timeDigit = 2
-        val myTimeZone = TimeZone.getTimeZone("Europe/Riga") // add time zone
-        val currentTime = Calendar.getInstance() // add calendar library
-        val simpleDateFormat = SimpleDateFormat("HH:mm") // add date format
-        currentTime.timeZone = myTimeZone
-        for(i in sessionTimeString.indices){
-            currentTime.set(Calendar.HOUR_OF_DAY, sessionTimeString[i].take(timeDigit).toInt()) // HOUR AND MINUTES ARE INT VAR
-            currentTime.set(Calendar.MINUTE,(sessionTimeString[i].takeLast(timeDigit)).toInt())
-            val dateTime = simpleDateFormat.format(currentTime.time).toString() //date is displayed with selected date format and time zone
-            sessionTimeString[i] = dateTime
-        }
-        return sessionTimeString
-    }
+//    fun syncTime(sessionTimeString : ArrayList<String>) : ArrayList<String>{
+//        val timeDigit = 2
+//        val myTimeZone = TimeZone.getTimeZone("Europe/Riga") // add time zone
+//        val currentTime = Calendar.getInstance() // add calendar library
+//        val simpleDateFormat = SimpleDateFormat("HH:mm") // add date format
+//        currentTime.timeZone = myTimeZone
+//        for(i in sessionTimeString.indices){
+//            currentTime.set(Calendar.HOUR_OF_DAY, sessionTimeString[i].take(timeDigit).toInt()) // HOUR AND MINUTES ARE INT VAR
+//            currentTime.set(Calendar.MINUTE,(sessionTimeString[i].takeLast(timeDigit)).toInt())
+//            val dateTime = simpleDateFormat.format(currentTime.time).toString() //date is displayed with selected date format and time zone
+//            sessionTimeString[i] = dateTime
+//        }
+//        return sessionTimeString
+//    }
 
 }
