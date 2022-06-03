@@ -224,6 +224,31 @@ internal class RaceFunctions {
 //            return raceDetailList
 //        }
 
+    fun setFlagByCountry(country : String, flagImage : ImageView){
+        when(country){ // Race Country
+            "Bahrain" -> flagImage.setImageResource(R.drawable.flag_bahrain)
+            "Australia" -> flagImage.setImageResource(R.drawable.flag_australia)
+            "Austria" -> flagImage.setImageResource(R.drawable.flag_austria)
+            "Italy" -> flagImage.setImageResource(R.drawable.flag_italy)
+            "USA" -> flagImage.setImageResource(R.drawable.flag_us)
+            "Spain" -> flagImage.setImageResource(R.drawable.flag_spain)
+            "Monaco" -> flagImage.setImageResource(R.drawable.flag_monaco)
+            "Azerbaijan" -> flagImage.setImageResource(R.drawable.flag_azerbaijan)
+            "Canada" -> flagImage.setImageResource(R.drawable.flag_canada)
+            "UK" -> flagImage.setImageResource(R.drawable.flag_uk)
+            "France" -> flagImage.setImageResource(R.drawable.flag_france)
+            "Hungary" -> flagImage.setImageResource(R.drawable.flag_hungary)
+            "Belgium" -> flagImage.setImageResource(R.drawable.flag_belgium)
+            "Netherlands" -> flagImage.setImageResource(R.drawable.flag_netherlands)
+            "Singapore" -> flagImage.setImageResource(R.drawable.flag_singapore)
+            "Japan" -> flagImage.setImageResource(R.drawable.flag_japan)
+            "Mexico" -> flagImage.setImageResource(R.drawable.flag_mexico)
+            "Brazil" -> flagImage.setImageResource(R.drawable.flag_brazil)
+            "UAE" -> flagImage.setImageResource(R.drawable.flag_uae)
+            "Saudi Arabia" -> flagImage.setImageResource(R.drawable.flag_saudi)
+        }
+    }
+
     fun getDetailApiData(race: Race) : List<RaceDetailModel>{
         val raceDetailList = ArrayList<RaceDetailModel>()
         val header = RaceDetailModel.Header(

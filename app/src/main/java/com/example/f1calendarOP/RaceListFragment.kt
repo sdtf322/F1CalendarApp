@@ -54,8 +54,8 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             if(response.isSuccessful && response.body() != null){
                 val raceResponse : RaceResponse = response.body()!!
                 val responseRaceList : List<Race> = raceResponse.MRData.RaceTable.Races
-
                 racesAdapter.raceList = responseRaceList
+
             } else{
                 Log.e(TAG, "Response not successful")
             }

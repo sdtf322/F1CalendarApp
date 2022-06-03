@@ -21,6 +21,7 @@ class RacesAdapter(val onClickListener: OnClickListener) :
             return oldItem == newItem
         }
     }
+    private val raceFunctions = RaceFunctions()
 
     private val differ = AsyncListDiffer(this, diffCallback)
 
@@ -45,7 +46,8 @@ class RacesAdapter(val onClickListener: OnClickListener) :
         holder.binding.apply{
             trackF1.text = race.raceName
             dateF1.text = race.date
-            flagImage.setImageResource(R.drawable.flag_austria)
+            raceFunctions.setFlagByCountry(race.Circuit.Location.country, flagImage)
+
         }
 
     }
