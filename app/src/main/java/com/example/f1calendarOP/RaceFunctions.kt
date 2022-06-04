@@ -3,6 +3,8 @@ package com.example.f1calendarOP
 import android.widget.ImageView
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
@@ -266,9 +268,10 @@ internal class RaceFunctions {
             raceDetailList.add(header)
 
         val secondPracticeDate = formatDate(race.SecondPractice.date)
+        val secondPracticeTime = formatTime(race.SecondPractice.time)
         val secondPractice = RaceDetailModel.Session(
             sessionDate = secondPracticeDate, sessionName = PRACTICE2,
-            sessionTime = race.SecondPractice.time
+            sessionTime = secondPracticeTime
         )
         val qualificationDate = formatDate(race.Qualifying.date)
         val qualification = RaceDetailModel.Session(
@@ -317,16 +320,6 @@ internal class RaceFunctions {
         return raceDetailList
     }
 
-    companion object {
-
-        val PRACTICE1 = "Practice 1"
-        val PRACTICE2 = "Practice 2"
-        val PRACTICE3 = "Practice 3"
-        val QUALI = "Qualifying"
-        val SPRINT = "Sprint"
-        val RACE = "Race"
-    }
-
     fun formatDate(raceDate : String) : String{
         val date = LocalDate.parse(raceDate) //2022-03-26
         val formatter = DateTimeFormatter.ofPattern("dd-MMMM")
@@ -334,51 +327,12 @@ internal class RaceFunctions {
 
         return formattedDate
     }
-
-
-//    fun getSessionDates(sourceString: String) : Array<String>{
-//        val fullDate = 9
-//        val dateString = 5
-//        val dateDigit = 2
-//        val startOfSecondDate = 3
-//        val singleDigit = 1
-//        val monthText = 3
-//        val dateDifference = 1
-//        //Session Dates
-//        // Extract first date and name of month from string
-//        var session1DateString : String
-//        session1DateString = sourceString.take(dateDigit) + " " + sourceString.takeLast(monthText)
-//
-//        if(sourceString.length >= fullDate){   // if weekend happens in 2 different months(ex.SEP-OCT) 30-02 SEP-OCT
-//            session1DateString = sourceString.take(dateDigit) + " " + sourceString.substring(fullDate-monthText,fullDate)
-//        }
-//        val session2DateString : String = session1DateString
-//
-//        //Setting Session 5
-//        val session5DateString : String = sourceString.substring(dateString-dateDigit,dateString) + " " + sourceString.takeLast(monthText)
-//
-//        //Setting Session 3,4 date
-//        //If one date or another starts with 0
-//        var session3DateString : String
-//        session3DateString = session5DateString
-//        val secondDate : Char = session3DateString[startOfSecondDate]
-//        if(session3DateString.take(singleDigit) == "0" || secondDate.toString() == "0"){ // 30-02
-//            val testInt = session3DateString.substring(dateDigit-singleDigit,dateDigit).toInt() - dateDifference
-//            session3DateString = session3DateString.take(singleDigit) + testInt.toString() + " " + sourceString.takeLast(monthText)
-//        }
-//        else{
-//            session3DateString = (session3DateString.take(dateDigit).toInt() - dateDifference).toString() + " " + sourceString.takeLast(monthText)
-//            //if result number in date is single digit
-//            if(session3DateString.length == dateString){
-//                session3DateString = "0" + session3DateString
-//            }
-//        }
-//        val session4DateString : String = session3DateString
-//        val sessionArray = arrayOf(session1DateString, session2DateString,
-//        session3DateString,session4DateString, session5DateString)
-//        return sessionArray
-//
-//    }
+    fun formatTime(raceTime : String) : String{
+        val current = LocalDateTime.parse(raceTime)
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+        val formattedTime = raceTime.format(formatter)
+        return formattedTime
+    }
 
 //    fun syncTime(sessionTimeString : ArrayList<String>) : ArrayList<String>{
 //        val timeDigit = 2
@@ -394,5 +348,13 @@ internal class RaceFunctions {
 //        }
 //        return sessionTimeString
 //    }
+    companion object {
 
+        val PRACTICE1 = "Practice 1"
+        val PRACTICE2 = "Practice 2"
+        val PRACTICE3 = "Practice 3"
+        val QUALI = "Qualifying"
+        val SPRINT = "Sprint"
+        val RACE = "Race"
+    }
 }
