@@ -2,6 +2,8 @@ package com.example.f1calendarOP
 
 import android.widget.ImageView
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -263,41 +265,46 @@ internal class RaceFunctions {
                 track = race.raceName, date = race.date, flag = flagImage)
             raceDetailList.add(header)
 
+        val secondPracticeDate = formatDate(race.SecondPractice.date)
         val secondPractice = RaceDetailModel.Session(
-            sessionDate = race.SecondPractice.date, sessionName = PRACTICE2,
+            sessionDate = secondPracticeDate, sessionName = PRACTICE2,
             sessionTime = race.SecondPractice.time
         )
+        val qualificationDate = formatDate(race.Qualifying.date)
         val qualification = RaceDetailModel.Session(
-            sessionDate = race.Qualifying.date, sessionName = QUALI,
+            sessionDate = qualificationDate, sessionName = QUALI,
             sessionTime = race.Qualifying.time
         )
 
         val session2 : RaceDetailModel.Session
         val session3 : RaceDetailModel.Session
         val session4 : RaceDetailModel.Session
-        if(race.Sprint != null){ // If Race weekend is with Sprint Race
+        if(race.Sprint != null){
+            val sprintDate = formatDate(race.Sprint.date)
             session2 = qualification
             session3 = secondPractice
             session4 = RaceDetailModel.Session( // Sprint
-                sessionDate = race.Sprint.date, sessionName = SPRINT,
+                sessionDate = sprintDate, sessionName = SPRINT,
                 sessionTime = race.Sprint.time
             )
         }
         else{
             session2 = secondPractice
+            val thirdPracticeDate = formatDate(race.ThirdPractice.date)
             session3 = RaceDetailModel.Session( // Third Practice
-                sessionDate = race.ThirdPractice.date, sessionName = PRACTICE3,
+                sessionDate = thirdPracticeDate, sessionName = PRACTICE3,
                 sessionTime = race.ThirdPractice.time
             )
             session4 = qualification
         }
-
+        val firstPracticeDate = formatDate(race.FirstPractice.date)
         val session1 = RaceDetailModel.Session(
-            sessionDate = race.FirstPractice.date, sessionName = PRACTICE1,
+            sessionDate = firstPracticeDate, sessionName = PRACTICE1,
             sessionTime = race.FirstPractice.time
         )
+        val raceDate = formatDate(race.date)
         val session5 = RaceDetailModel.Session(
-            sessionDate = race.date, sessionName = RACE,
+            sessionDate = raceDate, sessionName = RACE,
             sessionTime = race.time
         )
         raceDetailList.apply{
@@ -318,6 +325,14 @@ internal class RaceFunctions {
         val QUALI = "Qualifying"
         val SPRINT = "Sprint"
         val RACE = "Race"
+    }
+
+    fun formatDate(raceDate : String) : String{
+        val date = LocalDate.parse(raceDate) //2022-03-26
+        val formatter = DateTimeFormatter.ofPattern("dd-MMMM")
+        val formattedDate = date.format(formatter)
+
+        return formattedDate
     }
 
 
