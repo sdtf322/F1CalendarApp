@@ -40,14 +40,14 @@ class RacesAdapter(val onClickListener: OnClickListener) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val race = raceList[position]
+        val raceCountry = race.Circuit.Location.country
         holder.itemView.setOnClickListener {
             onClickListener.onClick(race)
         }
         holder.binding.apply{
             trackF1.text = race.raceName
             dateF1.text = race.date
-            raceFunctions.setFlagByCountry(race.Circuit.Location.country, flagImage)
-
+            raceFunctions.BindFlagByCountry(raceCountry, flagImage)
         }
 
     }
