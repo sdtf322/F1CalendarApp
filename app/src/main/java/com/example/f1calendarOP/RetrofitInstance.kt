@@ -10,7 +10,6 @@ object RetrofitInstance {
     private const val BASE_URL = "http://ergast.com"
 
     val gson : Gson = GsonBuilder()
-        .setLenient()
         .create()
 
     val api : RaceApi by lazy{

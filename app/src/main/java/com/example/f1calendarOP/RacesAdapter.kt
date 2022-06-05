@@ -1,6 +1,7 @@
 package com.example.f1calendarOP
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -8,10 +9,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
-open class RacesAdapter(private val onClickListener: OnClickListener) :
-    RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
+    class RacesAdapter(private val onClickListener: OnClickListener) :
+        RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(val binding: ItemRaceListBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class MyViewHolder(val binding: ItemRaceListBinding)
+        : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Race>(){
         override fun areItemsTheSame(oldItem: Race, newItem: Race): Boolean {
@@ -50,7 +52,6 @@ open class RacesAdapter(private val onClickListener: OnClickListener) :
             dateF1.text = weekendDate
             raceFunctions.bindFlagByCountry(raceCountry, flagImage)
         }
-
     }
     override fun getItemCount(): Int {
         return raceList.size
