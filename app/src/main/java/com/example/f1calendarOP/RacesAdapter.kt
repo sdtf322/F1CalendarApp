@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
-class RacesAdapter(val onClickListener: OnClickListener) :
+open class RacesAdapter(private val onClickListener: OnClickListener) :
     RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val binding: ItemRaceListBinding) : RecyclerView.ViewHolder(binding.root)
