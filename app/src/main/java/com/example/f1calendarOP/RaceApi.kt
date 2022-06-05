@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface RaceApi {
 
     @GET("/api/f1/current.json") // List of Race Schedule of Current Season
-    suspend fun getRaceInfo(): Response<RaceResponse>
+    suspend fun getRaceInfo(): RaceResponse
 }

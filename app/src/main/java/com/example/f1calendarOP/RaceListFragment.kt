@@ -50,8 +50,8 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                 return@launchWhenCreated
             }
 
-            if(response.isSuccessful && response.body() != null){
-                val raceResponse : RaceResponse = response.body()!!
+            if(response != null){
+                val raceResponse = response
                 val responseRaceList : List<Race> = raceResponse.MRData.RaceTable.Races
                 racesAdapter.raceList = responseRaceList
 
