@@ -48,7 +48,7 @@ open class RacesAdapter(private val onClickListener: OnClickListener) :
         holder.binding.apply{
             trackF1.text = race.raceName
             dateF1.text = weekendDate
-            raceFunctions.BindFlagByCountry(raceCountry, flagImage)
+            raceFunctions.bindFlagByCountry(raceCountry, flagImage)
         }
 
     }

@@ -92,34 +92,35 @@ internal class RaceFunctions {
         return "$firstSessionDate - $lastSessionDate"
     }
 
-    fun BindFlagByCountry(country : String, flagImage : ImageView){
+    fun bindFlagByCountry(country : String, flagImage : ImageView){
         val flagByCountry = getFlagByCountry(country)
         flagImage.setImageResource(flagByCountry)
     }
 
     fun getFlagByCountry(country : String) : Int{
-        var flagDrawable = R.drawable.flag_austria
-        when(country){ // Race Country
-            "Bahrain" -> flagDrawable = R.drawable.flag_bahrain
-            "Australia" -> flagDrawable = R.drawable.flag_australia
-            "Austria" -> flagDrawable = R.drawable.flag_austria
-            "Italy" -> flagDrawable = R.drawable.flag_italy
-            "USA" -> flagDrawable = R.drawable.flag_us
-            "Spain" -> flagDrawable = R.drawable.flag_spain
-            "Monaco" -> flagDrawable = R.drawable.flag_monaco
-            "Azerbaijan" -> flagDrawable = R.drawable.flag_azerbaijan
-            "Canada" -> flagDrawable = R.drawable.flag_canada
-            "UK" -> flagDrawable = R.drawable.flag_uk
-            "France" -> flagDrawable = R.drawable.flag_france
-            "Hungary" -> flagDrawable = R.drawable.flag_hungary
-            "Belgium" -> flagDrawable = R.drawable.flag_belgium
-            "Netherlands" -> flagDrawable = R.drawable.flag_netherlands
-            "Singapore" -> flagDrawable = R.drawable.flag_singapore
-            "Japan" -> flagDrawable = R.drawable.flag_japan
-            "Mexico" -> flagDrawable = R.drawable.flag_mexico
-            "Brazil" -> flagDrawable = R.drawable.flag_brazil
-            "UAE" -> flagDrawable = R.drawable.flag_uae
-            "Saudi Arabia" -> flagDrawable = R.drawable.flag_saudi
+        val flagDrawable = when(country){ // Race Country
+            "Bahrain" -> R.drawable.flag_bahrain
+            "Australia" -> R.drawable.flag_australia
+            "Austria" -> R.drawable.flag_austria
+            "Italy" -> R.drawable.flag_italy
+            "USA" -> R.drawable.flag_us
+            "Spain" -> R.drawable.flag_spain
+            "Monaco" -> R.drawable.flag_monaco
+            "Azerbaijan" -> R.drawable.flag_azerbaijan
+            "Canada" -> R.drawable.flag_canada
+            "UK" -> R.drawable.flag_uk
+            "France" -> R.drawable.flag_france
+            "Hungary" -> R.drawable.flag_hungary
+            "Belgium" -> R.drawable.flag_belgium
+            "Netherlands" -> R.drawable.flag_netherlands
+            "Singapore" -> R.drawable.flag_singapore
+            "Japan" -> R.drawable.flag_japan
+            "Mexico" -> R.drawable.flag_mexico
+            "Brazil" -> R.drawable.flag_brazil
+            "UAE" -> R.drawable.flag_uae
+            "Saudi Arabia" -> R.drawable.flag_saudi
+
+            else -> R.drawable.flag_unknown
         }
         return flagDrawable
     }
