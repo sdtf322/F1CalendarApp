@@ -41,13 +41,13 @@ class RacesAdapter(val onClickListener: OnClickListener) :
 
         val race = raceList[position]
         val raceCountry = race.Circuit.Location.country
-        val formattedDate = raceFunctions.formatDate(race.date)
+        val weekendDate = raceFunctions.getWeekendDate(race)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(race)
         }
         holder.binding.apply{
             trackF1.text = race.raceName
-            dateF1.text = formattedDate
+            dateF1.text = weekendDate
             raceFunctions.BindFlagByCountry(raceCountry, flagImage)
         }
 

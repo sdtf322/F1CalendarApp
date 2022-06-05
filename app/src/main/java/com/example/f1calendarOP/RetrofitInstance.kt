@@ -18,7 +18,6 @@ object RetrofitInstance {
 
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(RaceApi::class.java)

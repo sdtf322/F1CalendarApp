@@ -41,6 +41,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         lifecycleScope.launchWhenCreated {
             val response = try {
                 RetrofitInstance.api.getRaceInfo()
@@ -51,6 +52,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                 Log.e(TAG, e.message.toString())
                 return@launchWhenCreated
             }
+
             if(response.isSuccessful && response.body() != null){
                 val raceResponse : RaceResponse = response.body()!!
                 val responseRaceList : List<Race> = raceResponse.MRData.RaceTable.Races
@@ -61,6 +63,8 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             }
         }
     }
+
+
     fun onClickHelper(race: Race){
         val raceDetailFragment = RaceDetailFragment()
         val bundle = Bundle()
@@ -72,6 +76,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             addToBackStack(null)
             commit()
         }
+
     }
     companion object{
         const val RACE_DATE_KEY = "RACETRACK"

@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity(){
         setCurrentFragment(raceListFragment)
 
 
-
         val standingsFragment = StandingsFragment()
         val driversFragment = DriversFragment()
         val constructorsFragment = ConstructorsFragment()

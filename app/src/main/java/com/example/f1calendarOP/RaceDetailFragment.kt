@@ -14,14 +14,16 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView : RecyclerView = view.findViewById(R.id.recyclerViewDetail) // init
+        val recyclerView : RecyclerView = view.findViewById(R.id.recyclerViewDetail)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()
             adapter = raceDetailAdapter
         }
+
         val race = arguments?.getSerializable(RaceListFragment.RACE_DATE_KEY) as Race
         val raceFunctions = RaceFunctions()
+
         raceDetailAdapter.updateList(raceFunctions.getDetailApiData(race))
     }
 }

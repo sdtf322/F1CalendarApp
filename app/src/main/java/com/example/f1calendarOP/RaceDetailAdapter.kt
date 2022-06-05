@@ -48,10 +48,6 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-//    fun getApiInfo(){
-//        race
-//    }
-
     override fun getItemCount(): Int = raceDetail.size
 
     }
