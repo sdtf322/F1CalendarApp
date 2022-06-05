@@ -263,8 +263,10 @@ internal class RaceFunctions {
         val raceDetailList = ArrayList<RaceDetailModel>()
         val raceCountry = race.Circuit.Location.country
         val flagImage = getFlagByCountry(raceCountry)
+
+        val headerDate = formatDate(race.date)
         val header = RaceDetailModel.Header(
-                track = race.raceName, date = race.date, flag = flagImage)
+                track = race.raceName, date = headerDate, flag = flagImage)
             raceDetailList.add(header)
 
         val secondPracticeDate = formatDate(race.SecondPractice.date)
@@ -273,10 +275,12 @@ internal class RaceFunctions {
             sessionDate = secondPracticeDate, sessionName = PRACTICE2,
             sessionTime = secondPracticeTime
         )
+
         val qualificationDate = formatDate(race.Qualifying.date)
+        val qualificationTime = formatTime(race.Qualifying.time)
         val qualification = RaceDetailModel.Session(
             sessionDate = qualificationDate, sessionName = QUALI,
-            sessionTime = race.Qualifying.time
+            sessionTime = qualificationTime
         )
 
         val session2 : RaceDetailModel.Session
@@ -284,31 +288,35 @@ internal class RaceFunctions {
         val session4 : RaceDetailModel.Session
         if(race.Sprint != null){
             val sprintDate = formatDate(race.Sprint.date)
+            val sprintTime = formatTime(race.Sprint.time)
             session2 = qualification
             session3 = secondPractice
             session4 = RaceDetailModel.Session( // Sprint
                 sessionDate = sprintDate, sessionName = SPRINT,
-                sessionTime = race.Sprint.time
+                sessionTime = sprintTime
             )
         }
         else{
             session2 = secondPractice
             val thirdPracticeDate = formatDate(race.ThirdPractice.date)
+            val thirdPracticeTime = formatTime(race.ThirdPractice.time)
             session3 = RaceDetailModel.Session( // Third Practice
                 sessionDate = thirdPracticeDate, sessionName = PRACTICE3,
-                sessionTime = race.ThirdPractice.time
+                sessionTime = thirdPracticeTime
             )
             session4 = qualification
         }
         val firstPracticeDate = formatDate(race.FirstPractice.date)
+        val firstPracticeTime = formatTime(race.FirstPractice.time)
         val session1 = RaceDetailModel.Session(
             sessionDate = firstPracticeDate, sessionName = PRACTICE1,
-            sessionTime = race.FirstPractice.time
+            sessionTime = firstPracticeTime
         )
         val raceDate = formatDate(race.date)
+        val raceTime = formatTime(race.time)
         val session5 = RaceDetailModel.Session(
             sessionDate = raceDate, sessionName = RACE,
-            sessionTime = race.time
+            sessionTime = raceTime
         )
         raceDetailList.apply{
             add(session1)
@@ -321,16 +329,19 @@ internal class RaceFunctions {
     }
 
     fun formatDate(raceDate : String) : String{
-        val date = LocalDate.parse(raceDate) //2022-03-26
-        val formatter = DateTimeFormatter.ofPattern("dd-MMMM")
-        val formattedDate = date.format(formatter)
+        val dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val dateOutputFormatter = DateTimeFormatter.ofPattern("dd-MMMM")
+        val parsedDate = LocalDate.parse(raceDate, dateInputFormatter)
+        val formattedDate = dateOutputFormatter.format(parsedDate)
 
         return formattedDate
     }
     fun formatTime(raceTime : String) : String{
-        val current = LocalDateTime.parse(raceTime)
-        val formatter = DateTimeFormatter.ofPattern("HH:mm")
-        val formattedTime = raceTime.format(formatter)
+        val timeInputFormatter = DateTimeFormatter.ofPattern("HH:mm:ss'Z'", Locale.ENGLISH)
+        val timeOutputFormatter = DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
+        val parsedTime = LocalTime.parse(raceTime, timeInputFormatter)
+        val formattedTime = timeOutputFormatter.format(parsedTime)
+
         return formattedTime
     }
 
