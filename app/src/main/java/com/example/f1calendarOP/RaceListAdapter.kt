@@ -11,15 +11,6 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
     class RaceListAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.Adapter<RaceListViewHolder.MyViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Race>(){
-        override fun areItemsTheSame(oldItem: Race, newItem: Race): Boolean {
-            return oldItem.round == newItem.round
-        }
-        override fun areContentsTheSame(oldItem: Race, newItem: Race): Boolean {
-            return oldItem == newItem
-        }
-    }
-
     private val differ = AsyncListDiffer(this, diffCallback)
 
     var raceList : List<Race>
@@ -41,8 +32,8 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
             onClickListener.onClick(race)
         }
         holder.bind(raceList[position])
-
     }
+
     override fun getItemCount(): Int {
         return raceList.size
     }
@@ -50,4 +41,4 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
     class OnClickListener(val clickListener: (race: Race) -> Unit) {
         fun onClick(race: Race) = clickListener(race)
     }
-    }
+}
