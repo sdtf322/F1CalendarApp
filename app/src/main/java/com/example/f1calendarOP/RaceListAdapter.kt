@@ -7,9 +7,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.ListAdapter
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
-//    class RaceListAdapter(private val onClickListener: OnClickListener) :
-//        RecyclerView.Adapter<RaceListViewHolder.MyViewHolder>() {
-
     class RaceListAdapter(private val onClickListener: OnClickListener) :
         ListAdapter<Race, RaceListViewHolder.MyViewHolder>
             (raceDiffCallback) {
