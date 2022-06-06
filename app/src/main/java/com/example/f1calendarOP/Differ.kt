@@ -1,6 +1,5 @@
 package com.example.f1calendarOP
 
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 
     val diffCallback = object : DiffUtil.ItemCallback<Race>(){
