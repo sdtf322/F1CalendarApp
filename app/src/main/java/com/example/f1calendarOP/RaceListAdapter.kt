@@ -4,17 +4,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
-    class RaceListAdapter(private val onClickListener: OnClickListener) :
-        RecyclerView.Adapter<RaceListViewHolder.MyViewHolder>() {
+//    class RaceListAdapter(private val onClickListener: OnClickListener) :
+//        RecyclerView.Adapter<RaceListViewHolder.MyViewHolder>() {
 
-    private val differ = AsyncListDiffer(this, diffCallback)
+    class RaceListAdapter(private val onClickListener: OnClickListener) :
+        ListAdapter<Race, RaceListViewHolder.MyViewHolder>
+            (raceDiffCallback) {
+
+    private val raceDiffer = AsyncListDiffer(this, raceDiffCallback)
 
     var raceList : List<Race>
-        get() = differ.currentList
-        set(value) {differ.submitList(value)}
+        get() = raceDiffer.currentList
+        set(value) {raceDiffer.submitList(value)}
 
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RaceListViewHolder.MyViewHolder {
