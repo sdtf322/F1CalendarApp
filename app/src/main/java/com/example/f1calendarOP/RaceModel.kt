@@ -1,76 +1,78 @@
 package com.example.f1calendarOP
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
     data class RaceResponse(
-        val MRData: MRData
+        @SerializedName("MRData")val mrData: MRData
     )
 
     data class MRData(
-        val RaceTable: RaceTable,
-        val limit: String,
-        val offset: String,
-        val series: String,
-        val total: String,
-        val xmlns: String
+        @SerializedName("RaceTable")val raceTable: RaceTable,
+        @SerializedName("limit")val limit: String,
+        @SerializedName("offset")val offset: String,
+        @SerializedName("series")val series: String,
+        @SerializedName("total")val total: String,
+        @SerializedName("xmlns")val xmlns: String
     )
 
     data class RaceTable(
-        val Races: List<Race>,
-        val season: String
+        @SerializedName("Races")val races: List<Race>,
+        @SerializedName("season")val season: String
     )
 
     data class Race(
-        val Circuit: Circuit,
-        val FirstPractice: FirstPractice,
-        val Qualifying: Qualifying,
-        val SecondPractice: SecondPractice,
-        val ThirdPractice: ThirdPractice,
-        val Sprint: Sprint,
-        var date: String,
-        val raceName: String,
-        val round: String,
-        val season: String,
-        val time: String,
-        val url: String,
+        @SerializedName("Circuit")val circuit: Circuit,
+        @SerializedName("FirstPractice")val firstPractice: FirstPractice,
+        @SerializedName("Qualifying")val qualifying: Qualifying,
+        @SerializedName("SecondPractice")val secondPractice: SecondPractice,
+        @SerializedName("ThirdPractice")val ThirdPractice: ThirdPractice,
+        @SerializedName("Sprint")val sprint: Sprint,
+        @SerializedName("date")var date: String,
+        @SerializedName("raceName")val raceName: String,
+        @SerializedName("round")val round: String,
+        @SerializedName("season")val season: String,
+        @SerializedName("time")val time: String,
+        @SerializedName("url")val url: String,
+
         var flagImage: Int,
         var weekendDate : String,
     ) : Serializable
 
     data class Circuit(
-        val Location: Location,
-        val circuitId: String,
-        val circuitName: String,
-        val url: String
+        @SerializedName("Location")val location: Location,
+        @SerializedName("circuitId")val circuitId: String,
+        @SerializedName("circuitName")val circuitName: String,
+        @SerializedName("url")val url: String
     )
 
     data class FirstPractice(
-        val date: String,
-        val time: String
+        @SerializedName("date")val date: String,
+        @SerializedName("time")val time: String
     )
 
     data class Qualifying(
-        val date: String,
-        val time: String
+        @SerializedName("date")val date: String,
+        @SerializedName("time")val time: String
     )
 
     data class SecondPractice(
-        val date: String,
-        val time: String
+        @SerializedName("date")val date: String,
+        @SerializedName("time")val time: String
     )
 
     data class ThirdPractice(
-        val date: String,
-        val time: String
+        @SerializedName("date")val date: String,
+        @SerializedName("time")val time: String
     )
     data class Sprint(
-        val date: String,
-        val time: String
+        @SerializedName("date")val date: String,
+        @SerializedName("time")val time: String
     )
 
     data class Location(
-        val country: String,
-        val lat: String,
-        val locality: String,
-        val long: String
+        @SerializedName("country")val country: String,
+        @SerializedName("lat")val lat: String,
+        @SerializedName("locality")val locality: String,
+        @SerializedName("long")val long: String
     )
