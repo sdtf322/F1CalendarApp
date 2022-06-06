@@ -14,7 +14,7 @@ internal class RaceFunctions {
         val flagImage = getFlagByCountry(raceCountry)
 
 
-        val weekendDate = getWeekendDate(race)
+        val weekendDate = race.date
         val header = RaceDetailModel.Header(
             track = race.raceName, date = weekendDate, flag = flagImage)
         raceDetailList.add(header)
@@ -90,11 +90,6 @@ internal class RaceFunctions {
         val lastSessionDate = formatDate(race.date)
 
         return "$firstSessionDate - $lastSessionDate"
-    }
-
-    fun bindFlagByCountry(country : String, flagImage : ImageView){
-        val flagByCountry = getFlagByCountry(country)
-        flagImage.setImageResource(flagByCountry)
     }
 
     fun getFlagByCountry(country : String) : Int{

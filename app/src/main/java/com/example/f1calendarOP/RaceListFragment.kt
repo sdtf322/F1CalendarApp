@@ -17,21 +17,21 @@ const val TAG = "RaceListFragment"
 
 class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 
-    private lateinit var racesAdapter: RacesAdapter
+    private lateinit var raceListAdapter: RaceListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        racesAdapter = RacesAdapter(RacesAdapter.OnClickListener { race ->
+        raceListAdapter = RaceListAdapter(RaceListAdapter.OnClickListener { race ->
             onClickHelper(race)})
         val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()
-            adapter = racesAdapter
+            adapter = raceListAdapter
         }
         return listItems
     }
@@ -51,9 +51,14 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             }
 
             if(response != null){
-                val raceResponse = response
-                val responseRaceList : List<Race> = raceResponse.MRData.RaceTable.Races
-                racesAdapter.raceList = responseRaceList
+                val responseRaceList : List<Race> = response.MRData.RaceTable.Races
+                val raceFunctions = RaceFunctions()
+                for(item in responseRaceList){
+                    item.flagImage = raceFunctions.getFlagByCountry(item.Circuit.Location.country)
+//                    item.date = raceFunctions.getWeekendDate(item)
+                }
+                //final
+                raceListAdapter.raceList = responseRaceList
 
             } else{
                 Log.e(TAG, "Response not successful")

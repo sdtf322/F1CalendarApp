@@ -27,12 +27,13 @@ import java.io.Serializable
         val SecondPractice: SecondPractice,
         val ThirdPractice: ThirdPractice,
         val Sprint: Sprint,
-        val date: String,
+        var date: String,
         val raceName: String,
         val round: String,
         val season: String,
         val time: String,
-        val url: String
+        val url: String,
+        var flagImage: Int,
     ) : Serializable
 
     data class Circuit(

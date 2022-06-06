@@ -1,7 +1,6 @@
 package com.example.f1calendarOP
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -9,11 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
-    class RacesAdapter(private val onClickListener: OnClickListener) :
-        RecyclerView.Adapter<RacesAdapter.MyViewHolder>() {
-
-    inner class MyViewHolder(val binding: ItemRaceListBinding)
-        : RecyclerView.ViewHolder(binding.root)
+    class RaceListAdapter(private val onClickListener: OnClickListener) :
+        RecyclerView.Adapter<RaceListViewHolder.MyViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Race>(){
         override fun areItemsTheSame(oldItem: Race, newItem: Race): Boolean {
@@ -23,7 +19,6 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
             return oldItem == newItem
         }
     }
-    private val raceFunctions = RaceFunctions()
 
     private val differ = AsyncListDiffer(this, diffCallback)
 
@@ -32,26 +27,21 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
         set(value) {differ.submitList(value)}
 
     @NonNull
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(ItemRaceListBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RaceListViewHolder.MyViewHolder {
+        return RaceListViewHolder.MyViewHolder(ItemRaceListBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         ))
     }
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RaceListViewHolder.MyViewHolder, position: Int) {
 
         val race = raceList[position]
-        val raceCountry = race.Circuit.Location.country
-        val weekendDate = raceFunctions.getWeekendDate(race)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(race)
         }
-        holder.binding.apply{
-            trackF1.text = race.raceName
-            dateF1.text = weekendDate
-            raceFunctions.bindFlagByCountry(raceCountry, flagImage)
-        }
+        holder.bind(raceList[position])
+
     }
     override fun getItemCount(): Int {
         return raceList.size
@@ -60,4 +50,4 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
     class OnClickListener(val clickListener: (race: Race) -> Unit) {
         fun onClick(race: Race) = clickListener(race)
     }
-}
+    }
