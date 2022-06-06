@@ -34,6 +34,7 @@ import java.io.Serializable
         val time: String,
         val url: String,
         var flagImage: Int,
+        var weekendDate : String,
     ) : Serializable
 
     data class Circuit(

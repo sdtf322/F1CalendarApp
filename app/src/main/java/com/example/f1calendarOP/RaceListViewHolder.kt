@@ -17,7 +17,7 @@ sealed class RaceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
             private val flagImage = itemView.findViewById<ImageView>(R.id.flagImage)
             fun bind(race : Race){
                 trackF1.text = race.raceName
-                dateF1.text = race.date
+                dateF1.text = race.weekendDate
                 flagImage.setImageResource(race.flagImage)
             }
         }

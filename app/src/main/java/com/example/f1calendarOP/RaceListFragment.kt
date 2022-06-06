@@ -55,7 +55,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                 val raceFunctions = RaceFunctions()
                 for(item in responseRaceList){
                     item.flagImage = raceFunctions.getFlagByCountry(item.Circuit.Location.country)
-//                    item.date = raceFunctions.getWeekendDate(item)
+                    item.weekendDate = raceFunctions.getWeekendDate(item)
                 }
                 //final
                 raceListAdapter.raceList = responseRaceList
