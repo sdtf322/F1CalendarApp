@@ -1,9 +1,7 @@
 package com.example.f1calendarOP
 
-import com.bumptech.glide.Glide
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 internal class RaceFunctions {
@@ -13,7 +11,7 @@ internal class RaceFunctions {
         val flagImage = race.flagImage
 
 
-        val weekendDate = race.date
+        val weekendDate = race.weekendDate
         val header = RaceDetailModel.Header(
             track = race.raceName, date = weekendDate, flag = flagImage)
         raceDetailList.add(header)
@@ -119,21 +117,22 @@ internal class RaceFunctions {
         return flagDrawable
     }
 
-    fun formatDate(raceDate : String) : String{
-        val dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val dateOutputFormatter = DateTimeFormatter.ofPattern("dd-MMMM")
-        val parsedDate = LocalDate.parse(raceDate, dateInputFormatter)
-        val formattedDate = dateOutputFormatter.format(parsedDate)
+    fun formatDate(raceDate: String): String {
 
-        return formattedDate
+        val inputFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val outputFormatter = SimpleDateFormat("dd-MMMM", Locale.ENGLISH)
+        val givenDate = inputFormatter.parse(raceDate)
+
+        return outputFormatter.format(givenDate)
+
     }
-    fun formatTime(raceTime : String) : String{
-        val timeInputFormatter = DateTimeFormatter.ofPattern("HH:mm:ss'Z'")
-        val timeOutputFormatter = DateTimeFormatter.ofPattern("HH:mm")
-        val parsedTime = LocalTime.parse(raceTime, timeInputFormatter)
-        val formattedTime = timeOutputFormatter.format(parsedTime)
+    fun formatTime(raceTime: String): String {
 
-        return formattedTime
+        val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'")
+        val timeOutputFormatter = SimpleDateFormat("HH:mm")
+        val parsedTime = timeInputFormatter.parse(raceTime)
+
+        return timeOutputFormatter.format(parsedTime)
 
     }
 
