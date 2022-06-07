@@ -49,7 +49,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                 Log.e(TAG, e.message.toString())
                 return@launchWhenCreated
             }
-
             if(response != null){
                 val responseRaceList : List<Race> = response.mrData.raceTable.races
                 val raceFunctions = RaceFunctions()
@@ -57,8 +56,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                     item.flagImage = raceFunctions.getFlagByCountry(item.circuit.location.country)
                     item.weekendDate = raceFunctions.getWeekendDate(item)
                 }
-                //final
-                raceListAdapter.raceList = responseRaceList
+            raceListAdapter.raceList = responseRaceList
 
             } else{
                 Log.e(TAG, "Response not successful")

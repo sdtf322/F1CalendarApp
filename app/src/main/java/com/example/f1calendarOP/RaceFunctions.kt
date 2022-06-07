@@ -1,5 +1,6 @@
 package com.example.f1calendarOP
 
+import com.bumptech.glide.Glide
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -9,8 +10,7 @@ internal class RaceFunctions {
 
     fun getDetailApiData(race: Race) : List<RaceDetailModel>{
         val raceDetailList = ArrayList<RaceDetailModel>()
-        val raceCountry = race.circuit.location.country
-        val flagImage = getFlagByCountry(raceCountry)
+        val flagImage = race.flagImage
 
 
         val weekendDate = race.date

@@ -26,7 +26,6 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
         ))
     }
     override fun onBindViewHolder(holder: RaceListViewHolder.MyViewHolder, position: Int) {
-
         val race = raceList[position]
         holder.itemView.setOnClickListener {
             onClickListener.onClick(race)

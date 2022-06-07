@@ -3,8 +3,8 @@ package com.example.f1calendarOP
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
 sealed class RaceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,7 +18,13 @@ sealed class RaceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
             fun bind(race : Race){
                 trackF1.text = race.raceName
                 dateF1.text = race.weekendDate
-                flagImage.setImageResource(race.flagImage)
+
+                Glide.with(itemView)
+                    .load(race.flagImage)
+                    .placeholder(R.drawable.flag_unknown)
+                    .error(R.drawable.flag_error)
+                    .fallback(R.drawable.flag_error)
+                    .into(flagImage)
             }
         }
     }
