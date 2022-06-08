@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,8 +25,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        raceListAdapter = RaceListAdapter(RaceListAdapter.OnClickListener { race ->
-            onClickHelper(race)})
+        raceListAdapter = RaceListAdapter{position -> onClickHelper(position)}
         val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
@@ -65,19 +65,31 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     }
 
 
-    fun onClickHelper(race: Race){
-        val raceDetailFragment = RaceDetailFragment()
-        val bundle = Bundle()
-        bundle.putSerializable(RACE_DATE_KEY, race)
-        raceDetailFragment.arguments = bundle
-        val fragmentTransaction = parentFragmentManager.beginTransaction()
-        fragmentTransaction.apply {
-            add(R.id.flFragment, raceDetailFragment)
-            addToBackStack(null)
-            commit()
+    fun onClickHelper(position: Int){
+        Toast.makeText(context, "aboba ${position}", Toast.LENGTH_LONG).show()
+//        val raceDetailFragment = RaceDetailFragment()
+//        val bundle = Bundle()
+//        bundle.putSerializable(RACE_DATE_KEY, race)
+//        raceDetailFragment.arguments = bundle
+//        val fragmentTransaction = parentFragmentManager.beginTransaction()
+//        fragmentTransaction.apply {
+//            add(R.id.flFragment, raceDetailFragment)
+//            addToBackStack(null)
+//            commit()
+        }
+        companion object{
+            const val RACE_DATE_KEY = "RACETRACK"
         }
     }
-    companion object{
-        const val RACE_DATE_KEY = "RACETRACK"
-    }
-}
+//    fun onClickHelper(race: Race){
+//        val raceDetailFragment = RaceDetailFragment()
+//        val bundle = Bundle()
+//        bundle.putSerializable(RACE_DATE_KEY, race)
+//        raceDetailFragment.arguments = bundle
+//        val fragmentTransaction = parentFragmentManager.beginTransaction()
+//        fragmentTransaction.apply {
+//            add(R.id.flFragment, raceDetailFragment)
+//            addToBackStack(null)
+//            commit()
+//        }
+//    }

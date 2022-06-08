@@ -9,9 +9,16 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
 sealed class RaceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    class MyViewHolder(private val binding: ItemRaceListBinding)
+    class MyViewHolder(
+        private val binding: ItemRaceListBinding,
+        private val onClickHelper: (position : Int) -> Unit)
         : RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            itemView.setOnClickListener { _ ->
+                onClickHelper(adapterPosition)
+            }
+        }
             private val trackF1 = itemView.findViewById<TextView>(R.id.trackF1)
             private val dateF1 = itemView.findViewById<TextView>(R.id.dateF1)
             private val flagImage = itemView.findViewById<ImageView>(R.id.flagImage)

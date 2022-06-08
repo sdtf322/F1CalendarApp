@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.ListAdapter
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
 
-    class RaceListAdapter(private val onClickListener: OnClickListener) :
+    class RaceListAdapter(private val onClickHelper: (position: Int) -> Unit) :
         ListAdapter<Race, RaceListViewHolder.MyViewHolder>
             (raceDiffCallback) {
 
@@ -23,13 +23,9 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
             LayoutInflater.from(parent.context),
             parent,
             false
-        ))
+        ), onClickHelper)
     }
     override fun onBindViewHolder(holder: RaceListViewHolder.MyViewHolder, position: Int) {
-        val race = raceList[position]
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(race)
-        }
         holder.bind(raceList[position])
     }
 
@@ -37,7 +33,7 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
         return raceList.size
     }
 
-    class OnClickListener(val clickListener: (race: Race) -> Unit) {
-        fun onClick(race: Race) = clickListener(race)
-    }
+//    class OnClickListener(val clickListener: (race: Race) -> Unit) {
+//        fun onClick(race: Race) = clickListener(race)
+//    }
 }
