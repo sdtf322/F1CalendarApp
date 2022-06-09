@@ -55,9 +55,9 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                     item.flagImage = raceFunctions.getFlagByCountry(item.circuit.location.country)
                     item.weekendDate = raceFunctions.getWeekendDate(item)
                 }
-                raceListAdapter.submitList(responseRaceList)
+                raceListAdapter.submitList(responseRaceList) }
 
-            } else{
+            else{
                 Log.e(TAG, "Response not successful")
             }
         }

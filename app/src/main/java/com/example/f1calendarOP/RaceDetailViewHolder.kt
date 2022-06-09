@@ -4,11 +4,15 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.f1calendarOP.databinding.ItemDetailCircuitBinding
+import com.example.f1calendarOP.databinding.ItemDetailHeaderBinding
+import com.example.f1calendarOP.databinding.ItemDetailSessionBinding
 
 
 sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class HeaderViewHolder(private val binding : ItemDetailHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root){
         private val headerTrack : TextView = itemView.findViewById(R.id.tvTrackDetailF1)
         private val headerDate : TextView = itemView.findViewById(R.id.tvDateF1_2)
         private val headerFlag : ImageView = itemView.findViewById(R.id.flagDetailF1)
@@ -18,7 +22,8 @@ sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(item
              headerFlag.setImageResource(item.flag)
         }
     }
-    class SessionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class SessionViewHolder(private val binding : ItemDetailSessionBinding) :
+        RecyclerView.ViewHolder(binding.root){
         private val sessionDate : TextView = itemView.findViewById(R.id.tvSessionDate)
         private val sessionName : TextView = itemView.findViewById(R.id.tvSessionName)
         private val sessionTime : TextView = itemView.findViewById(R.id.tvSessionTime)
@@ -28,7 +33,8 @@ sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(item
              sessionTime.text = item.sessionTime
         }
     }
-    class CircuitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class CircuitViewHolder(private val binding : ItemDetailCircuitBinding) :
+        RecyclerView.ViewHolder(binding.root){
         private val circuitImage : ImageView = itemView.findViewById(R.id.circuitImage)
         private val firstYear : TextView = itemView.findViewById(R.id.tvCircuitFirstGPYear)
         private val laps : TextView = itemView.findViewById(R.id.tvCircuitLaps)

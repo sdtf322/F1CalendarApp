@@ -3,6 +3,9 @@ package com.example.f1calendarOP
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.f1calendarOP.databinding.ItemDetailCircuitBinding
+import com.example.f1calendarOP.databinding.ItemDetailHeaderBinding
+import com.example.f1calendarOP.databinding.ItemDetailSessionBinding
 import java.lang.IllegalArgumentException
 
 
@@ -18,15 +21,17 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         return when(viewType){
             R.layout.item_detail_header -> RaceDetailViewHolder.HeaderViewHolder(
-                LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+                ItemDetailHeaderBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false)
             )
             R.layout.item_detail_session -> RaceDetailViewHolder.SessionViewHolder(
-                LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+                ItemDetailSessionBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false)
             )
             R.layout.item_detail_circuit -> RaceDetailViewHolder.CircuitViewHolder(
-                LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+                ItemDetailCircuitBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false)
             )
-
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
