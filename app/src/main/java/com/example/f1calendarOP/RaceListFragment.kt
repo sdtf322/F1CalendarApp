@@ -17,15 +17,14 @@ const val TAG = "RaceListFragment"
 
 class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 
-    private lateinit var raceListAdapter: RaceListAdapter
+    private val raceListAdapter: RaceListAdapter by lazy { RaceListAdapter(
+        RaceListAdapter.OnClickListener { race -> onClickHelper(race)}) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        raceListAdapter = RaceListAdapter(RaceListAdapter.OnClickListener { race ->
-            onClickHelper(race)})
         val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
@@ -63,7 +62,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             }
         }
     }
-
 
     fun onClickHelper(race: Race){
         val raceDetailFragment = RaceDetailFragment()

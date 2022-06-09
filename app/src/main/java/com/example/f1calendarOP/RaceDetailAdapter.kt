@@ -15,7 +15,6 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.raceDetail.addAll(raceDetail)
         notifyDataSetChanged()
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         return when(viewType){
             R.layout.item_detail_header -> RaceDetailViewHolder.HeaderViewHolder(
@@ -31,7 +30,6 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
-    
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is RaceDetailViewHolder.HeaderViewHolder -> holder.bind(raceDetail[position] as RaceDetailModel.Header)
@@ -39,7 +37,6 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is RaceDetailViewHolder.CircuitViewHolder -> holder.bind(raceDetail[position] as RaceDetailModel.Circuit)
         }
     }
-
     override fun getItemViewType(position: Int): Int {
         return when (raceDetail[position]) {
             is RaceDetailModel.Session -> R.layout.item_detail_session
@@ -47,7 +44,6 @@ class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is RaceDetailModel.Circuit -> R.layout.item_detail_circuit
         }
     }
-
     override fun getItemCount(): Int = raceDetail.size
 
     }

@@ -32,11 +32,9 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
         }
         holder.bind(raceList[position])
     }
-
     override fun getItemCount(): Int {
         return raceList.size
     }
-
     class OnClickListener(val clickListener: (race: Race) -> Unit) {
         fun onClick(race: Race) = clickListener(race)
     }
