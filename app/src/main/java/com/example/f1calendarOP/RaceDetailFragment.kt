@@ -44,6 +44,6 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
         val race = arguments?.getSerializable(RACE_DATE_KEY) as Race
         val raceFunctions = RaceFunctions()
 
-        raceDetailAdapter.updateList(raceFunctions.getDetailApiData(race))
+        raceDetailAdapter.raceDetail = raceFunctions.getDetailApiData(race)
     }
 }

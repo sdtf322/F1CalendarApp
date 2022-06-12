@@ -11,13 +11,8 @@ import java.lang.IllegalArgumentException
 
 class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val raceDetail = ArrayList<RaceDetailModel>()
+    var raceDetail = ArrayList<RaceDetailModel>()
 
-    fun updateList(raceDetail: List<RaceDetailModel>) {
-        this.raceDetail.clear()
-        this.raceDetail.addAll(raceDetail)
-        notifyDataSetChanged()
-    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         return when(viewType){
             R.layout.item_detail_header -> RaceDetailViewHolder.HeaderViewHolder(

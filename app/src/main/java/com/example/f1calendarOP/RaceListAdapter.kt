@@ -24,6 +24,4 @@ import com.example.f1calendarOP.databinding.ItemRaceListBinding
         }
         holder.bind(race)
     }
-
-//    private fun onClick(race: Race) = onClickHelper(race)
 }

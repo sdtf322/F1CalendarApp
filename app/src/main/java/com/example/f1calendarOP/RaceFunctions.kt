@@ -6,10 +6,9 @@ import kotlin.collections.ArrayList
 
 internal class RaceFunctions {
 
-    fun getDetailApiData(race: Race) : List<RaceDetailModel>{
+    fun getDetailApiData(race: Race) : ArrayList<RaceDetailModel>{
         val raceDetailList = ArrayList<RaceDetailModel>()
         val flagImage = race.flagImage
-
 
         val weekendDate = race.weekendDate
         val header = RaceDetailModel.Header(
@@ -128,8 +127,8 @@ internal class RaceFunctions {
     }
     fun formatTime(raceTime: String): String {
 
-        val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'")
-        val timeOutputFormatter = SimpleDateFormat("HH:mm")
+        val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
+        val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
         val parsedTime = timeInputFormatter.parse(raceTime)
 
         return timeOutputFormatter.format(parsedTime)
