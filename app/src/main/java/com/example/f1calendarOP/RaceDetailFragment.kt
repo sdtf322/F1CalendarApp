@@ -11,6 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
+    companion object {
+        private const val RACE_DATE_KEY = "RACETRACK"
+
+        fun newInstance(race: Race) = RaceDetailFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(RACE_DATE_KEY, race)
+            }
+        }
+    }
+
     private val raceDetailAdapter : RaceDetailAdapter by lazy { RaceDetailAdapter() }
 
     override fun onCreateView(
@@ -31,7 +41,7 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val race = arguments?.getSerializable(RaceListFragment.RACE_DATE_KEY) as Race
+        val race = arguments?.getSerializable(RACE_DATE_KEY) as Race
         val raceFunctions = RaceFunctions()
 
         raceDetailAdapter.updateList(raceFunctions.getDetailApiData(race))

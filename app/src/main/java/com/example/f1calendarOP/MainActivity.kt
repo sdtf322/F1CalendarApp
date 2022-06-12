@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity(), Communicator{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "F1 Calendar"
@@ -36,6 +36,15 @@ class MainActivity : AppCompatActivity(){
             replace(R.id.flFragment, fragment)
             commit()
         }
+    override fun passRaceData(race : Race) {
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val raceDetailFragment = RaceDetailFragment.newInstance(race)
+        transaction.apply{
+            add(R.id.flFragment,raceDetailFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.app_menu, menu)
         return true

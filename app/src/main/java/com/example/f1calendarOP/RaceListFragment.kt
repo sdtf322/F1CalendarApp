@@ -20,12 +20,13 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     private val raceListAdapter: RaceListAdapter by lazy{
         RaceListAdapter { race -> onClickHelper(race) } }
 
+    private lateinit var communicator: Communicator
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val raceListAdapter = RaceListAdapter{race: Race -> onClickHelper(race) }
         val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
@@ -56,7 +57,9 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                     item.flagImage = raceFunctions.getFlagByCountry(item.circuit.location.country)
                     item.weekendDate = raceFunctions.getWeekendDate(item)
                 }
-                raceListAdapter.submitList(responseRaceList) }
+                raceListAdapter.submitList(responseRaceList)
+                communicator = activity as Communicator
+            }
 
             else{
                 Log.e(TAG, "Response not successful")
@@ -64,18 +67,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         }
     }
     fun onClickHelper(race: Race){
-        val raceDetailFragment = RaceDetailFragment()
-        val bundle = Bundle()
-        bundle.putSerializable(RACE_DATE_KEY, race)
-        raceDetailFragment.arguments = bundle
-        val fragmentTransaction = parentFragmentManager.beginTransaction()
-        fragmentTransaction.apply {
-            add(R.id.flFragment, raceDetailFragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
-    companion object{
-        const val RACE_DATE_KEY = "RACETRACK"
+        communicator.passRaceData(race)
     }
 }
