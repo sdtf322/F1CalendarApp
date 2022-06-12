@@ -11,7 +11,11 @@ import java.lang.IllegalArgumentException
 
 class RaceDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var raceDetail = ArrayList<RaceDetailModel>()
+    private var raceDetail = ArrayList<RaceDetailModel>()
+
+    fun setRaceDetailList(raceList : ArrayList<RaceDetailModel>){
+        this.raceDetail = raceList
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
         return when(viewType){
