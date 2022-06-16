@@ -13,11 +13,11 @@ sealed class RaceDetailModel {
     ) : RaceDetailModel()
     data class Circuit(
         val circuitImage: Int,
-        val firstYear: Int,
-        val laps: Int,
-        val circuitLength: String,
-        val raceDistance: Double,
-        val lapRecord : String,
-        val lapRecordOwner: String
+//        val firstYear: Int,
+//        val laps: Int,
+//        val circuitLength: String,
+//        val raceDistance: Double,
+//        val lapRecord : String,
+//        val lapRecordOwner: String
     ) : RaceDetailModel()
 }

@@ -72,8 +72,6 @@ internal class RaceFunctions {
 
         val circuitSession = RaceDetailModel.Circuit(
             circuitImage = getCircuitByTrack(race.circuit.circuitName),
-            firstYear = 1950, laps = 69, circuitLength = "6.000", raceDistance = 300.000,
-            lapRecord = "1:00:00", lapRecordOwner = "Jenson Button"
         )
 
         raceDetailList.apply{
