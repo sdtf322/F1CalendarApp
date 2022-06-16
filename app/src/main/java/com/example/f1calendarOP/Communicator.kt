@@ -1,5 +1,7 @@
 package com.example.f1calendarOP
 
+import androidx.fragment.app.Fragment
+
 interface Communicator {
-    fun passRaceData(race : Race)
+    fun openFragment(SomeFragment : Fragment)
 }

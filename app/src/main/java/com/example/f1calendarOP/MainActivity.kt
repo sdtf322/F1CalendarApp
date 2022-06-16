@@ -36,11 +36,10 @@ class MainActivity : AppCompatActivity(), Communicator{
             replace(R.id.flFragment, fragment)
             commit()
         }
-    override fun passRaceData(race : Race) {
+    override fun openFragment(SomeFragment: Fragment) {
         val transaction = this.supportFragmentManager.beginTransaction()
-        val raceDetailFragment = RaceDetailFragment.newInstance(race)
         transaction.apply{
-            add(R.id.flFragment,raceDetailFragment)
+            add(R.id.flFragment, SomeFragment)
             addToBackStack(null)
             commit()
         }

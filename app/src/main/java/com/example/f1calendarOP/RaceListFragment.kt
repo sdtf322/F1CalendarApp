@@ -66,7 +66,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
             }
         }
     }
-    fun onClickHelper(race: Race){
-        communicator.passRaceData(race)
+    private fun onClickHelper(race: Race){
+        communicator.openFragment(RaceDetailFragment.newInstance(race))
     }
 }
