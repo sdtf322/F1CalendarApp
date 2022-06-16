@@ -70,12 +70,19 @@ internal class RaceFunctions {
             sessionTime = raceTime
         )
 
+        val circuitSession = RaceDetailModel.Circuit(
+            circuitImage = getCircuitByTrack(race.circuit.circuitName),
+            firstYear = 1950, laps = 69, circuitLength = "6.000", raceDistance = 300.000,
+            lapRecord = "1:00:00", lapRecordOwner = "Jenson Button"
+        )
+
         raceDetailList.apply{
             add(session1)
             add(session2)
             add(session3)
             add(session4)
             add(session5)
+            add(circuitSession)
         }
         return raceDetailList
     }
@@ -86,6 +93,36 @@ internal class RaceFunctions {
         val lastSessionDate = formatDate(race.date)
 
         return "$firstSessionDate - $lastSessionDate"
+    }
+
+    private fun getCircuitByTrack(track : String) : Int{
+        val circuitDrawable = when(track){
+            "Bahrain International Circuit" -> R.drawable.circuit_bahrain
+            "Jeddah Corniche Circuit" -> R.drawable.circuit_jeddah
+            "Albert Park Grand Prix Circuit" -> R.drawable.circuit_australia
+            "Autodromo Enzo e Dino Ferrari" -> R.drawable.circuit_imola
+            "Circuit of the Americas" -> R.drawable.circuit_usa
+            "Baku City Circuit" -> R.drawable.circuit_azerbaijan
+            "Circuit de Barcelona-Catalunya" -> R.drawable.circuit_catalunya
+            "Hungaroring" -> R.drawable.circuit_hungaroring
+            "Autódromo José Carlos Pace" -> R.drawable.circuit_brazil
+            "Marina Bay Street Circuit" -> R.drawable.circuit_singapore
+            "Miami International Autodrome" -> R.drawable.circuit_miami
+            "Circuit de Monaco" -> R.drawable.circuit_monaco
+            "Autodromo Nazionale di Monza" -> R.drawable.circuit_monza
+            "Red Bull Ring" -> R.drawable.circuit_austria
+            "Circuit Paul Ricard" -> R.drawable.circuit_france
+            "Autódromo Hermanos Rodríguez" -> R.drawable.circuit_mexico
+            "Silverstone Circuit" -> R.drawable.circuit_silverstone
+            "Circuit de Spa-Francorchamps" -> R.drawable.circuit_spa
+            "Suzuka Circuit" -> R.drawable.circuit_suzuka
+            "Circuit Gilles Villeneuve" -> R.drawable.circuit_canada
+            "Yas Marina Circuit" -> R.drawable.circuit_abudhabi
+            "Circuit Park Zandvoort" -> R.drawable.circuit_zandvoort
+
+            else -> R.drawable.flag_error
+        }
+        return circuitDrawable
     }
 
     fun getFlagByCountry(country : String) : Int{
@@ -116,7 +153,7 @@ internal class RaceFunctions {
         return flagDrawable
     }
 
-    fun formatDate(raceDate: String): String {
+    private fun formatDate(raceDate: String): String {
 
         val inputFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         val outputFormatter = SimpleDateFormat("dd-MMMM", Locale.ENGLISH)
@@ -125,7 +162,7 @@ internal class RaceFunctions {
         return outputFormatter.format(givenDate)
 
     }
-    fun formatTime(raceTime: String): String {
+    private fun formatTime(raceTime: String): String {
 
         val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
         val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
