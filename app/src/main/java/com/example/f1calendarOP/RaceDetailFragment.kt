@@ -16,7 +16,7 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
         fun newInstance(race: Race) = RaceDetailFragment().apply {
             arguments = Bundle().apply {
-                putSerializable(RACE_DATE_KEY, race)
+                putParcelable(RACE_DATE_KEY, race)
             }
         }
     }
