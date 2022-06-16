@@ -14,35 +14,29 @@ sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(item
     class HeaderViewHolder(private val binding : ItemDetailHeaderBinding) :
         RecyclerView.ViewHolder(binding.root){
          fun bind(item: RaceDetailModel.Header) {
-             with(binding){
-                 tvTrackDetailF1.text = item.track
-                 tvDateF12.text = item.date
-                 flagDetailF1.setImageResource(item.flag)
-             }
+             binding.tvTrackDetailF1.text = item.track
+             binding.tvDateF12.text = item.date
+             binding.flagDetailF1.setImageResource(item.flag)
         }
     }
     class SessionViewHolder(private val binding : ItemDetailSessionBinding) :
         RecyclerView.ViewHolder(binding.root){
          fun bind(item: RaceDetailModel.Session) {
-             with(binding){
-                 tvSessionDate.text = item.sessionDate
-                 tvSessionName.text = item.sessionName
-                 tvSessionTime.text = item.sessionTime
-             }
+             binding.tvSessionDate.text = item.sessionDate
+             binding.tvSessionName.text = item.sessionName
+             binding.tvSessionTime.text = item.sessionTime
         }
     }
     class CircuitViewHolder(private val binding : ItemDetailCircuitBinding) :
         RecyclerView.ViewHolder(binding.root){
         fun bind(item: RaceDetailModel.Circuit) {
-            with(binding){
-                circuitImage.setImageResource(item.circuitImage)
-                tvCircuitFirstGPYear.text = item.firstYear.toString()
-                tvCircuitLaps.text = item.laps.toString()
-                tvCircuitLength.text = item.circuitLength
-                tvCircuitDistance.text = item.raceDistance.toString()
-                tvCircuitLapRecord.text = item.lapRecord
-                tvCircuitLapRecordHolder.text = item.lapRecordOwner
-            }
+            binding.circuitImage.setImageResource(item.circuitImage)
+            binding.tvCircuitFirstGPYear.text = item.firstYear.toString()
+            binding.tvCircuitLaps.text = item.laps.toString()
+            binding.tvCircuitLength.text = item.circuitLength
+            binding.tvCircuitDistance.text = item.raceDistance.toString()
+            binding.tvCircuitLapRecord.text = item.lapRecord
+            binding.tvCircuitLapRecordHolder.text = item.lapRecordOwner
         }
     }
 }
