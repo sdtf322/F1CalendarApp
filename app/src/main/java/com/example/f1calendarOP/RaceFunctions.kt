@@ -222,8 +222,8 @@ internal class RaceFunctions {
             circuitImage = circuitDrawable,
             firstYear = firstYear,
             laps = laps,
-            circuitLength = circuitLength,
-            raceDistance = raceDistance,
+            circuitLength = "$circuitLength km",
+            raceDistance = "$raceDistance km",
             lapRecord = lapRecord,
             lapRecordOwner = lapRecordOwner
         )
