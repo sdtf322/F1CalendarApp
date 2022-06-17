@@ -216,7 +216,7 @@ internal class RaceFunctions {
                 lapRecord = "1:00.000"; lapRecordOwner = "Jenson Button"
             }
         }
-        val raceDistance = circuitLength.toDouble() * laps
+        val raceDistance = String.format("%.3f", circuitLength.toDouble() * laps).toDouble()
 
         return RaceDetailModel.Circuit(
             circuitImage = circuitDrawable,
