@@ -31,12 +31,12 @@ sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(item
         RecyclerView.ViewHolder(binding.root){
         fun bind(item: RaceDetailModel.Circuit) {
             binding.circuitImage.setImageResource(item.circuitImage)
-//            binding.tvCircuitFirstGPYear.text = item.firstYear.toString()
-//            binding.tvCircuitLaps.text = item.laps.toString()
-//            binding.tvCircuitLength.text = item.circuitLength
-//            binding.tvCircuitDistance.text = item.raceDistance.toString()
-//            binding.tvCircuitLapRecord.text = item.lapRecord
-//            binding.tvCircuitLapRecordHolder.text = item.lapRecordOwner
+            binding.tvCircuitFirstGPYear.text = item.firstYear.toString()
+            binding.tvCircuitLaps.text = item.laps.toString()
+            binding.tvCircuitLength.text = item.circuitLength
+            binding.tvCircuitDistance.text = item.raceDistance
+            binding.tvCircuitLapRecord.text = item.lapRecord
+            binding.tvCircuitLapRecordHolder.text = item.lapRecordOwner
         }
     }
 }

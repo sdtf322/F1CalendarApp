@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circuit_abudhabi" />
-    <!--
+
     <TextView
         android:id="@+id/tvFirstGPHint"
         android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tvCircuitLapRecordT"
-        app:layout_constraintTop_toBottomOf="@+id/tvCircuitLapRecordT" /> -->
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitLapRecordT" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
