@@ -3,19 +3,19 @@
 
     <item
         android:id="@+id/navigation2"
-        android:title="Home"
+        android:title="@string/menuHome"
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/standingsFragment"
-        android:title="Standings"
+        android:title="@string/menuStandings"
         android:icon="@drawable/ic_standings"/>
     <item
         android:id="@+id/driversFragment"
-        android:title="Drivers"
+        android:title="@string/menuDrivers"
         android:icon="@drawable/ic_driver"/>
     <item
         android:id="@+id/constructorsFragment"
-        android:title="Constructors"
+        android:title="@string/menuConstructors"
         android:icon="@drawable/ic_team"/>
 
 </menu>

@@ -5,7 +5,7 @@
         android:id="@+id/miTheme"
         android:title="@string/switch_to_dark_light_theme"
         android:icon="@drawable/ic_theme"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/miAuthor"
         android:title="@string/about_author"
