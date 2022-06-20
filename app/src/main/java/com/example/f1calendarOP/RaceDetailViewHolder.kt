@@ -1,8 +1,6 @@
 package com.example.f1calendarOP
 
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.databinding.ItemDetailCircuitBinding
 import com.example.f1calendarOP.databinding.ItemDetailHeaderBinding

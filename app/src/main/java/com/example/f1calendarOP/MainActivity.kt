@@ -7,6 +7,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), Communicator{
@@ -14,28 +16,13 @@ class MainActivity : AppCompatActivity(), Communicator{
         super.onCreate(savedInstanceState)
         title = "F1 Calendar"
         setContentView(R.layout.activity_main)
-        val raceListFragment = RaceListFragment()
-        setCurrentFragment(raceListFragment)
 
-        val standingsFragment = StandingsFragment()
-        val driversFragment = DriversFragment()
-        val constructorsFragment = ConstructorsFragment()
-        findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-            .setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.miHome -> setCurrentFragment(raceListFragment)
-                R.id.miStandings -> setCurrentFragment(standingsFragment)
-                R.id.miDrivers -> setCurrentFragment(driversFragment)
-                R.id.miConsturtors -> setCurrentFragment(constructorsFragment)
-            }
-            true
-        }
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val navController = (supportFragmentManager.findFragmentById(R.id.flFragment) as NavHostFragment)
+            .navController
+        bottomNavigationView.setupWithNavController(navController)
     }
-    private fun setCurrentFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, fragment)
-            commit()
-        }
+
     override fun openFragment(SomeFragment: Fragment) {
         val transaction = this.supportFragmentManager.beginTransaction()
         transaction.apply{
@@ -44,6 +31,7 @@ class MainActivity : AppCompatActivity(), Communicator{
             commit()
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.app_menu, menu)
         return true
