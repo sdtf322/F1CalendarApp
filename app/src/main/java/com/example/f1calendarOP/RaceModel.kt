@@ -3,7 +3,6 @@ package com.example.f1calendarOP
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
     data class RaceResponse(
         @SerializedName("MRData")val mrData: MRData
@@ -22,14 +21,13 @@ import java.io.Serializable
         @SerializedName("Races")val races: List<Race>,
         @SerializedName("season")val season: String
     )
-
     data class Race(
         @SerializedName("Circuit")val circuit: Circuit,
         @SerializedName("FirstPractice")val firstPractice: FirstPractice,
         @SerializedName("Qualifying")val qualifying: Qualifying,
         @SerializedName("SecondPractice")val secondPractice: SecondPractice,
-        @SerializedName("ThirdPractice")val ThirdPractice: ThirdPractice,
-        @SerializedName("Sprint")val sprint: Sprint,
+        @SerializedName("ThirdPractice")val thirdPractice: ThirdPractice? = null,
+        @SerializedName("Sprint")val sprint: Sprint? = null,
         @SerializedName("date")var date: String,
         @SerializedName("raceName")val raceName: String,
         @SerializedName("round")val round: String,
@@ -39,13 +37,13 @@ import java.io.Serializable
 
         var flagImage: Int,
         var weekendDate : String,
-    ) : Serializable, Parcelable {
+    ) : Parcelable {
         constructor(parcel: Parcel) : this(
             parcel.readParcelable(Circuit::class.java.classLoader)!!,
             parcel.readParcelable(FirstPractice::class.java.classLoader)!!,
             parcel.readParcelable(Qualifying::class.java.classLoader)!!,
             parcel.readParcelable(SecondPractice::class.java.classLoader)!!,
-            parcel.readParcelable(com.example.f1calendarOP.ThirdPractice::class.java.classLoader)!!,
+            parcel.readParcelable(ThirdPractice::class.java.classLoader)!!,
             parcel.readParcelable(Sprint::class.java.classLoader)!!,
             parcel.readString()!!,
             parcel.readString()!!,
@@ -62,7 +60,7 @@ import java.io.Serializable
             parcel.writeParcelable(firstPractice, flags)
             parcel.writeParcelable(qualifying, flags)
             parcel.writeParcelable(secondPractice, flags)
-            parcel.writeParcelable(ThirdPractice, flags)
+            parcel.writeParcelable(thirdPractice, flags)
             parcel.writeParcelable(sprint, flags)
             parcel.writeString(date)
             parcel.writeString(raceName)

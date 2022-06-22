@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +18,9 @@ const val TAG = "RaceListFragment"
 
 class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 
-    private val raceListAdapter: RaceListAdapter by lazy{
-        RaceListAdapter { race -> onClickHelper(race) } }
+    private val raceListAdapter: RaceListAdapter by lazy {
+        RaceListAdapter { race -> onClickHelper(race) }
+    }
 
     private lateinit var communicator: Communicator
 
@@ -27,7 +29,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val listItems : View = inflater.inflate(R.layout.fragment_race_list, container, false)
+        val listItems: View = inflater.inflate(R.layout.fragment_race_list, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerView) as RecyclerView
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -43,30 +45,31 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         lifecycleScope.launchWhenCreated {
             val response = try {
                 RetrofitInstance.api.getRaceInfo()
-            } catch (e: IOException){
+            } catch (e: IOException) {
                 Log.e(TAG, e.message.toString())
                 return@launchWhenCreated
-            } catch(e: HttpException){
+            } catch (e: HttpException) {
                 Log.e(TAG, e.message.toString())
                 return@launchWhenCreated
             }
-            if(response != null){
-                val responseRaceList : List<Race> = response.mrData.raceTable.races
+            if (response != null) {
+                val responseRaceList: List<Race> = response.mrData.raceTable.races
                 val raceFunctions = RaceFunctions()
-                for(item in responseRaceList){
+                for (item in responseRaceList) {
                     item.flagImage = raceFunctions.getFlagByCountry(item.circuit.location.country)
                     item.weekendDate = raceFunctions.getWeekendDate(item)
                 }
                 raceListAdapter.submitList(responseRaceList)
                 communicator = activity as Communicator
-            }
-
-            else{
+            } else {
                 Log.e(TAG, "Response not successful")
             }
         }
     }
-    private fun onClickHelper(race: Race){
-        communicator.openFragment(RaceDetailFragment.newInstance(race))
-        }
+
+    private fun onClickHelper(race: Race) {
+
+        val action = RaceListFragmentDirections.actionRaceListFragmentToRaceDetailFragment(race)
+        findNavController().navigate(action)
     }
+}

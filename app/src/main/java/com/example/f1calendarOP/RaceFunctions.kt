@@ -46,8 +46,8 @@ internal class RaceFunctions {
         }
         else{
             session2 = secondPractice
-            val thirdPracticeDate = formatDate(race.ThirdPractice.date)
-            val thirdPracticeTime = formatTime(race.ThirdPractice.time)
+            val thirdPracticeDate = formatDate(race.thirdPractice!!.date)
+            val thirdPracticeTime = formatTime(race.thirdPractice.time)
             session3 = RaceDetailModel.Session( // Third Practice
                 sessionDate = thirdPracticeDate, sessionName = PRACTICE3,
                 sessionTime = thirdPracticeTime
@@ -263,7 +263,7 @@ internal class RaceFunctions {
         val outputFormatter = SimpleDateFormat("dd-MMMM", Locale.ENGLISH)
         val givenDate = inputFormatter.parse(raceDate)
 
-        return outputFormatter.format(givenDate)
+        return outputFormatter.format(givenDate!!)
 
     }
     private fun formatTime(raceTime: String): String {
@@ -272,7 +272,7 @@ internal class RaceFunctions {
         val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
         val parsedTime = timeInputFormatter.parse(raceTime)
 
-        return timeOutputFormatter.format(parsedTime)
+        return timeOutputFormatter.format(parsedTime!!)
 
     }
 

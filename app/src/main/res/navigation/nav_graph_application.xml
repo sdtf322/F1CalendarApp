@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_application"
     app:startDestination="@id/navigation2">
 
@@ -19,7 +18,11 @@
         <fragment
             android:id="@+id/raceDetailFragment"
             android:name="com.example.f1calendarOP.RaceDetailFragment"
-            android:label="DetailFragment" />
+            android:label="DetailFragment" >
+            <argument
+                android:name="raceInfo"
+                app:argType="com.example.f1calendarOP.Race" />
+        </fragment>
         <fragment
             android:id="@+id/raceListFragment"
             android:name="com.example.f1calendarOP.RaceListFragment"
