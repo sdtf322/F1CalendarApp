@@ -13,7 +13,6 @@
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/purple_500"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost = "true"
         app:navGraph="@navigation/nav_graph_main"
