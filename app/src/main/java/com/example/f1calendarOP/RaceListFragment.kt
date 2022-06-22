@@ -22,8 +22,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         RaceListAdapter { race -> onClickHelper(race) }
     }
 
-    private lateinit var communicator: Communicator
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,7 +58,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
                     item.weekendDate = raceFunctions.getWeekendDate(item)
                 }
                 raceListAdapter.submitList(responseRaceList)
-                communicator = activity as Communicator
             } else {
                 Log.e(TAG, "Response not successful")
             }

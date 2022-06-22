@@ -6,22 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity(), Communicator {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "F1 Calendar"
         setContentView(R.layout.activity_main)
-    }
-
-    override fun openFragment(SomeFragment: Fragment) {
-        val transaction = this.supportFragmentManager.beginTransaction()
-        transaction.apply{
-            add(R.id.flFragment, SomeFragment)
-            addToBackStack(null)
-            commit()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
