@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/miHome"
-        android:title="Home"
+        android:id="@+id/navigation2"
+        android:title="@string/menuHome"
         android:icon="@drawable/ic_home"/>
     <item
-        android:id="@+id/miStandings"
-        android:title="Standings"
+        android:id="@+id/standingsFragment"
+        android:title="@string/menuStandings"
         android:icon="@drawable/ic_standings"/>
     <item
-        android:id="@+id/miDrivers"
-        android:title="Drivers"
+        android:id="@+id/driversFragment"
+        android:title="@string/menuDrivers"
         android:icon="@drawable/ic_driver"/>
     <item
-        android:id="@+id/miConsturtors"
-        android:title="Constructors"
+        android:id="@+id/constructorsFragment"
+        android:title="@string/menuConstructors"
         android:icon="@drawable/ic_team"/>
 
 </menu>

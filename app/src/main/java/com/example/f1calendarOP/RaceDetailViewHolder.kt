@@ -1,9 +1,8 @@
 package com.example.f1calendarOP
 
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.f1calendarOP.databinding.ItemDetailCircuitBinding
 import com.example.f1calendarOP.databinding.ItemDetailHeaderBinding
 import com.example.f1calendarOP.databinding.ItemDetailSessionBinding
@@ -37,6 +36,13 @@ sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(item
             binding.tvCircuitDistance.text = item.raceDistance
             binding.tvCircuitLapRecord.text = item.lapRecord
             binding.tvCircuitLapRecordHolder.text = item.lapRecordOwner
+
+            Glide.with(itemView)
+                .load(item.circuitImage)
+                .placeholder(R.drawable.circuit_unknown)
+                .error(R.drawable.circuit_error)
+                .fallback(R.drawable.circuit_error)
+                .into(binding.circuitImage)
         }
     }
 }

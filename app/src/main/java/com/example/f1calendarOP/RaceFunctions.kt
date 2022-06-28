@@ -46,8 +46,8 @@ internal class RaceFunctions {
         }
         else{
             session2 = secondPractice
-            val thirdPracticeDate = formatDate(race.ThirdPractice.date)
-            val thirdPracticeTime = formatTime(race.ThirdPractice.time)
+            val thirdPracticeDate = formatDate(race.thirdPractice!!.date)
+            val thirdPracticeTime = formatTime(race.thirdPractice.time)
             session3 = RaceDetailModel.Session( // Third Practice
                 sessionDate = thirdPracticeDate, sessionName = PRACTICE3,
                 sessionTime = thirdPracticeTime

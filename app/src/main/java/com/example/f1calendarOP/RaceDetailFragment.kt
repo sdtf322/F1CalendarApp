@@ -5,23 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
-    companion object {
-        private const val RACE_DATE_KEY = "RACETRACK"
-
-        fun newInstance(race: Race) = RaceDetailFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(RACE_DATE_KEY, race)
-            }
-        }
-    }
-
     private val raceDetailAdapter : RaceDetailAdapter by lazy { RaceDetailAdapter() }
+
+    //Fragment arguments
+    private val args by navArgs<RaceDetailFragmentArgs>()
+    private val raceInfo by lazy { args.raceInfo }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +36,7 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val race = arguments?.getSerializable(RACE_DATE_KEY) as Race
         val raceFunctions = RaceFunctions()
-
-        raceDetailAdapter.setRaceDetailList(raceFunctions.getDetailApiData(race))
+        raceDetailAdapter.setRaceDetailList(raceFunctions.getDetailApiData(raceInfo))
     }
 }
