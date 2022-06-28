@@ -18,7 +18,6 @@ import kotlinx.parcelize.Parcelize
         @SerializedName("total")val total: String,
         @SerializedName("xmlns")val xmlns: String
     )
-
     data class RaceTable(
         @SerializedName("Races")val races: List<Race>,
         @SerializedName("season")val season: String
