@@ -38,32 +38,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        lifecycleScope.launchWhenCreated {
-//            val response = try {
-//                RetrofitInstance.api.getRaceInfo()
-//            } catch (e: IOException) {
-//                Log.e(TAG, e.message.toString())
-//                return@launchWhenCreated
-//            } catch (e: HttpException) {
-//                Log.e(TAG, e.message.toString())
-//                return@launchWhenCreated
-//            }
-//            if (response != null) {
-//                val responseRaceList: List<Race> = response.mrData.raceTable.races
-//                val raceFunctions = RaceFunctions()
-//                for (item in responseRaceList) {
-//                    item.flagImage = raceFunctions.getFlagByCountry(item.circuit.location.country)
-//                    item.weekendDate = raceFunctions.getWeekendDate(item)
-//                }
-//                raceListAdapter.submitList(responseRaceList)
-//            } else {
-//                Log.e(TAG, "Response not successful")
-//            }
-//        }
-
-        viewModel = ViewModelProvider(
-            this,
-            RaceListViewModelFactory())[RaceListViewModel::class.java]
+        viewModel = ViewModelProvider(this).get(RaceListViewModel::class.java)
 
         viewModel.raceList.observe(viewLifecycleOwner) {
             raceListAdapter.submitList(it)
