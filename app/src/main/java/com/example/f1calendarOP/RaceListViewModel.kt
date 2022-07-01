@@ -1,7 +1,6 @@
 package com.example.f1calendarOP
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,9 +13,18 @@ class RaceListViewModel : ViewModel() {
     val raceList = MutableLiveData<List<Race>>()
 
     fun getAllRaces() {
-
         viewModelScope.launch {
-            val response = RetrofitInstance.api.getRaceInfo()
+            val response = try{
+                RetrofitInstance.api.getRaceInfo()
+            }
+            catch (e: IOException){
+                Log.e(TAG, e.message.toString())
+                return@launch
+            }
+            catch(e: HttpException){
+                Log.e(TAG, e.message().toString())
+                return@launch
+            }
 
             if (response != null) {
                 val responseRaceList: List<Race> = response.mrData.raceTable.races
