@@ -15,7 +15,7 @@ const val TAG = "RaceListFragment"
 
 class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 
-    private lateinit var viewModel: RaceListViewModel
+    private lateinit var raceListViewModel: RaceListViewModel
     private val raceListAdapter: RaceListAdapter by lazy {
         RaceListAdapter { race -> onClickHelper(race) }
     }
@@ -38,12 +38,12 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(RaceListViewModel::class.java)
+        raceListViewModel = ViewModelProvider(this)[RaceListViewModel::class.java]
 
-        viewModel.raceList.observe(viewLifecycleOwner) {
+        raceListViewModel.raceList.observe(viewLifecycleOwner) {
             raceListAdapter.submitList(it)
         }
-        viewModel.getAllRaces()
+        raceListViewModel.getAllRaces()
     }
 
     private fun onClickHelper(race: Race) {
