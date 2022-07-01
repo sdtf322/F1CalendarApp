@@ -66,6 +66,9 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
 //            }
 //        }
 
+        viewModel = ViewModelProvider(this, RaceListViewModelFactory())
+            .get(RaceListViewModel::class.java)
+
         viewModel.raceList.observe(viewLifecycleOwner) {
             raceListAdapter.submitList(it)
         }

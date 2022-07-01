@@ -6,15 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 class RaceListViewModel : ViewModel() {
 
     val raceList = MutableLiveData<List<Race>>()
 
     fun getAllRaces() {
+
         viewModelScope.launch {
             val response = RetrofitInstance.api.getRaceInfo()
-            //currently here is no checking if connection to api is failed etc.
 
             if (response != null) {
                 val responseRaceList: List<Race> = response.mrData.raceTable.races
