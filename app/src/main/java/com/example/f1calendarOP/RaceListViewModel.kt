@@ -1,6 +1,7 @@
 package com.example.f1calendarOP
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,18 +11,17 @@ import java.io.IOException
 
 class RaceListViewModel : ViewModel() {
 
-    val raceList = MutableLiveData<List<Race>>()
+    private val mutableRaceList = MutableLiveData<List<Race>>()
+    val raceList : LiveData<List<Race>> = mutableRaceList
 
     fun getAllRaces() {
         viewModelScope.launch {
             val response = try{
                 RetrofitInstance.api.getRaceInfo()
-            }
-            catch (e: IOException){
+            } catch (e: IOException){
                 Log.e(TAG, e.message.toString())
                 return@launch
-            }
-            catch(e: HttpException){
+            } catch(e: HttpException){
                 Log.e(TAG, e.message().toString())
                 return@launch
             }
@@ -33,7 +33,7 @@ class RaceListViewModel : ViewModel() {
                     item.flagImage = raceFunctions.getFlagByCountry(item.circuit.location.country)
                     item.weekendDate = raceFunctions.getWeekendDate(item)
                 }
-                raceList.postValue(responseRaceList)
+                mutableRaceList.postValue(responseRaceList)
             } else {
                 Log.e(TAG, "Response not successful")
             }

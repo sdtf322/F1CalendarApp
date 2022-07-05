@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 const val TAG = "RaceListFragment"
 
 class RaceListFragment : Fragment(R.layout.fragment_race_list) {
-
     private lateinit var raceListViewModel: RaceListViewModel
     private val raceListAdapter: RaceListAdapter by lazy {
         RaceListAdapter { race -> onClickHelper(race) }
@@ -38,7 +37,8 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        raceListViewModel = ViewModelProvider(this)[RaceListViewModel::class.java]
+        raceListViewModel = ViewModelProvider(
+            this)[RaceListViewModel::class.java]
 
         raceListViewModel.raceList.observe(viewLifecycleOwner) {
             raceListAdapter.submitList(it)
@@ -47,7 +47,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     }
 
     private fun onClickHelper(race: Race) {
-
         val action = RaceListFragmentDirections.actionRaceListFragmentToRaceDetailFragment(race)
         findNavController().navigate(action)
     }
