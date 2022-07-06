@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,9 +15,9 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
     private val raceDetailAdapter : RaceDetailAdapter by lazy { RaceDetailAdapter() }
 
-    //Fragment arguments
     private val args by navArgs<RaceDetailFragmentArgs>()
     private val raceInfo by lazy { args.raceInfo }
+    private lateinit var raceDetailViewModel: RaceDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +37,12 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val raceFunctions = RaceFunctions()
-        raceDetailAdapter.setRaceDetailList(raceFunctions.getDetailApiData(raceInfo))
+        raceDetailViewModel = ViewModelProvider(
+            this,RaceDetailViewModelFactory(raceInfo))[RaceDetailViewModel::class.java]
+
+        raceDetailViewModel.getLiveData().observe(viewLifecycleOwner){
+            raceDetailAdapter.setRaceDetailList(it)
+        }
+        raceDetailViewModel.getDetailInfo()
     }
 }

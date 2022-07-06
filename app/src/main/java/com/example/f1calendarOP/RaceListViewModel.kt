@@ -12,7 +12,6 @@ import java.io.IOException
 class RaceListViewModel : ViewModel() {
 
     private val mutableRaceList = MutableLiveData<List<Race>>()
-    val raceList : LiveData<List<Race>> = mutableRaceList
 
     fun getAllRaces() {
         viewModelScope.launch {
@@ -38,5 +37,8 @@ class RaceListViewModel : ViewModel() {
                 Log.e(TAG, "Response not successful")
             }
         }
+    }
+    fun getLiveData() : LiveData<List<Race>> {
+        return mutableRaceList
     }
 }

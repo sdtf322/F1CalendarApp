@@ -40,7 +40,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         raceListViewModel = ViewModelProvider(
             this)[RaceListViewModel::class.java]
 
-        raceListViewModel.raceList.observe(viewLifecycleOwner) {
+        raceListViewModel.getLiveData().observe(viewLifecycleOwner) {
             raceListAdapter.submitList(it)
         }
         raceListViewModel.getAllRaces()
