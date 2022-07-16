@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecyclerViewDroopa">
         <activity
-            android:name="com.example.f1calendarOP.MainActivity"
+            android:name="com.example.f1calendarOP.presentation.MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true">
             <intent-filter>

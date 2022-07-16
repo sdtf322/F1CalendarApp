@@ -1,4 +1,4 @@
-package com.example.f1calendarOP
+package com.example.f1calendarOP.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.f1calendarOP.R
+import com.example.f1calendarOP.RaceDetailAdapter
+import com.example.f1calendarOP.RaceDetailViewModel
+import com.example.f1calendarOP.RaceDetailViewModelFactory
 
 class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
@@ -38,7 +42,8 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
         super.onViewCreated(view, savedInstanceState)
 
         raceDetailViewModel = ViewModelProvider(
-            this,RaceDetailViewModelFactory(raceInfo))[RaceDetailViewModel::class.java]
+            this, RaceDetailViewModelFactory(raceInfo)
+        )[RaceDetailViewModel::class.java]
 
         raceDetailViewModel.getLiveData().observe(viewLifecycleOwner){
             raceDetailAdapter.setRaceDetailList(it)
