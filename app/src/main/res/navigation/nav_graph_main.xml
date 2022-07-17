@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.f1calendarOP.MainFragment"
+        android:name="com.example.f1calendarOP.presentation.MainFragment"
         android:label="MainFragment" />
 </navigation>
