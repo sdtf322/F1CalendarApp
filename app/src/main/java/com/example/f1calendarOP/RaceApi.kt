@@ -1,5 +1,6 @@
 package com.example.f1calendarOP
 
+import com.example.f1calendarOP.domain.models.RaceResponse
 import retrofit2.http.GET
 
 interface RaceApi {

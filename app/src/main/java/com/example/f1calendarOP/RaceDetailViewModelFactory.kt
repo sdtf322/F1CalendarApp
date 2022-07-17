@@ -2,6 +2,7 @@ package com.example.f1calendarOP
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.f1calendarOP.domain.models.Race
 import java.lang.IllegalArgumentException
 
 class RaceDetailViewModelFactory(private val raceModel : Race) : ViewModelProvider.Factory {

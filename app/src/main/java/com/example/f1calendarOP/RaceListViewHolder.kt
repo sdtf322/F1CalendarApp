@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
+import com.example.f1calendarOP.domain.models.Race
 
 sealed class RaceListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

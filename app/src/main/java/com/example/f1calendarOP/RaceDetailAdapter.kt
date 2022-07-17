@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.databinding.ItemDetailCircuitBinding
 import com.example.f1calendarOP.databinding.ItemDetailHeaderBinding
 import com.example.f1calendarOP.databinding.ItemDetailSessionBinding
+import com.example.f1calendarOP.domain.models.RaceDetailModel
 import java.lang.IllegalArgumentException
 
 

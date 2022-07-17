@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.ListAdapter
 import com.example.f1calendarOP.databinding.ItemRaceListBinding
+import com.example.f1calendarOP.domain.models.Race
 
-    class RaceListAdapter(private val onClickHelper : (Race) -> Unit) :
+class RaceListAdapter(private val onClickHelper : (Race) -> Unit) :
         ListAdapter<Race, RaceListViewHolder.MyViewHolder>
             (raceDiffCallback) {
     @NonNull

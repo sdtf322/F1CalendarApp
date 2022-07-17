@@ -1,4 +1,4 @@
-package com.example.f1calendarOP
+package com.example.f1calendarOP.domain.models
 
 import android.os.Parcel
 import android.os.Parcelable

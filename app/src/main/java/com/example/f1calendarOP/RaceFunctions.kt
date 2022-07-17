@@ -1,5 +1,7 @@
 package com.example.f1calendarOP
 
+import com.example.f1calendarOP.domain.models.Race
+import com.example.f1calendarOP.domain.models.RaceDetailModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList

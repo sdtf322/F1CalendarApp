@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.*
+import com.example.f1calendarOP.domain.models.Race
 
 const val TAG = "RaceListFragment"
 

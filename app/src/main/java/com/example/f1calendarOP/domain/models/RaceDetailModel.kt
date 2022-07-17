@@ -1,4 +1,4 @@
-package com.example.f1calendarOP
+package com.example.f1calendarOP.domain.models
 
 sealed class RaceDetailModel {
     data class Header(
