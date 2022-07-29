@@ -1,4 +1,4 @@
-package com.example.f1calendarOP
+package com.example.f1calendarOP.data.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,6 +1,6 @@
-package com.example.f1calendarOP
+package com.example.f1calendarOP.data.network
 
-import com.example.f1calendarOP.domain.models.RaceResponse
+import com.example.f1calendarOP.data.models.RaceResponse
 import retrofit2.http.GET
 
 interface RaceApi {

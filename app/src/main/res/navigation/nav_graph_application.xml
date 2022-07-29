@@ -17,15 +17,15 @@
         app:startDestination="@id/raceListFragment">
         <fragment
             android:id="@+id/raceDetailFragment"
-            android:name="com.example.f1calendarOP.presentation.RaceDetailFragment"
+            android:name="com.example.f1calendarOP.presentation.racedetail.RaceDetailFragment"
             android:label="DetailFragment" >
             <argument
                 android:name="raceInfo"
-                app:argType="com.example.f1calendarOP.domain.models.Race" />
+                app:argType="com.example.f1calendarOP.data.models.Race" />
         </fragment>
         <fragment
             android:id="@+id/raceListFragment"
-            android:name="com.example.f1calendarOP.presentation.RaceListFragment"
+            android:name="com.example.f1calendarOP.presentation.racelist.RaceListFragment"
             android:label="ListFragment">
             <action
                 android:id="@+id/action_raceListFragment_to_raceDetailFragment"

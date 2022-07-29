@@ -1,6 +1,7 @@
-package com.example.f1calendarOP
+package com.example.f1calendarOP.data
 
-import com.example.f1calendarOP.domain.models.Race
+import com.example.f1calendarOP.R
+import com.example.f1calendarOP.domain.models.RaceModel
 import com.example.f1calendarOP.domain.models.RaceDetailModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -8,24 +9,24 @@ import kotlin.collections.ArrayList
 
 internal class RaceFunctions {
 
-    fun getDetailApiData(race: Race) : ArrayList<RaceDetailModel>{
+    fun getDetailApiData(raceModel: RaceModel) : ArrayList<RaceDetailModel>{ // Detail screen
         val raceDetailList = ArrayList<RaceDetailModel>()
-        val flagImage = race.flagImage
+        val flagImage = raceModel.flagImage
 
-        val weekendDate = race.weekendDate
+        val weekendDate = raceModel.weekendDate
         val header = RaceDetailModel.Header(
-            track = race.raceName, date = weekendDate, flag = flagImage)
+            track = raceModel.raceName, date = weekendDate, flag = flagImage)
         raceDetailList.add(header)
 
-        val secondPracticeDate = formatDate(race.secondPractice.date)
-        val secondPracticeTime = formatTime(race.secondPractice.time)
+        val secondPracticeDate = formatDate(raceModel.secondPractice.date)
+        val secondPracticeTime = formatTime(raceModel.secondPractice.time)
         val secondPractice = RaceDetailModel.Session(
             sessionDate = secondPracticeDate, sessionName = PRACTICE2,
             sessionTime = secondPracticeTime
         )
 
-        val qualificationDate = formatDate(race.qualifying.date)
-        val qualificationTime = formatTime(race.qualifying.time)
+        val qualificationDate = formatDate(raceModel.qualifying.date)
+        val qualificationTime = formatTime(raceModel.qualifying.time)
         val qualification = RaceDetailModel.Session(
             sessionDate = qualificationDate, sessionName = QUALI,
             sessionTime = qualificationTime
@@ -36,9 +37,9 @@ internal class RaceFunctions {
         val session4 : RaceDetailModel.Session
 
 
-        if(race.sprint != null){
-            val sprintDate = formatDate(race.sprint.date)
-            val sprintTime = formatTime(race.sprint.time)
+        if(raceModel.sprint != null){
+            val sprintDate = formatDate(raceModel.sprint.date)
+            val sprintTime = formatTime(raceModel.sprint.time)
             session2 = qualification
             session3 = secondPractice
             session4 = RaceDetailModel.Session( // Sprint
@@ -48,8 +49,8 @@ internal class RaceFunctions {
         }
         else{
             session2 = secondPractice
-            val thirdPracticeDate = formatDate(race.thirdPractice!!.date)
-            val thirdPracticeTime = formatTime(race.thirdPractice.time)
+            val thirdPracticeDate = formatDate(raceModel.thirdPractice!!.date)
+            val thirdPracticeTime = formatTime(raceModel.thirdPractice.time)
             session3 = RaceDetailModel.Session( // Third Practice
                 sessionDate = thirdPracticeDate, sessionName = PRACTICE3,
                 sessionTime = thirdPracticeTime
@@ -58,21 +59,21 @@ internal class RaceFunctions {
         }
 
 
-        val firstPracticeDate = formatDate(race.firstPractice.date)
-        val firstPracticeTime = formatTime(race.firstPractice.time)
+        val firstPracticeDate = formatDate(raceModel.firstPractice.date)
+        val firstPracticeTime = formatTime(raceModel.firstPractice.time)
         val session1 = RaceDetailModel.Session(
             sessionDate = firstPracticeDate, sessionName = PRACTICE1,
             sessionTime = firstPracticeTime
         )
 
-        val raceDate = formatDate(race.date)
-        val raceTime = formatTime(race.time)
+        val raceDate = formatDate(raceModel.date)
+        val raceTime = formatTime(raceModel.time)
         val session5 = RaceDetailModel.Session(
             sessionDate = raceDate, sessionName = RACE,
             sessionTime = raceTime
         )
 
-        val circuitSession = getCircuitData(race.circuit.circuitName)
+        val circuitSession = getCircuitData(raceModel.circuit.circuitName)
 
         raceDetailList.apply{
             add(session1)
@@ -85,15 +86,7 @@ internal class RaceFunctions {
         return raceDetailList
     }
 
-    fun getWeekendDate(race : Race): String {
-
-        val firstSessionDate = formatDate(race.firstPractice.date)
-        val lastSessionDate = formatDate(race.date)
-
-        return "$firstSessionDate - $lastSessionDate"
-    }
-
-    private fun getCircuitData(track: String): RaceDetailModel.Circuit {
+    private fun getCircuitData(track: String): RaceDetailModel.Circuit { // Detail screen
         val firstYear: Int
         val laps: Int
         val circuitLength: String
@@ -231,44 +224,15 @@ internal class RaceFunctions {
         )
     }
 
-    fun getFlagByCountry(country : String) : Int{
-        val flagDrawable = when(country){ // Race Country
-            "Bahrain" -> R.drawable.flag_bahrain
-            "Australia" -> R.drawable.flag_australia
-            "Austria" -> R.drawable.flag_austria
-            "Italy" -> R.drawable.flag_italy
-            "USA" -> R.drawable.flag_us
-            "Spain" -> R.drawable.flag_spain
-            "Monaco" -> R.drawable.flag_monaco
-            "Azerbaijan" -> R.drawable.flag_azerbaijan
-            "Canada" -> R.drawable.flag_canada
-            "UK" -> R.drawable.flag_uk
-            "France" -> R.drawable.flag_france
-            "Hungary" -> R.drawable.flag_hungary
-            "Belgium" -> R.drawable.flag_belgium
-            "Netherlands" -> R.drawable.flag_netherlands
-            "Singapore" -> R.drawable.flag_singapore
-            "Japan" -> R.drawable.flag_japan
-            "Mexico" -> R.drawable.flag_mexico
-            "Brazil" -> R.drawable.flag_brazil
-            "UAE" -> R.drawable.flag_uae
-            "Saudi Arabia" -> R.drawable.flag_saudi
-
-            else -> R.drawable.flag_unknown
-        }
-        return flagDrawable
-    }
-
-    private fun formatDate(raceDate: String): String {
+    private fun formatDate(raceDate: String): String { // Detail screen
 
         val inputFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         val outputFormatter = SimpleDateFormat("dd-MMMM", Locale.ENGLISH)
         val givenDate = inputFormatter.parse(raceDate)
 
         return outputFormatter.format(givenDate)
-
     }
-    private fun formatTime(raceTime: String): String {
+    private fun formatTime(raceTime: String): String { // Detail screen
 
         val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
         val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)

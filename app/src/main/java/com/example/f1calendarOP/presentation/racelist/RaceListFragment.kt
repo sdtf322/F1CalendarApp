@@ -1,4 +1,4 @@
-package com.example.f1calendarOP.presentation
+package com.example.f1calendarOP.presentation.racelist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.*
-import com.example.f1calendarOP.domain.models.Race
+import com.example.f1calendarOP.domain.models.RaceModel
 
 const val TAG = "RaceListFragment"
 
@@ -48,8 +48,8 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         raceListViewModel.getAllRaces()
     }
 
-    private fun onClickHelper(race: Race) {
-        val action = RaceListFragmentDirections.actionRaceListFragmentToRaceDetailFragment(race)
-        findNavController().navigate(action)
+    private fun onClickHelper(raceModel: RaceModel) {
+//        val action = RaceListFragmentDirections.actionRaceListFragmentToRaceDetailFragment(raceModel)
+//        findNavController().navigate(action)
     }
 }

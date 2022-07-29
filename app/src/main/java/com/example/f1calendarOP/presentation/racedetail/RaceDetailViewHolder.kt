@@ -1,8 +1,9 @@
-package com.example.f1calendarOP
+package com.example.f1calendarOP.presentation.racedetail
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.f1calendarOP.R
 import com.example.f1calendarOP.databinding.ItemDetailCircuitBinding
 import com.example.f1calendarOP.databinding.ItemDetailHeaderBinding
 import com.example.f1calendarOP.databinding.ItemDetailSessionBinding
