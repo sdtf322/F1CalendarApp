@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.example.f1calendarOP.data.network.RaceNetworkStorage
 import com.example.f1calendarOP.data.repository.RaceRepositoryImpl
 import com.example.f1calendarOP.domain.models.RaceModel
-import com.example.f1calendarOP.domain.usecases.GetRaceList
+import com.example.f1calendarOP.domain.usecases.GetRaceListUseCase
 
     private val raceNetworkStorage by lazy { RaceNetworkStorage() }
     private val raceRepository by lazy { RaceRepositoryImpl(raceNetworkStorage) }
-    private val getRaceList by lazy { GetRaceList(raceRepository) }
+    private val getRaceList by lazy { GetRaceListUseCase(raceRepository) }
 
 class RaceListViewModel : ViewModel() {
 
