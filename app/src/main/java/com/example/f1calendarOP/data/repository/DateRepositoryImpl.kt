@@ -1,12 +1,13 @@
-package com.example.f1calendarOP.data
+package com.example.f1calendarOP.data.repository
 
-import com.example.f1calendarOP.data.models.Race
+import com.example.f1calendarOP.domain.models.RaceModel
+import com.example.f1calendarOP.domain.repository.DateRepository
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DateFormatter {
+class DateRepositoryImpl : DateRepository {
 
-    fun getWeekendDate(race : Race): String { // List and detail screen
+    override fun formatWeekendDate(race : RaceModel): String { // List and detail screen
 
         val firstSessionDate = formatDate(race.firstPractice.date)
         val lastSessionDate = formatDate(race.date)

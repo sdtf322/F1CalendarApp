@@ -13,8 +13,8 @@ package com.example.f1calendarOP.domain.models
         val season: String,
         val time: String,
         val url: String,
-        var flagImage: Int,
-        var weekendDate : String,
+        var flagImage: Int? = null,
+        var weekendDate : String? = null,
     )
 
     data class Circuit(

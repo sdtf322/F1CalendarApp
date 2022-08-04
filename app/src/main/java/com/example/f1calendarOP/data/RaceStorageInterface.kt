@@ -4,6 +4,6 @@ import com.example.f1calendarOP.data.models.Race
 
 interface RaceStorageInterface {
 
-    suspend fun getRaceList() : List<Race>
+    suspend fun getRaceListFromApi() : List<Race>
 
 }

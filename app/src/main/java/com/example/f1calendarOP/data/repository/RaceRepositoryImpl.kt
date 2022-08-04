@@ -1,9 +1,7 @@
 package com.example.f1calendarOP.data.repository
 
-import com.example.f1calendarOP.data.DateFormatter
 import com.example.f1calendarOP.data.RaceStorageInterface
 import com.example.f1calendarOP.data.models.Race
-import com.example.f1calendarOP.data.storage.FlagStorage
 import com.example.f1calendarOP.domain.models.Circuit
 import com.example.f1calendarOP.domain.models.RaceModel
 import com.example.f1calendarOP.domain.models.Location
@@ -16,18 +14,10 @@ import com.example.f1calendarOP.domain.repository.RaceRepository
 
 class RaceRepositoryImpl(private val raceStorageInterface: RaceStorageInterface) : RaceRepository {
 
-    private val flagStorage by lazy { FlagStorage() }
-    private val dateFormatter by lazy { DateFormatter() }
-
     override suspend fun getRaceList(): List<RaceModel> {
 
         val dataRaceList =
-            raceStorageInterface.getRaceList()
-
-        for(item in dataRaceList) {
-            item.flagImage = flagStorage.getFlagByCountry(item)
-            item.weekendDate = dateFormatter.getWeekendDate(item)
-        }
+            raceStorageInterface.getRaceListFromApi()
 
         return raceListMapToDomain(dataRaceList)
     }

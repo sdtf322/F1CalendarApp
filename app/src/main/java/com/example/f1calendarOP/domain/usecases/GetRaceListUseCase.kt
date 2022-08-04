@@ -1,13 +1,25 @@
 package com.example.f1calendarOP.domain.usecases
 
 import com.example.f1calendarOP.domain.models.RaceModel
+import com.example.f1calendarOP.domain.repository.DateRepository
+import com.example.f1calendarOP.domain.repository.FlagRepository
 import com.example.f1calendarOP.domain.repository.RaceRepository
 
-class GetRaceListUseCase(private val raceRepository: RaceRepository) {
+class GetRaceListUseCase(
+    private val raceRepository: RaceRepository,
+    private val flagRepository: FlagRepository,
+    private val dateRepository: DateRepository) {
 
     suspend operator fun invoke() : List<RaceModel> {
 
-        return raceRepository.getRaceList()
+        val raceRepositoryRaceList = raceRepository.getRaceList()
+
+        for(item in raceRepositoryRaceList) {
+            item.flagImage = flagRepository.addFlagsByCountry(item)
+            item.weekendDate = dateRepository.formatWeekendDate(item)
+        }
+
+        return raceRepositoryRaceList
     }
 
 }

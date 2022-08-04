@@ -1,11 +1,12 @@
-package com.example.f1calendarOP.data.storage
+package com.example.f1calendarOP.data.repository
 
 import com.example.f1calendarOP.R
-import com.example.f1calendarOP.data.models.Race
+import com.example.f1calendarOP.domain.models.RaceModel
+import com.example.f1calendarOP.domain.repository.FlagRepository
 
-class FlagStorage {
+class FlagRepositoryImpl : FlagRepository {
 
-    fun getFlagByCountry(race : Race) : Int{ // List and Detail screen
+    override fun addFlagsByCountry(race : RaceModel) : Int{ // List and Detail screen
         val flagDrawable = when(race.circuit.location.country){ // Race Country
             "Bahrain" -> R.drawable.flag_bahrain
             "Australia" -> R.drawable.flag_australia

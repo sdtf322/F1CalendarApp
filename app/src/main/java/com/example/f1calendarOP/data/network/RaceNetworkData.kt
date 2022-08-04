@@ -9,7 +9,7 @@ import java.io.IOException
 
 class RaceNetworkData : RaceStorageInterface {
 
-    override suspend fun getRaceList(): List<Race> {
+    override suspend fun getRaceListFromApi(): List<Race> {
 
         val deferredResponse : Deferred<RaceResponse>
 
