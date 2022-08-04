@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.*
 import com.example.f1calendarOP.domain.models.RaceModel
+import kotlinx.coroutines.runBlocking
 
 const val TAG = "RaceListFragment"
 
@@ -45,7 +45,9 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         raceListViewModel.getLiveData().observe(viewLifecycleOwner) {
             raceListAdapter.submitList(it)
         }
-        raceListViewModel.getAllRaces()
+        runBlocking {
+            raceListViewModel.getAllRaces()
+        }
     }
 
     private fun onClickHelper(raceModel: RaceModel) {

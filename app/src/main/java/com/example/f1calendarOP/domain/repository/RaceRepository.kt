@@ -4,6 +4,6 @@ import com.example.f1calendarOP.domain.models.RaceModel
 
 interface RaceRepository {
 
-    fun getRaceList() : List<RaceModel>
+    suspend fun getRaceList() : List<RaceModel>
 
 }

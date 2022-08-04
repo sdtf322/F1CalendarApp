@@ -1,14 +1,15 @@
 package com.example.f1calendarOP.data.network
 
+import com.example.f1calendarOP.data.RaceStorageInterface
 import com.example.f1calendarOP.data.models.Race
 import com.example.f1calendarOP.data.models.RaceResponse
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.io.IOException
 
-class RaceNetworkData {
+class RaceNetworkData : RaceStorageInterface {
 
-    suspend fun getRaceListOfCurrSeason(): List<Race> {
+    override suspend fun getRaceList(): List<Race> {
 
         val deferredResponse : Deferred<RaceResponse>
 

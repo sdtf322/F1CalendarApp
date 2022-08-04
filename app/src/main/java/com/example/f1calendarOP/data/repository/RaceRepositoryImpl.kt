@@ -1,7 +1,9 @@
 package com.example.f1calendarOP.data.repository
 
+import com.example.f1calendarOP.data.DateFormatter
 import com.example.f1calendarOP.data.RaceStorageInterface
 import com.example.f1calendarOP.data.models.Race
+import com.example.f1calendarOP.data.storage.FlagStorage
 import com.example.f1calendarOP.domain.models.Circuit
 import com.example.f1calendarOP.domain.models.RaceModel
 import com.example.f1calendarOP.domain.models.Location
@@ -11,14 +13,20 @@ import com.example.f1calendarOP.domain.models.ThirdPractice
 import com.example.f1calendarOP.domain.models.Sprint
 import com.example.f1calendarOP.domain.models.Qualifying
 import com.example.f1calendarOP.domain.repository.RaceRepository
-import kotlinx.coroutines.runBlocking
 
 class RaceRepositoryImpl(private val raceStorageInterface: RaceStorageInterface) : RaceRepository {
 
-    override fun getRaceList(): List<RaceModel> {
+    private val flagStorage by lazy { FlagStorage() }
+    private val dateFormatter by lazy { DateFormatter() }
 
-        val dataRaceList = runBlocking {
+    override suspend fun getRaceList(): List<RaceModel> {
+
+        val dataRaceList =
             raceStorageInterface.getRaceList()
+
+        for(item in dataRaceList) {
+            item.flagImage = flagStorage.getFlagByCountry(item)
+            item.weekendDate = dateFormatter.getWeekendDate(item)
         }
 
         return raceListMapToDomain(dataRaceList)

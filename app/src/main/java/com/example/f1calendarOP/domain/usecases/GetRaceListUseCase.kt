@@ -5,7 +5,7 @@ import com.example.f1calendarOP.domain.repository.RaceRepository
 
 class GetRaceListUseCase(private val raceRepository: RaceRepository) {
 
-    fun execute() : List<RaceModel> {
+    suspend operator fun invoke() : List<RaceModel> {
 
         return raceRepository.getRaceList()
     }
