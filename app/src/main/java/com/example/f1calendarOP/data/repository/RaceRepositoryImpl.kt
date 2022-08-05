@@ -1,7 +1,7 @@
 package com.example.f1calendarOP.data.repository
 
-import com.example.f1calendarOP.data.RaceStorageInterface
 import com.example.f1calendarOP.data.models.Race
+import com.example.f1calendarOP.data.network.RaceApi
 import com.example.f1calendarOP.domain.models.Circuit
 import com.example.f1calendarOP.domain.models.RaceModel
 import com.example.f1calendarOP.domain.models.Location
@@ -12,12 +12,12 @@ import com.example.f1calendarOP.domain.models.Sprint
 import com.example.f1calendarOP.domain.models.Qualifying
 import com.example.f1calendarOP.domain.repository.RaceRepository
 
-class RaceRepositoryImpl(private val raceStorageInterface: RaceStorageInterface) : RaceRepository {
+class RaceRepositoryImpl(private val raceApi: RaceApi) : RaceRepository {
 
     override suspend fun getRaceList(): List<RaceModel> {
 
         val dataRaceList =
-            raceStorageInterface.getRaceListFromApi()
+            raceApi.getRaceList()
 
         return raceListMapToDomain(dataRaceList)
     }

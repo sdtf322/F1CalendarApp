@@ -15,7 +15,7 @@ internal class RaceFunctions {
 
         val weekendDate = raceModel.weekendDate
         val header = RaceDetailModel.Header(
-            track = raceModel.raceName, date = weekendDate, flag = flagImage)
+            track = raceModel.raceName, date = weekendDate!!, flag = flagImage!!)
         raceDetailList.add(header)
 
         val secondPracticeDate = formatDate(raceModel.secondPractice.date)

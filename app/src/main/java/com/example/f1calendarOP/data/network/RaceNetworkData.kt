@@ -1,36 +1,19 @@
 package com.example.f1calendarOP.data.network
 
-import com.example.f1calendarOP.data.RaceStorageInterface
 import com.example.f1calendarOP.data.models.Race
 import com.example.f1calendarOP.data.models.RaceResponse
-import kotlinx.coroutines.*
-import retrofit2.HttpException
-import java.io.IOException
 
-class RaceNetworkData : RaceStorageInterface {
+class RaceNetworkData : RaceApi {
 
-    override suspend fun getRaceListFromApi(): List<Race> {
+    override suspend fun getRaceInfo(): RaceResponse {
 
-        val deferredResponse : Deferred<RaceResponse>
+        return RetrofitInstance.api.getRaceInfo()
+    }
 
-        supervisorScope {
-            deferredResponse =
-                async(Dispatchers.IO)
-                { RetrofitInstance.api.getRaceInfo() }
+    override suspend fun getRaceList(): List<Race> {
 
-            try {
-                deferredResponse.await()
-            } catch (e: IOException) {
-                println(e.message)
-                return@supervisorScope
-            } catch (e : HttpException) {
-                println(e.message)
-                return@supervisorScope
-            }
-        }
+        val raceResponse = getRaceInfo()
 
-        val response = deferredResponse.await()
-
-        return response.mrData.raceTable.races
+        return raceResponse.mrData.raceTable.races
     }
 }

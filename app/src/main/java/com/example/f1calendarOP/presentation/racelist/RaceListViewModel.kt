@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.f1calendarOP.data.network.RaceNetworkData
-import com.example.f1calendarOP.data.repository.DateRepositoryImpl
 import com.example.f1calendarOP.data.repository.FlagRepositoryImpl
 import com.example.f1calendarOP.data.repository.RaceRepositoryImpl
 import com.example.f1calendarOP.domain.models.RaceModel
+import com.example.f1calendarOP.domain.usecases.FormatWeekendDateUseCase
 import com.example.f1calendarOP.domain.usecases.GetRaceListUseCase
+import retrofit2.HttpException
+import java.io.IOException
 
 class RaceListViewModel : ViewModel() {
 
@@ -16,13 +18,21 @@ class RaceListViewModel : ViewModel() {
         GetRaceListUseCase(
             RaceRepositoryImpl(RaceNetworkData()),
             FlagRepositoryImpl(),
-            DateRepositoryImpl()) }
+            FormatWeekendDateUseCase()
+        ) }
 
     private val mutableRaceModelList = MutableLiveData<List<RaceModel>>()
 
     suspend fun getAllRaces() {
-        val raceModelList = getRaceListUseCase()
-        mutableRaceModelList.postValue(raceModelList)
+
+        try {
+            val raceModelList = getRaceListUseCase()
+            mutableRaceModelList.postValue(raceModelList)
+        } catch(e: IOException) {
+            println(e.message)
+        } catch(e: HttpException) {
+            println(e.message())
+        }
     }
 
     fun getLiveData() : LiveData<List<RaceModel>> {

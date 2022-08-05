@@ -1,13 +1,12 @@
-package com.example.f1calendarOP.data.repository
+package com.example.f1calendarOP.domain.usecases
 
 import com.example.f1calendarOP.domain.models.RaceModel
-import com.example.f1calendarOP.domain.repository.DateRepository
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DateRepositoryImpl : DateRepository {
+class FormatWeekendDateUseCase {
 
-    override fun formatWeekendDate(race : RaceModel): String { // List and detail screen
+    operator fun invoke(race : RaceModel): String {
 
         val firstSessionDate = formatDate(race.firstPractice.date)
         val lastSessionDate = formatDate(race.date)
@@ -15,7 +14,7 @@ class DateRepositoryImpl : DateRepository {
         return "$firstSessionDate - $lastSessionDate"
     }
 
-    private fun formatDate(raceDate: String): String { // Detail screen
+    private fun formatDate(raceDate: String): String {
 
         val inputFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         val outputFormatter = SimpleDateFormat("dd-MMMM", Locale.ENGLISH)
