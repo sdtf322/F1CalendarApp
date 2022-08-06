@@ -1,8 +1,6 @@
 package com.example.f1calendarOP.data.models
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
 data class RaceResponse(
     @SerializedName("MRData")val mrData: MRData
@@ -20,7 +18,6 @@ data class RaceTable(
     @SerializedName("Races")val races: List<Race>,
     @SerializedName("season")val season: String
 )
-@Parcelize
 data class Race(
     @SerializedName("Circuit")val circuit: Circuit,
     @SerializedName("FirstPractice")val firstPractice: FirstPractice,
@@ -37,50 +34,43 @@ data class Race(
 
     var flagImage: Int,
     var weekendDate : String,
-) : Parcelable
+)
 
-@Parcelize
 data class Circuit(
     @SerializedName("Location")val location: Location,
     @SerializedName("circuitId")val circuitId: String,
     @SerializedName("circuitName")val circuitName: String,
     @SerializedName("url")val url: String
-) : Parcelable
+)
 
-@Parcelize
 data class FirstPractice(
     @SerializedName("date")val date: String,
     @SerializedName("time")val time: String
-) : Parcelable
+)
 
-@Parcelize
 data class Qualifying(
     @SerializedName("date")val date: String,
     @SerializedName("time")val time: String
-) : Parcelable
+)
 
-@Parcelize
 data class SecondPractice(
     @SerializedName("date")val date: String,
     @SerializedName("time")val time: String
-) : Parcelable
+)
 
-@Parcelize
 data class ThirdPractice(
     @SerializedName("date")val date: String,
     @SerializedName("time")val time: String
-) : Parcelable
+)
 
-@Parcelize
 data class Sprint(
     @SerializedName("date")val date: String,
     @SerializedName("time")val time: String
-) : Parcelable
+)
 
-@Parcelize
 data class Location(
     @SerializedName("country")val country: String,
     @SerializedName("lat")val lat: String,
     @SerializedName("locality")val locality: String,
     @SerializedName("long")val long: String
-) : Parcelable
+)
