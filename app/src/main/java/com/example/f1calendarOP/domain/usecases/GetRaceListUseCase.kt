@@ -15,7 +15,7 @@ class GetRaceListUseCase(
 
         for(item in raceRepositoryRaceList) {
             item.flagImage = flagRepository.addFlagsByCountry(item)
-            item.weekendDate = dateFormatter(item)
+            item.weekendDate = dateFormatter.setListDate(item)
         }
 
         return raceRepositoryRaceList

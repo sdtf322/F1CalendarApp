@@ -21,7 +21,7 @@
             android:label="DetailFragment" >
             <argument
                 android:name="raceInfo"
-                app:argType="com.example.f1calendarOP.data.models.Race" />
+                app:argType="com.example.f1calendarOP.domain.models.RaceModel" />
         </fragment>
         <fragment
             android:id="@+id/raceListFragment"

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,7 +52,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     }
 
     private fun onClickHelper(raceModel: RaceModel) {
-//        val action = RaceListFragmentDirections.actionRaceListFragmentToRaceDetailFragment(raceModel)
-//        findNavController().navigate(action)
+        val action = RaceListFragmentDirections.actionRaceListFragmentToRaceDetailFragment(raceModel)
+        findNavController().navigate(action)
     }
 }

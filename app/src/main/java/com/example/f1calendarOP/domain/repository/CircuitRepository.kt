@@ -2,7 +2,7 @@ package com.example.f1calendarOP.domain.repository
 
 import com.example.f1calendarOP.domain.models.RaceDetailModel
 
-interface RaceDetailRepository {
+interface CircuitRepository {
 
-    fun getRaceDetailById() : ArrayList<RaceDetailModel>
+    fun getCircuitData(trackName : String) : RaceDetailModel.Circuit
 }

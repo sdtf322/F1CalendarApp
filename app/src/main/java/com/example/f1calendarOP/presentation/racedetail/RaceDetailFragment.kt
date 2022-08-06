@@ -38,13 +38,13 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        raceDetailViewModel = ViewModelProvider(
-//            this, RaceDetailViewModelFactory(raceInfo)
-//        )[RaceDetailViewModel::class.java]
-//
-//        raceDetailViewModel.getLiveData().observe(viewLifecycleOwner){
-//            raceDetailAdapter.setRaceDetailList(it)
-//        }
-//        raceDetailViewModel.getDetailInfo()
+        raceDetailViewModel = ViewModelProvider(
+            this, RaceDetailViewModelFactory(raceInfo)
+        )[RaceDetailViewModel::class.java]
+
+        raceDetailViewModel.getLiveData().observe(viewLifecycleOwner) {
+            raceDetailAdapter.setRaceDetailList(it)
+        }
+        raceDetailViewModel.getDetailInfo()
     }
 }
