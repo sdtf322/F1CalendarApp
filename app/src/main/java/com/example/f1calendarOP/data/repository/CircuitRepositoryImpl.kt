@@ -1,18 +1,21 @@
-package com.example.f1calendarOP.data.storage
+package com.example.f1calendarOP.data.repository
 
 import com.example.f1calendarOP.R
+import com.example.f1calendarOP.data.models.RaceDetail
 import com.example.f1calendarOP.domain.models.RaceDetailModel
+import com.example.f1calendarOP.domain.repository.CircuitRepository
 
-class CircuitStorage {
+class CircuitRepositoryImpl : CircuitRepository {
 
-    fun getCircuitData(track: String): RaceDetailModel.Circuit { // Detail screen
+    override fun getCircuitData(trackName: String): RaceDetailModel.Circuit {
+
         val firstYear: Int
         val laps: Int
         val circuitLength: String
         val lapRecord: String
         val lapRecordOwner: String
         val circuitDrawable: Int
-        when (track) {
+        when (trackName) {
             "Bahrain International Circuit" -> {
                 circuitDrawable = R.drawable.circuit_bahrain
                 firstYear = 1967; laps = 57; circuitLength = "5.412"
@@ -132,7 +135,7 @@ class CircuitStorage {
         }
         val raceDistance = String.format("%.3f", circuitLength.toDouble() * laps).toDouble()
 
-        return RaceDetailModel.Circuit(
+        val circuitData = RaceDetail.Circuit(
             circuitImage = circuitDrawable,
             firstYear = firstYear,
             laps = laps,
@@ -141,5 +144,22 @@ class CircuitStorage {
             lapRecord = lapRecord,
             lapRecordOwner = lapRecordOwner
         )
+
+        return circuitDataMapToDomain(circuitData)
+
+    }
+
+    private fun circuitDataMapToDomain(raceDetailCircuit : RaceDetail.Circuit) : RaceDetailModel.Circuit {
+        with(raceDetailCircuit){
+            return RaceDetailModel.Circuit(
+                circuitImage = circuitImage,
+                circuitLength = circuitLength,
+                firstYear = firstYear,
+                lapRecord = lapRecord,
+                lapRecordOwner = lapRecordOwner,
+                laps = laps,
+                raceDistance = raceDistance
+            )
+        }
     }
 }
