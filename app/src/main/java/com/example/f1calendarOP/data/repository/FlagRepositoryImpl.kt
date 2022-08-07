@@ -9,7 +9,7 @@ class FlagRepositoryImpl : FlagRepository {
     override fun addFlagsByCountry(race : RaceModel) : Int{ // List and Detail screen
         val flagDrawable = when(race.circuit.location.country){ // Race Country
             "Bahrain" -> R.drawable.flag_bahrain
-            "Australia" -> -R.drawable.flag_australia
+            "Australia" -> R.drawable.flag_australia
             "Austria" -> R.drawable.flag_austria
             "Italy" -> R.drawable.flag_italy
             "USA" -> R.drawable.flag_us
