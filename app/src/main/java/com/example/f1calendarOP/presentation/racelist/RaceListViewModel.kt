@@ -12,14 +12,30 @@ import com.example.f1calendarOP.domain.usecases.GetRaceListUseCase
 import retrofit2.HttpException
 import java.io.IOException
 
-class RaceListViewModel : ViewModel() {
+class RaceListViewModel(val getRaceListUseCase: GetRaceListUseCase) : ViewModel() {
 
-    private val getRaceListUseCase by lazy {
-        GetRaceListUseCase(
-            RaceRepositoryImpl(RaceNetworkData()),
-            FlagRepositoryImpl(),
-            FormatWeekendDateUseCase()
-        ) }
+//    private val getRaceListUseCase by lazy {
+//        GetRaceListUseCase(
+//            raceRepository(raceNetworkData),
+//            FlagRepositoryImpl(),
+//            FormatWeekendDateUseCase()
+//        ) }
+
+//    private val flagRepository by lazy {
+//        FlagRepositoryImpl()
+//    }
+
+//    private val formatWeekendDateUseCase by lazy {
+//        FormatWeekendDateUseCase()
+//    }
+//
+//    private val getRaceListUseCase by lazy {
+//        GetRaceListUseCase(
+//            raceRepository,
+//            flagRepository,
+//            formatWeekendDateUseCase
+//        )
+//    }
 
     private val mutableRaceModelList = MutableLiveData<List<RaceModel>>()
 

@@ -16,10 +16,22 @@ class RaceDetailViewModel(private val raceModel : RaceModel) : ViewModel() {
 
     private val getRaceDetailByIdUseCase by lazy {
         GetRaceDetailByIdUseCase(
-            FormatWeekendDateUseCase(),
-            FormatWeekendTimeUseCase(),
-            CircuitRepositoryImpl()
+            formatWeekendDateUseCase,
+            formatWeekendTimeUseCase,
+            circuitRepository
         )
+    }
+
+    private val circuitRepository by lazy {
+        CircuitRepositoryImpl()
+    }
+
+    private val formatWeekendDateUseCase by lazy {
+        FormatWeekendDateUseCase()
+    }
+
+    private val formatWeekendTimeUseCase by lazy {
+        FormatWeekendTimeUseCase()
     }
 
     fun getDetailInfo() {

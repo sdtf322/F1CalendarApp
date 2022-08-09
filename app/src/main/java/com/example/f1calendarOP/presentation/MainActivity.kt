@@ -6,12 +6,14 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.f1calendarOP.R
+import com.example.f1calendarOP.app.App
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         title = "F1 Calendar"
         setContentView(R.layout.activity_main)
+//        (applicationContext as App).appComponent.inject(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
