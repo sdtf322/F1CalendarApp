@@ -8,7 +8,13 @@ This Formula 1 calendar is a simple app which provides information about Formula
 -Screens with information about drivers, teams and current standings will be implemented later!
 
 ## Architecture
-Kotlin, RecyclerView, MVVM, Retrofit, Jetpack Navigation, Kotlin Coroutines, Clean Architecture
+-Kotlin
+-RecyclerView
+-MVVM
+-Retrofit
+-Jetpack Navigation
+-Kotlin Coroutines
+-Clean Architecture
 
 ### Main Screen
 ![main_screen](https://user-images.githubusercontent.com/80196043/166299428-7dd325ea-1f3b-4e56-b9b9-d2d4b1f84c0a.png)
