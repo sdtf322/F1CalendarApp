@@ -17,7 +17,13 @@ sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(item
          fun bind(item: RaceDetailModel.Header) {
              binding.tvTrackDetailF1.text = item.track
              binding.tvDateF12.text = item.date
-             binding.flagDetailF1.setImageResource(item.flag)
+
+             Glide.with(itemView)
+                 .load(item.flag)
+                 .placeholder(R.drawable.flag_unknown)
+                 .error(R.drawable.flag_error)
+                 .fallback(R.drawable.flag_error)
+                 .into(binding.flagDetailF1)
         }
     }
     class SessionViewHolder(private val binding : ItemDetailSessionBinding) :

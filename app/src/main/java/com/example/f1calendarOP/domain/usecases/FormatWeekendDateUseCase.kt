@@ -6,15 +6,15 @@ import java.util.*
 
 class FormatWeekendDateUseCase {
 
-    operator fun invoke(race : RaceModel): String {
+    fun setListDate(race : RaceModel): String {
 
-        val firstSessionDate = formatDate(race.firstPractice.date)
-        val lastSessionDate = formatDate(race.date)
+        val firstSessionDate = formatDetailDate(race.firstPractice.date)
+        val lastSessionDate = formatDetailDate(race.date)
 
         return "$firstSessionDate - $lastSessionDate"
     }
 
-    private fun formatDate(raceDate: String): String {
+    fun formatDetailDate(raceDate: String): String {
 
         val inputFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         val outputFormatter = SimpleDateFormat("dd-MMMM", Locale.ENGLISH)
@@ -22,4 +22,5 @@ class FormatWeekendDateUseCase {
 
         return outputFormatter.format(givenDate)
     }
+
 }

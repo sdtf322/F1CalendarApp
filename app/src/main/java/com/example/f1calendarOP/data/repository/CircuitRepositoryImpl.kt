@@ -1,99 +1,21 @@
-package com.example.f1calendarOP.data
+package com.example.f1calendarOP.data.repository
 
 import com.example.f1calendarOP.R
-import com.example.f1calendarOP.domain.models.RaceModel
+import com.example.f1calendarOP.data.models.RaceDetail
 import com.example.f1calendarOP.domain.models.RaceDetailModel
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import com.example.f1calendarOP.domain.repository.CircuitRepository
 
-internal class RaceFunctions {
+class CircuitRepositoryImpl : CircuitRepository {
 
-    fun getDetailApiData(raceModel: RaceModel) : ArrayList<RaceDetailModel>{ // Detail screen
-        val raceDetailList = ArrayList<RaceDetailModel>()
-        val flagImage = raceModel.flagImage
+    override fun getCircuitData(trackName: String): RaceDetailModel.Circuit {
 
-        val weekendDate = raceModel.weekendDate
-        val header = RaceDetailModel.Header(
-            track = raceModel.raceName, date = weekendDate!!, flag = flagImage!!)
-        raceDetailList.add(header)
-
-        val secondPracticeDate = formatDate(raceModel.secondPractice.date)
-        val secondPracticeTime = formatTime(raceModel.secondPractice.time)
-        val secondPractice = RaceDetailModel.Session(
-            sessionDate = secondPracticeDate, sessionName = PRACTICE2,
-            sessionTime = secondPracticeTime
-        )
-
-        val qualificationDate = formatDate(raceModel.qualifying.date)
-        val qualificationTime = formatTime(raceModel.qualifying.time)
-        val qualification = RaceDetailModel.Session(
-            sessionDate = qualificationDate, sessionName = QUALI,
-            sessionTime = qualificationTime
-        )
-
-        val session2 : RaceDetailModel.Session
-        val session3 : RaceDetailModel.Session
-        val session4 : RaceDetailModel.Session
-
-
-        if(raceModel.sprint != null){
-            val sprintDate = formatDate(raceModel.sprint.date)
-            val sprintTime = formatTime(raceModel.sprint.time)
-            session2 = qualification
-            session3 = secondPractice
-            session4 = RaceDetailModel.Session( // Sprint
-                sessionDate = sprintDate, sessionName = SPRINT,
-                sessionTime = sprintTime
-            )
-        }
-        else{
-            session2 = secondPractice
-            val thirdPracticeDate = formatDate(raceModel.thirdPractice!!.date)
-            val thirdPracticeTime = formatTime(raceModel.thirdPractice.time)
-            session3 = RaceDetailModel.Session( // Third Practice
-                sessionDate = thirdPracticeDate, sessionName = PRACTICE3,
-                sessionTime = thirdPracticeTime
-            )
-            session4 = qualification
-        }
-
-
-        val firstPracticeDate = formatDate(raceModel.firstPractice.date)
-        val firstPracticeTime = formatTime(raceModel.firstPractice.time)
-        val session1 = RaceDetailModel.Session(
-            sessionDate = firstPracticeDate, sessionName = PRACTICE1,
-            sessionTime = firstPracticeTime
-        )
-
-        val raceDate = formatDate(raceModel.date)
-        val raceTime = formatTime(raceModel.time)
-        val session5 = RaceDetailModel.Session(
-            sessionDate = raceDate, sessionName = RACE,
-            sessionTime = raceTime
-        )
-
-        val circuitSession = getCircuitData(raceModel.circuit.circuitName)
-
-        raceDetailList.apply{
-            add(session1)
-            add(session2)
-            add(session3)
-            add(session4)
-            add(session5)
-            add(circuitSession)
-        }
-        return raceDetailList
-    }
-
-    private fun getCircuitData(track: String): RaceDetailModel.Circuit { // Detail screen
         val firstYear: Int
         val laps: Int
         val circuitLength: String
         val lapRecord: String
         val lapRecordOwner: String
         val circuitDrawable: Int
-        when (track) {
+        when (trackName) {
             "Bahrain International Circuit" -> {
                 circuitDrawable = R.drawable.circuit_bahrain
                 firstYear = 1967; laps = 57; circuitLength = "5.412"
@@ -213,7 +135,7 @@ internal class RaceFunctions {
         }
         val raceDistance = String.format("%.3f", circuitLength.toDouble() * laps).toDouble()
 
-        return RaceDetailModel.Circuit(
+        val circuitData = RaceDetail.Circuit(
             circuitImage = circuitDrawable,
             firstYear = firstYear,
             laps = laps,
@@ -222,46 +144,22 @@ internal class RaceFunctions {
             lapRecord = lapRecord,
             lapRecordOwner = lapRecordOwner
         )
-    }
 
-    private fun formatDate(raceDate: String): String { // Detail screen
-
-        val inputFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-        val outputFormatter = SimpleDateFormat("dd-MMMM", Locale.ENGLISH)
-        val givenDate = inputFormatter.parse(raceDate)
-
-        return outputFormatter.format(givenDate)
-    }
-    private fun formatTime(raceTime: String): String { // Detail screen
-
-        val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
-        val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
-        val parsedTime = timeInputFormatter.parse(raceTime)
-
-        return timeOutputFormatter.format(parsedTime)
+        return circuitDataMapToDomain(circuitData)
 
     }
 
-//    fun syncTime(sessionTimeString : ArrayList<String>) : ArrayList<String>{
-//        val timeDigit = 2
-//        val myTimeZone = TimeZone.getTimeZone("Europe/Riga") // add time zone
-//        val currentTime = Calendar.getInstance() // add calendar library
-//        val simpleDateFormat = SimpleDateFormat("HH:mm") // add date format
-//        currentTime.timeZone = myTimeZone
-//        for(i in sessionTimeString.indices){
-//            currentTime.set(Calendar.HOUR_OF_DAY, sessionTimeString[i].take(timeDigit).toInt()) // HOUR AND MINUTES ARE INT VAR
-//            currentTime.set(Calendar.MINUTE,(sessionTimeString[i].takeLast(timeDigit)).toInt())
-//            val dateTime = simpleDateFormat.format(currentTime.time).toString() //date is displayed with selected date format and time zone
-//            sessionTimeString[i] = dateTime
-//        }
-//        return sessionTimeString
-//    }
-    companion object {
-        const val PRACTICE1 = "Practice 1"
-        const val PRACTICE2 = "Practice 2"
-        const val PRACTICE3 = "Practice 3"
-        const val QUALI = "Qualifying"
-        const val SPRINT = "Sprint"
-        const val RACE = "Race"
+    private fun circuitDataMapToDomain(raceDetailCircuit : RaceDetail.Circuit) : RaceDetailModel.Circuit {
+        with(raceDetailCircuit){
+            return RaceDetailModel.Circuit(
+                circuitImage = circuitImage,
+                circuitLength = circuitLength,
+                firstYear = firstYear,
+                lapRecord = lapRecord,
+                lapRecordOwner = lapRecordOwner,
+                laps = laps,
+                raceDistance = raceDistance
+            )
+        }
     }
 }
