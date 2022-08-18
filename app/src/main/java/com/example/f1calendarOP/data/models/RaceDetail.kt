@@ -1,6 +1,6 @@
 package com.example.f1calendarOP.data.models
 
-sealed class RaceDetail {
+class RaceDetail {
     data class Circuit(
         val circuitImage: Int,
         val firstYear: Int,
@@ -9,5 +9,5 @@ sealed class RaceDetail {
         val raceDistance: String,
         val lapRecord: String,
         val lapRecordOwner: String
-    ) : RaceDetail()
+    )
 }
