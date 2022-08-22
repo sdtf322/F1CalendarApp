@@ -8,7 +8,7 @@ import com.example.f1calendarOP.domain.usecases.GetRaceListUseCase
 import retrofit2.HttpException
 import java.io.IOException
 
-class RaceListViewModel(val getRaceListUseCase: GetRaceListUseCase) : ViewModel() {
+class RaceListViewModel(private val getRaceListUseCase: GetRaceListUseCase) : ViewModel() {
 
     private val mutableRaceModelList = MutableLiveData<List<RaceModel>>()
 

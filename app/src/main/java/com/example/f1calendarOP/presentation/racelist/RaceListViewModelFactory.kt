@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.f1calendarOP.domain.usecases.GetRaceListUseCase
 
 class RaceListViewModelFactory(
-    val getRaceListUseCase: GetRaceListUseCase
+    private val getRaceListUseCase: GetRaceListUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
