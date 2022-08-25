@@ -8,29 +8,25 @@ import com.example.f1calendarOP.data.repository.RaceRepositoryImpl
 import com.example.f1calendarOP.domain.repository.CircuitRepository
 import com.example.f1calendarOP.domain.repository.FlagRepository
 import com.example.f1calendarOP.domain.repository.RaceRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+
+@Module(includes = [DataBindModule::class])
+class DataModule
 
 @Module
-class DataModule {
+interface DataBindModule {
 
-    @Provides
-    fun provideRaceApi() : RaceApi {
-        return RaceNetworkData()
-    }
+    @Binds
+    fun bindRaceRepository(raceRepositoryImpl: RaceRepositoryImpl) : RaceRepository
 
-    @Provides
-    fun provideRaceRepository(raceApi: RaceApi) : RaceRepository {
-        return RaceRepositoryImpl(raceApi = raceApi)
-    }
+    @Binds
+    fun bindFlagRepository(flagRepositoryImpl: FlagRepositoryImpl) : FlagRepository
 
-    @Provides
-    fun provideFlagRepository() : FlagRepository {
-        return FlagRepositoryImpl()
-    }
+    @Binds
+    fun bindCircuitRepository(circuitRepositoryImpl: CircuitRepositoryImpl) : CircuitRepository
 
-    @Provides
-    fun provideCircuitRepository() : CircuitRepository {
-        return CircuitRepositoryImpl()
-    }
+    @Binds
+    fun bindRaceApi(raceNetworkData: RaceNetworkData) : RaceApi
+
 }

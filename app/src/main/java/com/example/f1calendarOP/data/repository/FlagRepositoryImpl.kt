@@ -3,8 +3,9 @@ package com.example.f1calendarOP.data.repository
 import com.example.f1calendarOP.R
 import com.example.f1calendarOP.domain.models.RaceModel
 import com.example.f1calendarOP.domain.repository.FlagRepository
+import javax.inject.Inject
 
-class FlagRepositoryImpl : FlagRepository {
+class FlagRepositoryImpl @Inject constructor() : FlagRepository {
 
     override fun addFlagsByCountry(race : RaceModel) : Int{ // List and Detail screen
         val flagDrawable = when(race.circuit.location.country){ // Race Country

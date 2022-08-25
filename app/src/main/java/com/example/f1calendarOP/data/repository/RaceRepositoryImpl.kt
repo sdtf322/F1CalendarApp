@@ -11,8 +11,11 @@ import com.example.f1calendarOP.domain.models.ThirdPractice
 import com.example.f1calendarOP.domain.models.Sprint
 import com.example.f1calendarOP.domain.models.Qualifying
 import com.example.f1calendarOP.domain.repository.RaceRepository
+import javax.inject.Inject
 
-class RaceRepositoryImpl(private val raceApi: RaceApi) : RaceRepository {
+class RaceRepositoryImpl @Inject constructor(
+    private val raceApi: RaceApi
+    ) : RaceRepository {
 
     override suspend fun getRaceList(): List<RaceModel> {
 
