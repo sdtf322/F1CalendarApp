@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.*
-import com.example.f1calendarOP.app.App
 import com.example.f1calendarOP.domain.models.RaceModel
+import com.example.f1calendarOP.presentation.MainActivity
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
@@ -28,7 +28,9 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App().appComponent.inject(this)
+
+        (activity as MainActivity).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
     }
 
