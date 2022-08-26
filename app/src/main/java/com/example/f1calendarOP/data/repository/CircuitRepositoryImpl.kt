@@ -4,8 +4,9 @@ import com.example.f1calendarOP.R
 import com.example.f1calendarOP.data.models.RaceDetail
 import com.example.f1calendarOP.domain.models.RaceDetailModel
 import com.example.f1calendarOP.domain.repository.CircuitRepository
+import javax.inject.Inject
 
-class CircuitRepositoryImpl : CircuitRepository {
+class CircuitRepositoryImpl @Inject constructor() : CircuitRepository {
 
     override fun getCircuitData(trackName: String): RaceDetailModel.Circuit {
 

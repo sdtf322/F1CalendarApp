@@ -2,8 +2,9 @@ package com.example.f1calendarOP.data.network
 
 import com.example.f1calendarOP.data.models.Race
 import com.example.f1calendarOP.data.models.RaceResponse
+import javax.inject.Inject
 
-class RaceNetworkData : RaceApi {
+class RaceNetworkData @Inject constructor() : RaceApi {
 
     override suspend fun getRaceInfo(): RaceResponse {
 

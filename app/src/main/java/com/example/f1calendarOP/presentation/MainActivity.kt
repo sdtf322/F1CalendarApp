@@ -6,10 +6,18 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.f1calendarOP.R
+import com.example.f1calendarOP.app.App
+import com.example.f1calendarOP.di.AppComponent
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var appComponent: AppComponent
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        appComponent = (applicationContext as App).appComponent
+
         title = "F1 Calendar"
         setContentView(R.layout.activity_main)
     }

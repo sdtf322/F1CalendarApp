@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.R
+import com.example.f1calendarOP.domain.usecases.GetRaceDetailByIdUseCase
+import com.example.f1calendarOP.presentation.MainActivity
+import javax.inject.Inject
 
 class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
@@ -19,6 +22,16 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
     private val args by navArgs<RaceDetailFragmentArgs>()
     private val raceInfo by lazy { args.raceInfo }
     private lateinit var raceDetailViewModel: RaceDetailViewModel
+
+    @Inject
+    lateinit var getRaceDetailByIdUseCase: GetRaceDetailByIdUseCase
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        (activity as MainActivity).appComponent.inject(this)
+
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +52,7 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
         super.onViewCreated(view, savedInstanceState)
 
         raceDetailViewModel = ViewModelProvider(
-            this, RaceDetailViewModelFactory(raceInfo)
+            this, RaceDetailViewModelFactory(raceModel = raceInfo, getRaceDetailByIdUseCase)
         )[RaceDetailViewModel::class.java]
 
         raceDetailViewModel.getLiveData().observe(viewLifecycleOwner) {

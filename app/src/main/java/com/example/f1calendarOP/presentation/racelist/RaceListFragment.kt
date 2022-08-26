@@ -12,14 +12,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.f1calendarOP.*
 import com.example.f1calendarOP.domain.models.RaceModel
+import com.example.f1calendarOP.presentation.MainActivity
 import kotlinx.coroutines.runBlocking
-
-const val TAG = "RaceListFragment"
+import javax.inject.Inject
 
 class RaceListFragment : Fragment(R.layout.fragment_race_list) {
+
     private lateinit var raceListViewModel: RaceListViewModel
+
+    @Inject
+    lateinit var raceListViewModelFactory: RaceListViewModelFactory
+
     private val raceListAdapter: RaceListAdapter by lazy {
         RaceListAdapter { race -> onClickHelper(race) }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        (activity as MainActivity).appComponent.inject(this)
+
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -41,7 +53,7 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
         super.onViewCreated(view, savedInstanceState)
 
         raceListViewModel = ViewModelProvider(
-            this)[RaceListViewModel::class.java]
+            this, raceListViewModelFactory)[RaceListViewModel::class.java]
 
         raceListViewModel.getLiveData().observe(viewLifecycleOwner) {
             raceListAdapter.submitList(it)
