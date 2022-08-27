@@ -20,4 +20,5 @@ class FormatWeekendTimeUseCase {
         return timeOutputFormatter.format(parsedTime)
 
     }
-    }
+
+}
