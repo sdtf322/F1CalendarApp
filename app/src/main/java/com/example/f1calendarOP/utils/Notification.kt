@@ -9,14 +9,13 @@ import com.example.f1calendarOP.R
 
 const val NOTIFICATION_ID = 1
 const val CHANNEL_ID = "channel1"
-const val NOTIF_TITLE = "F1 Calendar App"
-const val NOTIF_MESSAGE = "This is a reminder of F1 GP"
+const val NOTIF_TITLE = "titleExtra"
+const val NOTIF_MESSAGE = "messageExtra"
 
 class Notification : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val raceNotification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_driver)
             .setContentTitle(intent.getStringExtra(NOTIF_TITLE))
             .setContentText(intent.getStringExtra(NOTIF_MESSAGE))
             .build()

@@ -3,7 +3,6 @@ package com.example.f1calendarOP.presentation
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -33,72 +32,75 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        createNotificationChannel()
+//        createNotificationChannel()
+//
+//        scheduleNotification()
+
+
     }
 
-    private fun scheduleNotification() {
-        val intent = Intent(applicationContext, Notification::class.java)
-        val title = "Droopessa"
-        val message = "Raketchica"
-        intent.putExtra(NOTIF_TITLE, title)
-        intent.putExtra(NOTIF_MESSAGE, message)
+//    private fun scheduleNotification()
+//    {
+//        val intent = Intent(applicationContext, Notification::class.java)
+//        val title = "Droopessa"
+//        val message = "Raketchica"
+//        intent.putExtra(NOTIF_TITLE, title)
+//        intent.putExtra(NOTIF_MESSAGE, message)
+//
+//        val pendingIntent = PendingIntent.getBroadcast(
+//            applicationContext,
+//            NOTIFICATION_ID,
+//            intent,
+//            PendingIntent.FLAG_IMMUTABLE
+//        )
+//
+//        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//        val time = getTime()
+//        alarmManager.setExactAndAllowWhileIdle(
+//            AlarmManager.RTC_WAKEUP,
+//            time,
+//            pendingIntent
+//        )
+//    }
 
-        val pendingIntent = PendingIntent.getService(
-            applicationContext,
-            NOTIFICATION_ID,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+//    private fun showAlert(time: Long, title: String, message: String)
+//    {
+//        val date = Date(time)
+//        val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
+//        val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
+//
+//        AlertDialog.Builder(this)
+//            .setTitle("Notification Scheduled")
+//            .setMessage(
+//                "Title: " + title +
+//                        "\nMessage: " + message +
+//                        "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date))
+//            .setPositiveButton("Okay"){_,_ ->}
+//            .show()
+//    }
 
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val time = getTime()
-        alarmManager.setAlarmClock(
-            alarmManager.nextAlarmClock,
-            pendingIntent
-        )
-        showAlert(time, title, message)
-    }
-
-    private fun showAlert(time: Long, title: String, message: String)
-    {
-        val date = Date(time)
-        val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
-        val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
-
-        AlertDialog.Builder(this)
-            .setTitle("Notification Scheduled")
-            .setMessage(
-                "Title: " + title +
-                        "\nMessage: " + message +
-                        "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date))
-            .setPositiveButton("Okay"){_,_ ->}
-            .show()
-    }
-
-    private fun getTime(): Long { // sets time for a notification
-        val minute = 0
-        val hour = 13
-        val day = 3
-        val month = 9
-        val year = 2022
-
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month, day, hour, minute)
-        return calendar.timeInMillis
-    }
-
-    private fun createNotificationChannel() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // Android Oreo
-            val name = "Notif Channel"
-            val desc = "A Description of the Channel"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance)
-            channel.description = desc
-            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
+//    private fun getTime(): Long { // sets time for a notification
+//        val minute = 30
+//        val hour = 8
+//        val day = 6
+//        val month = 8
+//        val year = 2022
+//
+//        val calendar = Calendar.getInstance()
+//        calendar.set(year, month, day, hour, minute)
+//        return calendar.timeInMillis
+//    }
+//
+//    private fun createNotificationChannel() { // Can be placed in different file
+//
+//            val name = "Notif Channel"
+//            val desc = "A Description of the Channel"
+//            val importance = NotificationManager.IMPORTANCE_DEFAULT
+//            val channel = NotificationChannel(CHANNEL_ID, name, importance)
+//            channel.description = desc
+//            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(channel)
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.app_menu, menu)
@@ -107,7 +109,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.miAuthor -> Toast.makeText(
+            R.id.miAuthor ->
+                Toast.makeText(
                 this,
                 "Author of this app is Olegs Pliska",
                 Toast.LENGTH_LONG
