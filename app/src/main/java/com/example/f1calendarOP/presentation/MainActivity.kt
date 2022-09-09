@@ -4,6 +4,7 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -31,11 +32,11 @@ class MainActivity : AppCompatActivity() {
         title = "F1 Calendar"
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.i("NOTIF_Main", "MainActivity call")
 
         createNotificationChannel()
 
         scheduleNotification()
-
 
     }
 
@@ -61,17 +62,19 @@ class MainActivity : AppCompatActivity() {
             time,
             pendingIntent
         )
+        Log.i("NOTIF_Main", "Schedule Notification call()")
     }
 
     private fun getTime(): Long { // sets time for a notification
-        val minute = 30
-        val hour = 8
-        val day = 6
+        val minute = 50
+        val hour = 11
+        val day = 9
         val month = 8
         val year = 2022
 
         val calendar = Calendar.getInstance()
         calendar.set(year, month, day, hour, minute)
+        Log.i("NOTIF_Main", "getTime() call")
         return calendar.timeInMillis
     }
 
@@ -84,6 +87,8 @@ class MainActivity : AppCompatActivity() {
             channel.description = desc
             val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+
+            Log.i("NOTIF_Main", "Create Notification Channel called")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
