@@ -1,6 +1,6 @@
 package com.example.f1calendarOP.data.repository
 
-import com.example.f1calendarOP.R
+import com.example.f1calendarOP.data.R
 import com.example.f1calendarOP.data.models.RaceDetail
 import com.example.f1calendarOP.domain.models.RaceDetailModel
 import com.example.f1calendarOP.domain.repository.CircuitRepository
