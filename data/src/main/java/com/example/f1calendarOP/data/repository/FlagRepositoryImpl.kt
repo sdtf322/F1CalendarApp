@@ -1,6 +1,6 @@
 package com.example.f1calendarOP.data.repository
 
-import com.example.f1calendarOP.R
+import com.example.f1calendarOP.data.R
 import com.example.f1calendarOP.domain.models.RaceModel
 import com.example.f1calendarOP.domain.repository.FlagRepository
 import javax.inject.Inject
