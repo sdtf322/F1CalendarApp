@@ -14,14 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecyclerViewDroopa">
-        <receiver android:name=".utils.Notification"
+        <receiver android:name=".utils.NotificationBroadcastReceiver"
                     android:enabled="true"
-                    />
+                    android:exported="true">
+        <intent-filter>
+            <action android:name="com.example.f1calendarOP.presentation.Notification" />
+        </intent-filter>
+        </receiver>
 
         <activity
             android:name="com.example.f1calendarOP.presentation.MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
