@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
             time,
             pendingIntent
         )
-        sendBroadcast(intent)
         Log.i("NOTIF_Main", "Schedule Notification call()")
     }
 
