@@ -5,29 +5,19 @@ import java.util.*
 
 class FormatWeekendTimeUseCase {
 
-//        operator fun invoke(raceTime: String): String { // Detail screen
-//
-//            val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
-//            val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
-//            val parsedTime = timeInputFormatter.parse(raceTime)
-//
-//            return timeOutputFormatter.format(parsedTime)
-//
-//        }
+        operator fun invoke(raceTime: String): String { // Detail screen
 
-    operator fun invoke(raceTime: String): String { // Detail screen
+            val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
+            val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+            val parsedTime = timeInputFormatter.parse(raceTime)
 
-        val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
-        val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
-        val parsedTime = timeInputFormatter.parse(raceTime)
+            val tzCalendar = Calendar.getInstance(TimeZone.getDefault())
+            val timeZoneOffset = ((tzCalendar.get(Calendar.ZONE_OFFSET) +
+                    tzCalendar.get(Calendar.DST_OFFSET)) / (3600 * 1000)) // Difference in Hours (3)
 
-        val tzCalendar = Calendar.getInstance(TimeZone.getDefault())
-        val timeZoneOffset = ((tzCalendar.get(Calendar.ZONE_OFFSET) +
-                tzCalendar.get(Calendar.DST_OFFSET)) / (3600 * 1000)) // Difference in Hours (3)
+            parsedTime.hours = parsedTime.hours + timeZoneOffset
 
-        parsedTime.hours = parsedTime.hours + timeZoneOffset
+            return timeOutputFormatter.format(parsedTime)
 
-        return timeOutputFormatter.format(parsedTime)
-
-    }
+        }
 }
