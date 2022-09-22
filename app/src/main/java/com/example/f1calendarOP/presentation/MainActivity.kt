@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
     private fun scheduleNotification()
     {
         val intent = Intent()
-        val title = "Droopessa"
-        val message = "Raketchica"
+        val title = "F1 Calendar"
+        val message = "Bahrain Grand Prix will start at 15:00"
 
         val action = "com.example.f1calendarOP.presentation.Notification"
         intent.putExtra(NOTIF_TITLE, title)
@@ -71,7 +71,10 @@ class MainActivity : AppCompatActivity() {
         Log.i("NOTIF_Main", "Schedule Notification call()")
     }
 
-    private fun getTime(): Long { // sets time for a notification
+    private fun getTime(): Long {
+
+        // Instead of Calendar Instance we need to get a exact date and time from API
+        // Race : Date and Time
 
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.SECOND, 10)
