@@ -15,7 +15,7 @@ import kotlinx.parcelize.Parcelize
         val raceName: String,
         val round: String,
         val season: String,
-        val time: String,
+        var time: String,
         val url: String,
         var flagImage: Int? = null,
         var weekendDate : String? = null,

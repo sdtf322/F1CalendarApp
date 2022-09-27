@@ -3,10 +3,7 @@ package com.example.f1calendarOP.di
 import com.example.f1calendarOP.domain.repository.CircuitRepository
 import com.example.f1calendarOP.domain.repository.FlagRepository
 import com.example.f1calendarOP.domain.repository.RaceRepository
-import com.example.f1calendarOP.domain.usecases.FormatWeekendDateUseCase
-import com.example.f1calendarOP.domain.usecases.FormatWeekendTimeUseCase
-import com.example.f1calendarOP.domain.usecases.GetRaceDetailByIdUseCase
-import com.example.f1calendarOP.domain.usecases.GetRaceListUseCase
+import com.example.f1calendarOP.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 
@@ -40,5 +37,12 @@ class DomainModule {
     : GetRaceDetailByIdUseCase {
         return GetRaceDetailByIdUseCase(formatWeekendDateUseCase, formatWeekendTimeUseCase,
         circuitRepository)
+    }
+
+    @Provides
+    fun provideNotifyUserAboutRaceUseCase(
+        raceRepository: RaceRepository)
+            : NotifyUserAboutRaceUseCase {
+        return NotifyUserAboutRaceUseCase(raceRepository)
     }
 }

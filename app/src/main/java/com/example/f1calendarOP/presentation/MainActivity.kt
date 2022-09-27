@@ -15,13 +15,21 @@ import com.example.f1calendarOP.R
 import com.example.f1calendarOP.app.App
 import com.example.f1calendarOP.databinding.ActivityMainBinding
 import com.example.f1calendarOP.di.AppComponent
+import com.example.f1calendarOP.domain.repository.RaceRepository
+import com.example.f1calendarOP.domain.usecases.NotifyUserAboutRaceUseCase
 import com.example.f1calendarOP.utils.*
 import java.util.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var appComponent: AppComponent
     private lateinit var binding : ActivityMainBinding
+
+    @Inject
+    lateinit var raceRepository : RaceRepository
+
+    private val notifyUserAboutRaceUseCase by lazy { NotifyUserAboutRaceUseCase(raceRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.i("NOTIF_Main", "MainActivity call")
+
+        val abobaList = notifyUserAboutRaceUseCase.getList()
+
+        abobaList.get(3)
+
 
         createNotificationChannel()
 
@@ -62,7 +75,9 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             registerReceiver(NotificationBroadcastReceiver(), IntentFilter(action))
         }
+
         val time = getTime()
+
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             time,
@@ -71,14 +86,11 @@ class MainActivity : AppCompatActivity() {
         Log.i("NOTIF_Main", "Schedule Notification call()")
     }
 
-    private fun getTime(): Long {
-
-        // Instead of Calendar Instance we need to get a exact date and time from API
-        // Race : Date and Time
+    private fun getTime() : Long {
 
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.SECOND, 10)
-        Log.i("NOTIF_Main", "getTime() call")
+
         return calendar.timeInMillis
     }
 
