@@ -1,4 +1,4 @@
-package com.example.f1calendarOP.presentation
+package com.example.f1calendarOP.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.f1calendarOP.domain.models.RaceModel
