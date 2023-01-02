@@ -7,13 +7,13 @@ import com.example.f1calendarOP.domain.usecases.GetRaceDetailByIdUseCase
 import java.lang.IllegalArgumentException
 
 class RaceDetailViewModelFactory(
-    private val raceModel : RaceModel,
-    private val getRaceDetailByIdUseCase: GetRaceDetailByIdUseCase) : ViewModelProvider.Factory {
+    private val raceModel: RaceModel,
+    private val getRaceDetailByIdUseCase: GetRaceDetailByIdUseCase
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(RaceDetailViewModel::class.java)){
+        if (modelClass.isAssignableFrom(RaceDetailViewModel::class.java)) {
             return RaceDetailViewModel(raceModel, getRaceDetailByIdUseCase) as T
-        }
-        else{
+        } else {
             throw IllegalArgumentException("Unknown View Model")
         }
     }

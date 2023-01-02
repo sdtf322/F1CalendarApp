@@ -14,21 +14,22 @@ import dagger.Provides
 class DomainModule {
 
     @Provides
-    fun provideFormatWeekendDateUseCase() : FormatWeekendDateUseCase {
+    fun provideFormatWeekendDateUseCase(): FormatWeekendDateUseCase {
         return FormatWeekendDateUseCase()
     }
 
     @Provides
-    fun provideFormatWeekendTimeUseCase() : FormatWeekendTimeUseCase {
+    fun provideFormatWeekendTimeUseCase(): FormatWeekendTimeUseCase {
         return FormatWeekendTimeUseCase()
     }
 
     @Provides
     fun provideGetRaceListUseCase(
-        raceRepository : RaceRepository,
+        raceRepository: RaceRepository,
         flagRepository: FlagRepository,
-        formatWeekendDateUseCase: FormatWeekendDateUseCase)
-    : GetRaceListUseCase {
+        formatWeekendDateUseCase: FormatWeekendDateUseCase
+    )
+            : GetRaceListUseCase {
         return GetRaceListUseCase(raceRepository, flagRepository, formatWeekendDateUseCase)
     }
 
@@ -36,9 +37,12 @@ class DomainModule {
     fun provideGetRaceDetailByIdUseCase(
         formatWeekendDateUseCase: FormatWeekendDateUseCase,
         formatWeekendTimeUseCase: FormatWeekendTimeUseCase,
-        circuitRepository: CircuitRepository)
-    : GetRaceDetailByIdUseCase {
-        return GetRaceDetailByIdUseCase(formatWeekendDateUseCase, formatWeekendTimeUseCase,
-        circuitRepository)
+        circuitRepository: CircuitRepository
+    )
+            : GetRaceDetailByIdUseCase {
+        return GetRaceDetailByIdUseCase(
+            formatWeekendDateUseCase, formatWeekendTimeUseCase,
+            circuitRepository
+        )
     }
 }

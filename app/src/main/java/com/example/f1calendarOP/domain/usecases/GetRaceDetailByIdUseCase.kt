@@ -7,21 +7,23 @@ import com.example.f1calendarOP.domain.repository.CircuitRepository
 class GetRaceDetailByIdUseCase(
     private val dateFormatter: FormatWeekendDateUseCase,
     private val timeFormatter: FormatWeekendTimeUseCase,
-    private val circuitRepository: CircuitRepository) {
+    private val circuitRepository: CircuitRepository
+) {
 
-    operator fun invoke(raceModel: RaceModel) : ArrayList<RaceDetailModel> {
+    operator fun invoke(raceModel: RaceModel): ArrayList<RaceDetailModel> {
 
         val raceDetailList = ArrayList<RaceDetailModel>()
         val flagImage = raceModel.flagImage
 
         val weekendDate = raceModel.weekendDate
         val header = RaceDetailModel.Header(
-            track = raceModel.raceName, date = weekendDate!!, flag = flagImage!!)
+            track = raceModel.raceName, date = weekendDate!!, flag = flagImage!!
+        )
         raceDetailList.add(header)
 
         val secondPracticeDate = dateFormatter.formatDetailDate(raceModel.secondPractice.date)
         val secondPracticeTime = timeFormatter(raceModel.secondPractice.time)
-        val secondPractice = RaceDetailModel.Session (
+        val secondPractice = RaceDetailModel.Session(
             sessionDate = secondPracticeDate, sessionName = "Practice 2",
             sessionTime = secondPracticeTime
         )
@@ -33,12 +35,12 @@ class GetRaceDetailByIdUseCase(
             sessionTime = qualificationTime
         )
 
-        val session2 : RaceDetailModel.Session
-        val session3 : RaceDetailModel.Session
-        val session4 : RaceDetailModel.Session
+        val session2: RaceDetailModel.Session
+        val session3: RaceDetailModel.Session
+        val session4: RaceDetailModel.Session
 
 
-        if(raceModel.sprint != null){
+        if (raceModel.sprint != null) {
             val sprintDate = dateFormatter.formatDetailDate(raceModel.sprint.date)
             val sprintTime = timeFormatter(raceModel.sprint.time)
             session2 = qualification
@@ -47,8 +49,7 @@ class GetRaceDetailByIdUseCase(
                 sessionDate = sprintDate, sessionName = "Sprint",
                 sessionTime = sprintTime
             )
-        }
-        else{
+        } else {
             session2 = secondPractice
             val thirdPracticeDate = dateFormatter.formatDetailDate(raceModel.thirdPractice!!.date)
             val thirdPracticeTime = timeFormatter(raceModel.thirdPractice.time)
@@ -76,7 +77,7 @@ class GetRaceDetailByIdUseCase(
 
         val raceCircuit = circuitRepository.getCircuitData(raceModel.circuit.circuitName)
 
-        raceDetailList.apply{
+        raceDetailList.apply {
             add(session1)
             add(session2)
             add(session3)

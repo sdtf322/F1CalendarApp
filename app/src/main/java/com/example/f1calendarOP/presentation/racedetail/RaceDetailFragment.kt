@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
 
-    private val raceDetailAdapter : RaceDetailAdapter by lazy { RaceDetailAdapter() }
+    private val raceDetailAdapter: RaceDetailAdapter by lazy { RaceDetailAdapter() }
 
     private val args by navArgs<RaceDetailFragmentArgs>()
     private val raceInfo by lazy { args.raceInfo }
@@ -38,7 +38,7 @@ class RaceDetailFragment : Fragment(R.layout.fragment_race_detail) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val listItems : View = inflater.inflate(R.layout.fragment_race_detail, container, false)
+        val listItems: View = inflater.inflate(R.layout.fragment_race_detail, container, false)
         val recyclerView = listItems.findViewById<View>(R.id.recyclerViewDetail) as RecyclerView
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)

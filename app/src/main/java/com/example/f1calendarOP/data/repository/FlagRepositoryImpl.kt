@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class FlagRepositoryImpl @Inject constructor() : FlagRepository {
 
-    override fun addFlagsByCountry(race : RaceModel) : Int{ // List and Detail screen
-        val flagDrawable = when(race.circuit.location.country){ // Race Country
+    override fun addFlagsByCountry(race: RaceModel): Int { // List and Detail screen
+        val flagDrawable = when (race.circuit.location.country) { // Race Country
             "Bahrain" -> R.drawable.flag_bahrain
             "Australia" -> R.drawable.flag_australia
             "Austria" -> R.drawable.flag_austria

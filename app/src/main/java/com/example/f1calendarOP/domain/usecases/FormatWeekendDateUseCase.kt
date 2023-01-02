@@ -6,7 +6,7 @@ import java.util.*
 
 class FormatWeekendDateUseCase {
 
-    fun setListDate(race : RaceModel): String {
+    fun setListDate(race: RaceModel): String {
 
         val firstSessionDate = formatDetailDate(race.firstPractice.date)
         val lastSessionDate = formatDetailDate(race.date)

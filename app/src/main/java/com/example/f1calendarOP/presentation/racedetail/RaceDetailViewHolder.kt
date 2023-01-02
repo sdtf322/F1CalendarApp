@@ -12,30 +12,32 @@ import com.example.f1calendarOP.domain.models.RaceDetailModel
 
 sealed class RaceDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    class HeaderViewHolder(private val binding : ItemDetailHeaderBinding) :
-        RecyclerView.ViewHolder(binding.root){
-         fun bind(item: RaceDetailModel.Header) {
-             binding.tvTrackDetailF1.text = item.track
-             binding.tvDateF12.text = item.date
+    class HeaderViewHolder(private val binding: ItemDetailHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: RaceDetailModel.Header) {
+            binding.tvTrackDetailF1.text = item.track
+            binding.tvDateF12.text = item.date
 
-             Glide.with(itemView)
-                 .load(item.flag)
-                 .placeholder(R.drawable.flag_unknown)
-                 .error(R.drawable.flag_error)
-                 .fallback(R.drawable.flag_error)
-                 .into(binding.flagDetailF1)
+            Glide.with(itemView)
+                .load(item.flag)
+                .placeholder(R.drawable.flag_unknown)
+                .error(R.drawable.flag_error)
+                .fallback(R.drawable.flag_error)
+                .into(binding.flagDetailF1)
         }
     }
-    class SessionViewHolder(private val binding : ItemDetailSessionBinding) :
-        RecyclerView.ViewHolder(binding.root){
-         fun bind(item: RaceDetailModel.Session) {
-             binding.tvSessionDate.text = item.sessionDate
-             binding.tvSessionName.text = item.sessionName
-             binding.tvSessionTime.text = item.sessionTime
+
+    class SessionViewHolder(private val binding: ItemDetailSessionBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: RaceDetailModel.Session) {
+            binding.tvSessionDate.text = item.sessionDate
+            binding.tvSessionName.text = item.sessionName
+            binding.tvSessionTime.text = item.sessionTime
         }
     }
-    class CircuitViewHolder(private val binding : ItemDetailCircuitBinding) :
-        RecyclerView.ViewHolder(binding.root){
+
+    class CircuitViewHolder(private val binding: ItemDetailCircuitBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RaceDetailModel.Circuit) {
             binding.circuitImage.setImageResource(item.circuitImage)
             binding.tvCircuitFirstGPYear.text = item.firstYear.toString()

@@ -5,13 +5,13 @@ import java.util.*
 
 class FormatWeekendTimeUseCase {
 
-        operator fun invoke(raceTime: String): String { // Detail screen
+    operator fun invoke(raceTime: String): String { // Detail screen
 
-            val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
-            val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
-            val parsedTime = timeInputFormatter.parse(raceTime)
+        val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
+        val timeOutputFormatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+        val parsedTime = timeInputFormatter.parse(raceTime)
 
-            return timeOutputFormatter.format(parsedTime)
+        return timeOutputFormatter.format(parsedTime)
 
-        }
     }
+}

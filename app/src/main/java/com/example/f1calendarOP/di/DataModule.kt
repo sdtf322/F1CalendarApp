@@ -18,15 +18,15 @@ class DataModule
 interface DataBindModule {
 
     @Binds
-    fun bindRaceRepository(raceRepositoryImpl: RaceRepositoryImpl) : RaceRepository
+    fun bindRaceRepository(raceRepositoryImpl: RaceRepositoryImpl): RaceRepository
 
     @Binds
-    fun bindFlagRepository(flagRepositoryImpl: FlagRepositoryImpl) : FlagRepository
+    fun bindFlagRepository(flagRepositoryImpl: FlagRepositoryImpl): FlagRepository
 
     @Binds
-    fun bindCircuitRepository(circuitRepositoryImpl: CircuitRepositoryImpl) : CircuitRepository
+    fun bindCircuitRepository(circuitRepositoryImpl: CircuitRepositoryImpl): CircuitRepository
 
     @Binds
-    fun bindRaceApi(raceNetworkData: RaceNetworkData) : RaceApi
+    fun bindRaceApi(raceNetworkData: RaceNetworkData): RaceApi
 
 }

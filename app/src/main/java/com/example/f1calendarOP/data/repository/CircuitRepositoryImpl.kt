@@ -150,8 +150,8 @@ class CircuitRepositoryImpl @Inject constructor() : CircuitRepository {
 
     }
 
-    private fun circuitDataMapToDomain(raceDetailCircuit : RaceDetail.Circuit) : RaceDetailModel.Circuit {
-        with(raceDetailCircuit){
+    private fun circuitDataMapToDomain(raceDetailCircuit: RaceDetail.Circuit): RaceDetailModel.Circuit {
+        with(raceDetailCircuit) {
             return RaceDetailModel.Circuit(
                 circuitImage = circuitImage,
                 circuitLength = circuitLength,

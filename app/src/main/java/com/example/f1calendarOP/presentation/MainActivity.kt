@@ -30,14 +30,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.miAuthor -> Toast.makeText(
-                this,
-                "Author of this app is Olegs Pliska",
-                Toast.LENGTH_LONG
+                this, "Author of this app is Olegs Pliska", Toast.LENGTH_LONG
             ).show()
             R.id.miTheme -> Toast.makeText(
-                this,
-                "Switching to light/dark theme(IN PROGRESS)",
-                Toast.LENGTH_SHORT
+                this, "Switching to light/dark theme(IN PROGRESS)", Toast.LENGTH_SHORT
             ).show()
         }
         return true

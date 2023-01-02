@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class RaceRepositoryImpl @Inject constructor(
     private val raceApi: RaceApi
-    ) : RaceRepository {
+) : RaceRepository {
 
     override suspend fun getRaceList(): List<RaceModel> {
 
@@ -25,18 +25,18 @@ class RaceRepositoryImpl @Inject constructor(
         return raceListMapToDomain(dataRaceList)
     }
 
-    private fun raceListMapToDomain (raceList : List<Race>) : List<RaceModel> {
+    private fun raceListMapToDomain(raceList: List<Race>): List<RaceModel> {
 
         val raceModelList = mutableListOf<RaceModel>()
 
-        for(item in raceList) {
+        for (item in raceList) {
             raceModelList.add(raceMapToDomain(item))
         }
 
         return raceModelList
     }
 
-    private fun raceMapToDomain(race : Race) : RaceModel {
+    private fun raceMapToDomain(race: Race): RaceModel {
         with(race) {
             return RaceModel(
                 circuit = circuitMap(race),
@@ -67,8 +67,8 @@ class RaceRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun locationMap(race : Race) : Location {
-        with(race.circuit.location){
+    private fun locationMap(race: Race): Location {
+        with(race.circuit.location) {
             return Location(
                 country = country,
                 lat = lat,
@@ -78,8 +78,8 @@ class RaceRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun circuitMap(race : Race) : Circuit {
-        with(race.circuit){
+    private fun circuitMap(race: Race): Circuit {
+        with(race.circuit) {
             return Circuit(
                 circuitId = circuitId,
                 circuitName = circuitName,
@@ -89,8 +89,8 @@ class RaceRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun firstPracticeMap(race : Race) : FirstPractice {
-        with(race.firstPractice){
+    private fun firstPracticeMap(race: Race): FirstPractice {
+        with(race.firstPractice) {
             return FirstPractice(
                 date = date,
                 time = time
@@ -98,8 +98,8 @@ class RaceRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun secondPracticeMap(race : Race) : SecondPractice {
-        with(race.secondPractice){
+    private fun secondPracticeMap(race: Race): SecondPractice {
+        with(race.secondPractice) {
             return SecondPractice(
                 date = date,
                 time = time
@@ -107,8 +107,8 @@ class RaceRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun qualifyingMap(race : Race) : Qualifying {
-        with(race.qualifying){
+    private fun qualifyingMap(race: Race): Qualifying {
+        with(race.qualifying) {
             return Qualifying(
                 date = date,
                 time = time
