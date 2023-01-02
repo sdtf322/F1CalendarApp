@@ -16,8 +16,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val bottomNavigationView =
             view.findViewById<BottomNavigationView>(R.id.bottomNavigationView2)
         val navController =
-            (childFragmentManager.findFragmentById(R.id.flFragment2) as NavHostFragment)
-                .navController
+            (childFragmentManager.findFragmentById(R.id.flFragment2)
+                    as NavHostFragment).navController
         bottomNavigationView.setupWithNavController(navController)
     }
 }
