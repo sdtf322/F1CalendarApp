@@ -11,8 +11,7 @@ class AppModule {
     @Provides
     fun provideRaceListViewModelFactory(
         getRaceListUseCase: GetRaceListUseCase
-    )
-            : RaceListViewModelFactory {
+    ): RaceListViewModelFactory {
         return RaceListViewModelFactory(getRaceListUseCase = getRaceListUseCase)
     }
 }
