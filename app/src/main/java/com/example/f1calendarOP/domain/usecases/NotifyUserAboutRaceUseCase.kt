@@ -4,6 +4,7 @@ import com.example.f1calendarOP.domain.models.RaceModel
 import com.example.f1calendarOP.domain.repository.RaceRepository
 import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
+import java.time.ZoneOffset
 import java.util.*
 
 class NotifyUserAboutRaceUseCase (
@@ -29,7 +30,7 @@ class NotifyUserAboutRaceUseCase (
 
     //Can be added as a separate use case
 
-    private fun changeTimeByTimeZone(raceTime : String) : String {
+    private fun changeTimeByTimeZone(raceTime: String): String {
         val timeInputFormatter = SimpleDateFormat("HH:mm:ss'Z'", Locale.ENGLISH)
         val parsedTime = timeInputFormatter.parse(raceTime)
 
@@ -39,7 +40,7 @@ class NotifyUserAboutRaceUseCase (
 
         parsedTime.hours = parsedTime.hours + timeZoneOffset
 
-        return parsedTime.toString()
+        return timeInputFormatter.format(parsedTime)
     }
 
 }

@@ -15,9 +15,9 @@ import com.example.f1calendarOP.R
 import com.example.f1calendarOP.app.App
 import com.example.f1calendarOP.databinding.ActivityMainBinding
 import com.example.f1calendarOP.di.AppComponent
-import com.example.f1calendarOP.domain.repository.RaceRepository
 import com.example.f1calendarOP.domain.usecases.NotifyUserAboutRaceUseCase
 import com.example.f1calendarOP.utils.*
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -26,25 +26,23 @@ class MainActivity : AppCompatActivity() {
     lateinit var appComponent: AppComponent
     private lateinit var binding : ActivityMainBinding
 
-    @Inject
-    lateinit var raceRepository : RaceRepository
+    private val raceList by lazy { notifyUserAboutRaceUseCase.getList() }
+    private val singaporeRace by lazy { raceList[16] }
 
-    private val notifyUserAboutRaceUseCase by lazy { NotifyUserAboutRaceUseCase(raceRepository) }
+    @Inject
+    lateinit var notifyUserAboutRaceUseCase: NotifyUserAboutRaceUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         appComponent = (applicationContext as App).appComponent
 
+        appComponent.inject(this)
+
         title = "F1 Calendar"
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.i("NOTIF_Main", "MainActivity call")
-
-        val abobaList = notifyUserAboutRaceUseCase.getList()
-
-        abobaList.get(3)
-
 
         createNotificationChannel()
 
@@ -78,18 +76,61 @@ class MainActivity : AppCompatActivity() {
 
         val time = getTime()
 
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            time,
-            pendingIntent
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                time,
+                pendingIntent
+            )
+        }
+        else {
+            sendBroadcast(intent)
+        }
         Log.i("NOTIF_Main", "Schedule Notification call()")
     }
 
     private fun getTime() : Long {
 
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val raceDate = singaporeRace.date // 2022-10-02
+        val parsedDate = dateFormatter.parse(raceDate)
+
+        val timeFormatter = SimpleDateFormat("HH:mm:ss'Z'")
+        val raceTime = singaporeRace.time // 15:00:00Z
+        val parsedTime = timeFormatter.parse(raceTime)
+
+        parsedDate.hours = parsedTime.hours
+        parsedDate.minutes = parsedTime.minutes
+        parsedDate.seconds = parsedTime.seconds
+
         val calendar = Calendar.getInstance()
-        calendar.add(Calendar.SECOND, 10)
+
+        with(parsedDate) {
+            calendar.set(
+                year + 1900,
+                month + 1,
+                date,
+                hours,
+                minutes,
+                seconds
+            )
+        }
+
+//        calendar.add(Calendar.YEAR, parsedDate.year + 1900)
+//        calendar.add(Calendar.MONTH, parsedDate.month + 1)
+//        calendar.add(Calendar.DAY_OF_MONTH, parsedDate.day)
+//
+//        calendar.add(Calendar.HOUR_OF_DAY, parsedTime.hours)
+//        calendar.add(Calendar.MINUTE, parsedTime.minutes)
+//        calendar.add(Calendar.SECOND, parsedTime.seconds)
+
+
+        Log.i("ABOBA",
+            (parsedDate.year + 1900).toString() + " " + (parsedDate.month + 1).toString() +
+            " " + parsedDate.date.toString() + " " + parsedDate.hours.toString() + " " +
+            parsedDate.minutes.toString() + " " + parsedDate.seconds.toString())
+        Log.i("ABOBA",
+            calendar.toString())
 
         return calendar.timeInMillis
     }

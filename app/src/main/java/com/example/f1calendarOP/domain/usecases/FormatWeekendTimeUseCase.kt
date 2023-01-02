@@ -1,5 +1,6 @@
 package com.example.f1calendarOP.domain.usecases
 
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
