@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         appComponent = (applicationContext as App).appComponent
 
-        title = "F1 Calendar"
+        title = getString(R.string.f1_calendar)
         setContentView(R.layout.activity_main)
     }
 
@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.miAuthor -> Toast.makeText(
-                this, "Author of this app is Olegs Pliska", Toast.LENGTH_LONG
+                this, getString(R.string.author_of_this_app_is_olegs_pliska), Toast.LENGTH_LONG
             ).show()
             R.id.miTheme -> Toast.makeText(
-                this, "Switching to light/dark theme(IN PROGRESS)", Toast.LENGTH_SHORT
+                this, getString(R.string.switching_to_light_dark_theme_in_progress), Toast.LENGTH_SHORT
             ).show()
         }
         return true
