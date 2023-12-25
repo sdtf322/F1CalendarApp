@@ -123,4 +123,7 @@
     <string name="menuStandings">Standings</string>
     <string name="menuDrivers">Drivers</string>
     <string name="menuConstructors">Constructors</string>
+    <string name="f1_calendar">F1 Calendar</string>
+    <string name="author_of_this_app_is_olegs_pliska">Author of this app is Olegs Pliska</string>
+    <string name="switching_to_light_dark_theme_in_progress">Switching to light/dark theme(IN PROGRESS)</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.f1calendarOP.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         appComponent = (applicationContext as App).appComponent
+
+        Log.d("ABOBA", appComponent.toString())
 
         title = getString(R.string.f1_calendar)
         setContentView(R.layout.activity_main)

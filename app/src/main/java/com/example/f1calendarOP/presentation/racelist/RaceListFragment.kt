@@ -30,7 +30,6 @@ class RaceListFragment : Fragment(R.layout.fragment_race_list) {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         (activity as MainActivity).appComponent.inject(this)
-
         super.onCreate(savedInstanceState)
     }
 

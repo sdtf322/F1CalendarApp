@@ -21,5 +21,4 @@ class GetRaceListUseCase(
 
         return raceRepositoryRaceList
     }
-
 }
